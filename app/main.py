@@ -6,6 +6,7 @@ import cv2
 
 # https://stackoverflow.com/questions/67027784/how-to-open-mainwindow-from-a-splashscreen-without-button-in-pyqt5
 # https://learndataanalysis.org/source-code-create-a-modern-style-flash-screen-pyqt5-tutorial/
+# git push origin dev
 
 # Ana pencere
 class UI_Window(QWidget):
@@ -30,8 +31,8 @@ class UI_Window(QWidget):
         self.openCamPC()
 
         # Create buttons
-        btnOpen = QPushButton("Bilgisayar kamerasını seç")
-        btnOpen.setMinimumSize(25, 35)
+        btnOpen = QPushButton("PC")
+        btnOpen.setMinimumSize(3, 35)
         btnOpen.setStyleSheet('''
             QPushButton { 
                 background-color: #006BFF; 
@@ -56,11 +57,37 @@ class UI_Window(QWidget):
             }
         ''')
 
-        btnClose = QPushButton("Harici kamerayı seç")
-        btnClose.setMinimumSize(25, 35)
+        btnClose = QPushButton("USB")
+        btnClose.setMinimumSize(3, 35)
         btnClose.setStyleSheet('''
             QPushButton { 
-                background-color: #006BFF; 
+                background-color: rgb(0, 255, 0); 
+                color: #93deed; 
+                font-size: 15px;
+                border-style:none;
+                border:1px solid #3f3f3f; 
+                padding:5px;
+                min-height:20px;
+                border-radius:15px;
+
+            }
+            QPushButton:hover { 
+                background-color: #00ABFF; 
+                color: #93deed; 
+                font-size: 15px;
+                border-style:none;
+                border:1px solid #3f3f3f; 
+                padding:5px;
+                min-height:20px;
+                border-radius:15px;
+            }
+        ''')
+
+        btnSnap = QPushButton("Snap")
+        btnSnap.setMinimumSize(3, 35)
+        btnSnap.setStyleSheet('''
+            QPushButton { 
+                background-color: rgb(255, 255, 0); 
                 color: #93deed; 
                 font-size: 15px;
                 border-style:none;
@@ -85,29 +112,37 @@ class UI_Window(QWidget):
         btnOpen.clicked.connect(self.openCamPC)
         btnClose.clicked.connect(self.openCamUSB)
 
-        # Create a layout.
-        layout = QVBoxLayout()
-        # Buttons on the top half
-        button_layout = QHBoxLayout()
-        button_layout.addWidget(btnOpen)
-        button_layout.addWidget(btnClose)
-
         self.frame = QFrame()
+
+        self.label_logo = QLabel(self.frame)
+        self.label_logo.setPixmap(QPixmap('logo.png')) #logoyu tcgrida logosuna çevir 
+        self.label_logo.resize(100, 150) #ya da tcgrida logosunu başka bir yere ekle
+        self.label_logo.move(self.height() - 10, 40) #burası işe yaramıyor
 
         self.labelTitle = QLabel(self.frame)
         self.labelTitle.setObjectName('LabelTitle')
         self.labelTitle.resize(self.width() - 10, 150)
         self.labelTitle.move(0, 40)  # x, y
         self.labelTitle.setText('<strong>tcGrida App</strong>')
-        self.labelTitle.setAlignment(Qt.AlignCenter)
+        self.labelTitle.setAlignment(Qt.AlignLeft)
 
-        # Bottom half of the screen
+        # Create a layout.
+        layout = QVBoxLayout()
+        h_layout = QHBoxLayout()
+        # Buttons 
+        button_layout = QVBoxLayout()
+        button_layout.addWidget(btnOpen)
+        button_layout.addWidget(btnClose)
+        button_layout.addWidget(btnSnap)
+        button_layout.addWidget(self.label_logo)
+
         layout.addWidget(self.labelTitle)
-        layout.addLayout(button_layout)
         layout.addWidget(self.label)
+        h_layout.addLayout(layout)
+        h_layout.addLayout(button_layout)
 
         # Set the layout
-        self.setLayout(layout)
+        self.setLayout(h_layout)
         self.setWindowTitle("tcGrida App")
         self.setMinimumSize(700, 350)
         self.setWindowIcon(QIcon('logo.png'))

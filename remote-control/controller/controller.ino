@@ -1,6 +1,8 @@
-#include <Wire.h>
-#include <Adafruit_GFX.h>
+#include <Adafruit_Sensor.h>
 #include <Adafruit_SSD1306.h>
+#include <Adafruit_GFX.h>
+#include <DHT.h>
+#include <Wire.h>
 #include <can.h>
 #include <mcp2515.h>
 #include <Servo.h>
@@ -10,27 +12,47 @@
 #define sabitleme_toleransi 30
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
+#define OLED_RESET     20 // Reset pin # (or -1 if sharing Arduino reset pin)
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+DHT dht(5,DHT11);
+
 struct can_frame canSend;
 struct can_frame canRcv;
 
-//CANBUS
 MCP2515 mcp2515(8);
-
 float hizBoleni = 1.0;
 int button = 2;
 bool button_deger = false;
 bool clear_state = true;
-
-//LCD için değerler
 int dis_sicaklik;
 int dis_nem;
 int basinc_deger;
 int sicak_deger;
+
+int pinJoyStick_X_1 = 1;
+int pinJoyStick_Y_1 = 0;
+int pinJoyStick_X_2 = 2;
+int pinJoyStick_Y_2 = 3;
 bool lcd_durum = false;
+int valueJoyStick_X_1 = 0;
+int valueJoyStick_Y_1 = 0;
+int valueJoyStick_X_2 = 0;
+int valueJoyStick_Y_2 = 0;
+
+
+union ArrayToInteger {
+  byte array[2];
+  int integer;
+} converter;
+union ArrayToDouble {
+  byte array[4];
+  double number;
+} doubler;
+
 #define IUDSZ_BMPWIDTH  128
 #define IUDSZ_BMPHEIGHT  60
-#define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
 const unsigned char bitmap_iudsz[] PROGMEM = {
   B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11110000,
   B11000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00110000,
@@ -96,49 +118,40 @@ const unsigned char bitmap_iudsz[] PROGMEM = {
   B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11110000
 };
 
-//Joystick değerleri - 2 koordinat
-int pinJoyStick_X_1 = 1;
-int pinJoyStick_Y_1 = 0;
-int pinJoyStick_X_2 = 2;
-int pinJoyStick_Y_2 = 3;
-
-int valueJoyStick_X_1 = 0;
-int valueJoyStick_Y_1 = 0;
-int valueJoyStick_X_2 = 0;
-int valueJoyStick_Y_2 = 0;
-
-union ArrayToInteger {
-  byte array[2];
-  int integer;
-} converter;
-union ArrayToDouble {
-  byte array[4];
-  double number;
-} doubler;
-
-
 void setup()
 {
-  Serial.begin(9600);
-  SPI.begin();
-  
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize I2C addr to 0x3C ( for 128x64 Display )
-  display.clearDisplay(); // clear the display before starting the program to avoid adafruit splashscreen ( *we can also skip it by modifing header file )
+  display.clearDisplay();
   display.drawBitmap(0, 0, bitmap_iudsz, 126, 60, WHITE);
   display.display();
   delay(5000);
-  
+  display.clearDisplay();
+  Serial.begin(9600);
+  SPI.begin();
+  //display.begin();
+  display.setCursor(0,0);
+  display.print("TCG Grida");
+  delay(5000);
   pinMode(button , INPUT);
-  attachInterrupt(digitalPinToInterrupt(button), lcd_state, CHANGE);
-  
+  attachInterrupt(digitalPinToInterrupt(button),lcd_state,CHANGE);
   mcp2515.reset();
   mcp2515.setBitrate(CAN_125KBPS, MCP_8MHZ);
   mcp2515.setNormalMode();
+  dht.begin();
+
+}
+
+void lcd_state()
+{
+  if(lcd_durum == false) lcd_durum = true;
+  else lcd_durum = false;
+  clear_state = true;
+  Serial.println(lcd_durum);
 }
 
 void loop()
 {
-  //  currentTime = millis();
+//  currentTime = millis();
   if (Serial.available())
   {
     int incomingByte = Serial.read();
@@ -167,23 +180,25 @@ void loop()
       sicak_deger = doubler.number;
     }
   }
-  else {
+  else{
     //Serial.println("hata");
-  }
+    }
 
   // Analogread 0-1023 arasında okuma yapar, burada esc değerleri olan 1000-2000 arasına eşitleniyor.
   // Herhangi bir joystick değerini 3000'den çıkarmak, joystick eksenini ters çevirme anlamına gelir.
   valueJoyStick_X_1 = analogRead(pinJoyStick_X_1) + 1000;
-  valueJoyStick_Y_1 = (analogRead(pinJoyStick_Y_1) + 1000); //Buradaki 3000'i sildik. Eklenebilir. (3000 - ....)
-  valueJoyStick_X_2 = (analogRead(pinJoyStick_X_2) + 1000); //Buradaki 3000'i sildik. Eklenebilir.
+  valueJoyStick_Y_1 = 3000 - (analogRead(pinJoyStick_Y_1) + 1000);
+  valueJoyStick_X_2 = analogRead(pinJoyStick_X_2) + 1000;
   valueJoyStick_Y_2 = 3000 - (analogRead(pinJoyStick_Y_2) + 1000);
-  
   // Joystick değerlerini merkezi değiştirmeden bölme işlemleri
   valueJoyStick_X_1 = 1500 + (valueJoyStick_X_1 - 1500) / hizBoleni;
   valueJoyStick_Y_1 = 1500 + (valueJoyStick_Y_1 - 1500) / hizBoleni;
   valueJoyStick_X_2 = 1500 + (valueJoyStick_X_2 - 1500) / hizBoleni;
   valueJoyStick_Y_2 = 1500 + (valueJoyStick_Y_2 - 1500) / hizBoleni;
-
+  
+  dis_sicaklik = dht.readTemperature();
+  dis_nem = dht.readHumidity();
+  
   if (valueJoyStick_X_1 > maxdeger) valueJoyStick_X_1 = maxdeger;
   if (valueJoyStick_Y_1 > maxdeger) valueJoyStick_Y_1 = maxdeger;
   if (valueJoyStick_X_2 > maxdeger) valueJoyStick_X_2 = maxdeger;
@@ -203,7 +218,6 @@ void loop()
     valueJoyStick_X_2 = 1500;
   if (valueJoyStick_Y_2 < 1500 + sabitleme_toleransi / hizBoleni && valueJoyStick_Y_2 > 1500 - sabitleme_toleransi / hizBoleni)
     valueJoyStick_Y_2 = 1500;
-    
   // Joystick degerleri 8 byte'a siralanip yollaniyor
   canSend.can_id = 0x02;
   canSend.can_dlc = 8;
@@ -216,74 +230,74 @@ void loop()
   canSend.data[6] = highByte(valueJoyStick_Y_2);
   canSend.data[7] = lowByte(valueJoyStick_Y_2);
 
-  // LCD'ye yazı yazdırma
-  if (!lcd_durum)
+  // q-w-e-r her degerin bilgisayardan ayirt edilmesi icin ayri kodlar
+  /*Serial.print("X1");
+  Serial.println(valueJoyStick_X_1);
+  Serial.print("Y1");
+  Serial.println(valueJoyStick_Y_1);
+  Serial.print("X2");
+  Serial.println(valueJoyStick_X_2);
+  Serial.print("Y2");
+  Serial.println(valueJoyStick_Y_2);
+  */
+  if(!lcd_durum)
   {
-    if (clear_state == true) display.clear();
-    clear_state = false;
-    display.setCursor(0,0);
-    display.print("Basinc:");
-    display.setCursor(8, 0);
-    .print(basinc_deger);
-    display.setCursor(0, 1);
-    display.print("Sicaklik:");
-    display.setCursor(10, 1);
-    display.print(sicak_deger);
+  if(clear_state == true) display.clearDisplay();
+  clear_state = false;
+  display.setCursor(0,0);
+  display.print("Basinc:");
+  display.setCursor(8, 0);
+  display.print(basinc_deger);
+  display.setCursor(0,1);
+  display.print("Sicaklik:");
+  display.setCursor(10,1);
+  display.print(sicak_deger);
   }
-  if (lcd_durum)
+  if(lcd_durum)
   {
-    if (clear_state == true) display.clear();
-    clear_state = false;
-    display.setCursor(0,0);
-    display.print("x1:");
-    display.setCursor(3, 0);
-    display.print(valueJoyStick_X_1);
-    display.setCursor(8, 0);
-    display.print("x2:");
-    display.setCursor(11, 0);
-    display.print(valueJoyStick_X_2);
-    display.setCursor(0, 1);
-    display.print("y2:");
-    display.setCursor(3, 1);
-    display.print(valueJoyStick_Y_2);
-    display.setCursor(8, 1);
-    display.print("%");
-    if (dis_nem < 10)
-    {
-      display.setCursor(9, 1);
-      display.print("0");
-      display.setCursor(10, 1);
-      display.print(dis_nem);
-    }
-    else
-    {
-      display.setCursor(9, 1);
-      display.print(dis_nem);
-    }
-    if (dis_sicaklik < 10)
-    {
-      display.setCursor(12, 1);
-      display.print("0");
-      display.setCursor(13, 1);
-      display.print(dis_sicaklik);
-    }
-    else
-    {
-      display.setCursor(12, 1);
-      display.print(dis_sicaklik);
-    }
-    display.setCursor(14, 1);
-    display.print("C");
+  if(clear_state == true) display.clearDisplay();
+  clear_state = false;
+  display.setCursor(0,0);
+  display.print("x1:");
+  display.setCursor(3,0);
+  display.print(valueJoyStick_X_1);
+  display.setCursor(8,0);
+  display.print("x2:");
+  display.setCursor(11,0);
+  display.print(3000 - (valueJoyStick_Y_2));
+  display.setCursor(0,1);
+  display.print("y2:");
+  display.setCursor(3,1);
+  display.print(valueJoyStick_X_2);
+  display.setCursor(8,1);
+  display.print("%");
+  if(dis_nem < 10)
+  {
+    display.setCursor(9,1);
+    display.print("0");
+    display.setCursor(10,1);
+    display.print(dis_nem);
+  }
+  else
+  {
+    display.setCursor(9,1);
+    display.print(dis_nem);
+  }
+  if(dis_sicaklik < 10)
+  {
+    display.setCursor(12,1);
+    display.print("0");
+    display.setCursor(13,1);
+    display.print(dis_sicaklik);
+  }
+  else
+  {
+    display.setCursor(12,1);
+    display.print(dis_sicaklik);
+  }
+  display.setCursor(14,1);
+  display.print("C");
   }
   mcp2515.sendMessage(&canSend);
   delay(20);
-}
-
-// Bu fonksiyonu düzenlilik için alta aldım, umarım sorun olmaz
-void lcd_state()
-{
-  if (lcd_durum == false) lcd_durum = true;
-  else lcd_durum = false;
-  clear_state = true;
-  Serial.println(lcd_durum);
 }

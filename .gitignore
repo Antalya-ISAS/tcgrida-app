@@ -1,67 +1,67 @@
 
-# Created by httpswww.toptal.comdevelopersgitignoreapivisualstudio,intellij,sublimetext
-# Edit at httpswww.toptal.comdevelopersgitignoretemplates=visualstudio,intellij,sublimetext
+# Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,pycharm,intellij,sublimetext
+# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,pycharm,intellij,sublimetext
 
 ### Intellij ###
-# Covers JetBrains IDEs IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
-# Reference httpsintellij-support.jetbrains.comhcen-usarticles206544839
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.ideaworkspace.xml
-.ideatasks.xml
-.ideausage.statistics.xml
-.ideadictionaries
-.ideashelf
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
 
 # Generated files
-.ideacontentModel.xml
+.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-.ideadataSources
-.ideadataSources.ids
-.ideadataSources.local.xml
-.ideasqlDataSources.xml
-.ideadynamic.xml
-.ideauiDesigner.xml
-.ideadbnavigator.xml
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
 
 # Gradle
-.ideagradle.xml
-.idealibraries
+.idea/**/gradle.xml
+.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
-# .ideaartifacts
-# .ideacompiler.xml
-# .ideajarRepositories.xml
-# .ideamodules.xml
-# .idea.iml
-# .ideamodules
-# .iml
-# .ipr
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
 
 # CMake
-cmake-build-
+cmake-build-*/
 
 # Mongo Explorer plugin
-.ideamongoSettings.xml
+.idea/**/mongoSettings.xml
 
 # File-based project format
-.iws
+*.iws
 
 # IntelliJ
-out
+out/
 
-# mpeltonensbt-idea plugin
-.idea_modules
+# mpeltonen/sbt-idea plugin
+.idea_modules/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
-.ideareplstate.xml
+.idea/replstate.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
@@ -70,53 +70,121 @@ crashlytics-build.properties
 fabric.properties
 
 # Editor-based Rest Client
-.ideahttpRequests
+.idea/httpRequests
 
 # Android studio 3.1+ serialized cache file
-.ideacachesbuild_file_checksums.ser
+.idea/caches/build_file_checksums.ser
 
 ### Intellij Patch ###
-# Comment Reason httpsgithub.comjoeblaugitignore.ioissues186#issuecomment-215987721
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-# .iml
+# *.iml
 # modules.xml
-# .ideamisc.xml
-# .ipr
+# .idea/misc.xml
+# *.ipr
 
 # Sonarlint plugin
-# httpsplugins.jetbrains.complugin7973-sonarlint
-.ideasonarlint
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
+.idea/**/sonarlint/
 
 # SonarQube Plugin
-# httpsplugins.jetbrains.complugin7238-sonarqube-community-plugin
-.ideasonarIssues.xml
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+.idea/**/sonarIssues.xml
 
 # Markdown Navigator plugin
-# httpsplugins.jetbrains.complugin7896-markdown-navigator-enhanced
-.ideamarkdown-navigator.xml
-.ideamarkdown-navigator-enh.xml
-.ideamarkdown-navigator
+# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
+.idea/**/markdown-navigator.xml
+.idea/**/markdown-navigator-enh.xml
+.idea/**/markdown-navigator/
 
 # Cache file creation bug
-# See httpsyoutrack.jetbrains.comissueJBR-2257
-.idea$CACHE_FILE$
+# See https://youtrack.jetbrains.com/issue/JBR-2257
+.idea/$CACHE_FILE$
 
 # CodeStream plugin
-# httpsplugins.jetbrains.complugin12206-codestream
-.ideacodestream.xml
+# https://plugins.jetbrains.com/plugin/12206-codestream
+.idea/codestream.xml
+
+### PyCharm ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff
+
+# Generated files
+
+# Sensitive or high-churn files
+
+# Gradle
+
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# .idea/artifacts
+# .idea/compiler.xml
+# .idea/jarRepositories.xml
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+# *.iml
+# *.ipr
+
+# CMake
+
+# Mongo Explorer plugin
+
+# File-based project format
+
+# IntelliJ
+
+# mpeltonen/sbt-idea plugin
+
+# JIRA plugin
+
+# Cursive Clojure plugin
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+
+# Editor-based Rest Client
+
+# Android studio 3.1+ serialized cache file
+
+### PyCharm Patch ###
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+# *.iml
+# modules.xml
+# .idea/misc.xml
+# *.ipr
+
+# Sonarlint plugin
+# https://plugins.jetbrains.com/plugin/7973-sonarlint
+
+# SonarQube Plugin
+# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
+
+# Markdown Navigator plugin
+# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
+
+# Cache file creation bug
+# See https://youtrack.jetbrains.com/issue/JBR-2257
+
+# CodeStream plugin
+# https://plugins.jetbrains.com/plugin/12206-codestream
 
 ### SublimeText ###
 # Cache files for Sublime Text
-.tmlanguage.cache
-.tmPreferences.cache
-.stTheme.cache
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
 
 # Workspace files are user-specific
-.sublime-workspace
+*.sublime-workspace
 
 # Project files should be checked into the repository, unless a significant
 # proportion of contributors will probably not be using Sublime Text
-# .sublime-project
+# *.sublime-project
 
 # SFTP configuration file
 sftp-config.json
@@ -126,81 +194,94 @@ Package Control.last-run
 Package Control.ca-list
 Package Control.ca-bundle
 Package Control.system-ca-bundle
-Package Control.cache
-Package Control.ca-certs
+Package Control.cache/
+Package Control.ca-certs/
 Package Control.merged-ca-bundle
 Package Control.user-ca-bundle
 oscrypto-ca-bundle.crt
 bh_unicode_properties.cache
 
 # Sublime-github package stores a github token in this file
-# httpspackagecontrol.iopackagessublime-github
+# https://packagecontrol.io/packages/sublime-github
 GitHub.sublime-settings
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
 ## files generated by popular Visual Studio add-ons.
 ##
-## Get latest from httpsgithub.comgithubgitignoreblobmasterVisualStudio.gitignore
+## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # User-specific files
-.rsuser
-.suo
-.user
-.userosscache
-.sln.docstates
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# User-specific files (MonoDevelopXamarin Studio)
-.userprefs
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
 
 # Mono auto generated files
-mono_crash.
+mono_crash.*
 
 # Build results
-[Dd]ebug
-[Dd]ebugPublic
-[Rr]elease
-[Rr]eleases
-x64
-x86
-[Ww][Ii][Nn]32
-[Aa][Rr][Mm]
-[Aa][Rr][Mm]64
-bld
-[Bb]in
-[Oo]bj
-[Ll]og
-[Ll]ogs
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
 
-# Visual Studio 20152017 cacheoptions directory
-.vs
+# Visual Studio 2015/2017 cache/options directory
+.vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
-#wwwroot
+#wwwroot/
 
 # Visual Studio 2017 auto generated files
-Generated Files
+Generated\ Files/
 
 # MSTest test Results
-[Tt]est[Rr]esult
-[Bb]uild[Ll]og.
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
 
 # NUnit
-.VisualState.xml
+*.VisualState.xml
 TestResult.xml
-nunit-.xml
+nunit-*.xml
 
 # Build Results of an ATL Project
-[Dd]ebugPS
-[Rr]eleasePS
+[Dd]ebugPS/
+[Rr]eleasePS/
 dlldata.c
 
 # Benchmark Results
-BenchmarkDotNet.Artifacts
+BenchmarkDotNet.Artifacts/
 
 # .NET Core
 project.lock.json
 project.fragment.lock.json
-artifacts
+artifacts/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
@@ -209,299 +290,299 @@ ScaffoldingReadMe.txt
 StyleCopReport.xml
 
 # Files built by Visual Studio
-_i.c
-_p.c
-_h.h
-.ilk
-.meta
-.obj
-.iobj
-.pch
-.pdb
-.ipdb
-.pgc
-.pgd
-.rsp
-.sbr
-.tlb
-.tli
-.tlh
-.tmp
-.tmp_proj
-_wpftmp.csproj
-.log
-.vspscc
-.vssscc
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.vspscc
+*.vssscc
 .builds
-.pidb
-.svclog
-.scc
+*.pidb
+*.svclog
+*.scc
 
 # Chutzpah Test files
-_Chutzpah
+_Chutzpah*
 
 # Visual C++ cache files
-ipch
-.aps
-.ncb
-.opendb
-.opensdf
-.sdf
-.cachefile
-.VC.db
-.VC.VC.opendb
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
 
 # Visual Studio profiler
-.psess
-.vsp
-.vspx
-.sap
+*.psess
+*.vsp
+*.vspx
+*.sap
 
 # Visual Studio Trace Files
-.e2e
+*.e2e
 
 # TFS 2012 Local Workspace
-$tf
+$tf/
 
 # Guidance Automation Toolkit
-.gpState
+*.gpState
 
 # ReSharper is a .NET coding add-in
-_ReSharper
-.[Rr]e[Ss]harper
-.DotSettings.user
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
 
 # TeamCity is a build add-in
-_TeamCity
+_TeamCity*
 
 # DotCover is a Code Coverage Tool
-.dotCover
+*.dotCover
 
 # AxoCover is a Code Coverage Tool
-.axoCover
-!.axoCoversettings.json
+.axoCover/*
+!.axoCover/settings.json
 
 # Coverlet is a free, cross platform Code Coverage Tool
-coverage.[ji][sn][of][no]
-coverage.xml
+coverage*.[ji][sn][of][no]
+coverage*.xml
 
 # Visual Studio code coverage results
-.coverage
-.coveragexml
+*.coverage
+*.coveragexml
 
 # NCrunch
-_NCrunch_
-.crunch.local.xml
-nCrunchTemp_
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
 
 # MightyMoose
-.mm.
-AutoTest.Net
+*.mm.*
+AutoTest.Net/
 
 # Web workbench (sass)
-.sass-cache
+.sass-cache/
 
 # Installshield output folder
-[Ee]xpress
+[Ee]xpress/
 
 # DocProject is a documentation generator add-in
-DocProjectbuildhelp
-DocProjectHelp.HxT
-DocProjectHelp.HxC
-DocProjectHelp.hhc
-DocProjectHelp.hhk
-DocProjectHelp.hhp
-DocProjectHelpHtml2
-DocProjectHelphtml
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2
+DocProject/Help/html
 
 # Click-Once directory
-publish
+publish/
 
 # Publish Web Output
-.[Pp]ublish.xml
-.azurePubxml
-# Note Comment the next line if you want to checkin your web deploy settings,
+*.[Pp]ublish.xml
+*.azurePubxml
+# Note: Comment the next line if you want to checkin your web deploy settings,
 # but database connection strings (with potential passwords) will be unencrypted
-.pubxml
-.publishproj
+*.pubxml
+*.publishproj
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
 # in these scripts will be unencrypted
-PublishScripts
+PublishScripts/
 
 # NuGet Packages
-.nupkg
+*.nupkg
 # NuGet Symbol Packages
-.snupkg
+*.snupkg
 # The packages folder can be ignored because of Package Restore
-[Pp]ackages
-# except build, which is used as an MSBuild target.
-![Pp]ackagesbuild
+**/[Pp]ackages/*
+# except build/, which is used as an MSBuild target.
+!**/[Pp]ackages/build/
 # Uncomment if necessary however generally it will be regenerated when needed
-#![Pp]ackagesrepositories.config
+#!**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
-.nuget.props
-.nuget.targets
+*.nuget.props
+*.nuget.targets
 
 # Microsoft Azure Build Output
-csx
-.build.csdef
+csx/
+*.build.csdef
 
 # Microsoft Azure Emulator
-ecf
-rcf
+ecf/
+rcf/
 
 # Windows Store app package directories and files
-AppPackages
-BundleArtifacts
+AppPackages/
+BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
-.appx
-.appxbundle
-.appxupload
+*.appx
+*.appxbundle
+*.appxupload
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
-.[Cc]ache
+*.[Cc]ache
 # but keep track of directories ending in .cache
-!.[Cc]ache
+!?*.[Cc]ache/
 
 # Others
-ClientBin
-~$
-~
-.dbmdl
-.dbproj.schemaview
-.jfm
-.pfx
-.publishsettings
+ClientBin/
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
 orleans.codegen.cs
 
 # Including strong name files can present a security risk
-# (httpsgithub.comgithubgitignorepull2483#issue-259490424)
-#.snk
+# (https://github.com/github/gitignore/pull/2483#issue-259490424)
+#*.snk
 
 # Since there are multiple workflows, uncomment next line to ignore bower_components
-# (httpsgithub.comgithubgitignorepull1529#issuecomment-104372622)
-#bower_components
+# (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
+#bower_components/
 
-# RIASilverlight projects
-Generated_Code
+# RIA/Silverlight projects
+Generated_Code/
 
 # Backup & report files from converting an old project file
 # to a newer Visual Studio version. Backup files are not needed,
 # because we have git ;-)
-_UpgradeReport_Files
-Backup
-UpgradeLog.XML
-UpgradeLog.htm
-ServiceFabricBackup
-.rptproj.bak
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+ServiceFabricBackup/
+*.rptproj.bak
 
 # SQL Server files
-.mdf
-.ldf
-.ndf
+*.mdf
+*.ldf
+*.ndf
 
 # Business Intelligence projects
-.rdl.data
-.bim.layout
-.bim_.settings
-.rptproj.rsuser
-- [Bb]ackup.rdl
-- [Bb]ackup ([0-9]).rdl
-- [Bb]ackup ([0-9][0-9]).rdl
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+*.rptproj.rsuser
+*- [Bb]ackup.rdl
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
 
 # Microsoft Fakes
-FakesAssemblies
+FakesAssemblies/
 
 # GhostDoc plugin setting file
-.GhostDoc.xml
+*.GhostDoc.xml
 
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
-node_modules
+node_modules/
 
 # Visual Studio 6 build log
-.plg
+*.plg
 
 # Visual Studio 6 workspace options file
-.opt
+*.opt
 
 # Visual Studio 6 auto-generated workspace file (contains which files were open etc.)
-.vbw
+*.vbw
 
 # Visual Studio LightSwitch build output
-.HTMLClientGeneratedArtifacts
-.DesktopClientGeneratedArtifacts
-.DesktopClientModelManifest.xml
-.ServerGeneratedArtifacts
-.ServerModelManifest.xml
+**/*.HTMLClient/GeneratedArtifacts
+**/*.DesktopClient/GeneratedArtifacts
+**/*.DesktopClient/ModelManifest.xml
+**/*.Server/GeneratedArtifacts
+**/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
 # Paket dependency manager
-.paketpaket.exe
-paket-files
+.paket/paket.exe
+paket-files/
 
 # FAKE - F# Make
-.fake
+.fake/
 
 # CodeRush personal settings
-.crpersonal
+.cr/personal
 
 # Python Tools for Visual Studio (PTVS)
-__pycache__
-.pyc
+__pycache__/
+*.pyc
 
 # Cake - Uncomment if you are using it
-# tools
-# !toolspackages.config
+# tools/**
+# !tools/packages.config
 
 # Tabs Studio
-.tss
+*.tss
 
 # Telerik's JustMock configuration file
-.jmconfig
+*.jmconfig
 
 # BizTalk build output
-.btp.cs
-.btm.cs
-.odx.cs
-.xsd.cs
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
 
 # OpenCover UI analysis results
-OpenCover
+OpenCover/
 
 # Azure Stream Analytics local run output
-ASALocalRun
+ASALocalRun/
 
 # MSBuild Binary and Structured Log
-.binlog
+*.binlog
 
 # NVidia Nsight GPU debugger configuration file
-.nvuser
+*.nvuser
 
 # MFractors (Xamarin productivity tool) working folder
-.mfractor
+.mfractor/
 
 # Local History for Visual Studio
-.localhistory
+.localhistory/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
-MigrationBackup
+MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
-.ionide
+.ionide/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
-.tlog
+*.tlog
 
-# End of httpswww.toptal.comdevelopersgitignoreapivisualstudio,intellij,sublimetext
+# End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,pycharm,intellij,sublimetext

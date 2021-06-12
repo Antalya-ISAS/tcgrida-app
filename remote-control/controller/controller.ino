@@ -124,7 +124,7 @@ void setup()
   display.clearDisplay();
   
   display.drawBitmap(0, 0, bitmap_iudsz, 126, 60, WHITE); // show Antalya İSAS logo
-  display.display();
+  display.display(); //çıkarılıp çıkarılamadığı test edilecek!!!
   delay(5000);
   display.clearDisplay();
   
@@ -252,21 +252,25 @@ void loop()
   {
       if(clear_state == true) display.clearDisplay();
       clear_state = false;
-    
+    //her harfin eni 12 piksel dolayısıyla karakter sayısı x 12+2(2 boşluk bırakmak için gerekiyor) yeni cursor posziyonu
+    // (:) işaretini alandan kazanmak için özel cursor yeri belirleyerek yazdım 3-4 pixel kazandık böylece diper türlü önceki kelimenin son harfi ve (:) arasında çok boşluk oluyordu.
       display.setTextSize(2); 
       display.setTextColor(WHITE);
-      display.setCursor(0,0);
-      display.print("Basinc:");
-      display.setCursor(8, 0);
-      display.print(basinc_deger);
-    
       display.setCursor(0,16);
-      display.print("Sicaklik:");
-      display.setCursor(10,1);
-      display.print(sicak_deger);
+      display.print("Derinlik");
+      display.setCursor(90, 16);
+      display.print(":");
+      display.setCursor(99, 16);
+      display.print(basinc_deger); //pressure value
     
+      display.setCursor(0,32);
+      display.print("Sicaklik:");
+      display.setCursor(90, 32);
+      display.print(":");
+      display.setCursor(99,32);
+      display.print(sicak_deger); //temp value
       display.display();
-      delay(2000); //Şimdilik denemek için delay ekliyorum, sonra sileriz.
+      
   }
   
   else if(lcd_durum)

@@ -122,16 +122,22 @@ void setup()
 {
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize I2C addr to 0x3C ( for 128x64 Display )
   display.clearDisplay();
+  
   display.drawBitmap(0, 0, bitmap_iudsz, 126, 60, WHITE);
   display.display();
   delay(5000);
   display.clearDisplay();
+  
   Serial.begin(9600);
   SPI.begin();
-  //display.begin();
+  
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
   display.setCursor(0,0);
-  display.print("TCG Grida");
+  display.println("TCG Grida");
+  display.display();
   delay(5000);
+  
   pinMode(button , INPUT);
   attachInterrupt(digitalPinToInterrupt(button),lcd_state,CHANGE);
   mcp2515.reset();

@@ -279,52 +279,53 @@ void loop()
     clear_state = false;
     
     display.setCursor(0,0);
+    display.print("   Bilgi");
+    display.setCursor(22,16);
     display.print("x1:");
-    display.setCursor(3,0);
-    display.print(valueJoyStick_X_1);
-    display.setCursor(8,0);
+    display.setCursor(58,16);
+    display.print("1500");
+    display.setCursor(22,32);
     display.print("x2:");
-    display.setCursor(11,0);
-    display.print(3000 - (valueJoyStick_Y_2)); // Burada neden 3000'den çıkartıyoruz? 201. satırda çıkarmıştık zaten.
-    display.setCursor(0,1);
+    display.setCursor(58,32);
+    display.print(3000 - (1500)); 
+    display.setCursor(22,48);
     display.print("y2:");
-    display.setCursor(3,1);
-    display.print(valueJoyStick_X_2);
-    display.setCursor(8,1);
-    display.print("%");
+    display.setCursor(58,48);
+    display.print("1500");
+    display.display();
 
     // Show humidity level
-    if(dis_nem < 10)
+   /* if(dis_nem < 10)
     {
-      display.setCursor(9,1);
+      display.setCursor(0,16);
       display.print("0");
-      display.setCursor(10,1);
+      display.setCursor(14,16);
       display.print(dis_nem);
     }
     else
     {
-      display.setCursor(9,1);
+      display.setCursor(0,16);
       display.print(dis_nem);
     }
 
     // Show temperature level (Celcius)
     if(dis_sicaklik < 10)
     {
-      display.setCursor(12,1);
+      display.setCursor(12,32);
       display.print("0");
-      display.setCursor(13,1);
+      display.setCursor(13,32);
       display.print(dis_sicaklik);
     }
     else
     {
-      display.setCursor(12,1);
+      display.setCursor(12,32);
       display.print(dis_sicaklik);
     }
-    display.setCursor(14,1);
+    display.setCursor(14,32);
     display.print("C");
     
     display.display();
-    delay(5000);
+   */
   }
   
   mcp2515.sendMessage(&canSend);

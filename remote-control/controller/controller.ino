@@ -1,5 +1,4 @@
 #include <Wire.h>
-#include <SPI.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <can.h>
@@ -8,7 +7,7 @@
 #include <SPI.h>
 #define maxdeger 1940 //max 2000 oluyor escler 1000-2000 arası calisir
 #define mindeger 1060
-#define sabitleme_toleransi 30,
+#define sabitleme_toleransi 30
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
 struct can_frame canSend;
@@ -220,7 +219,7 @@ void loop()
   // LCD'ye yazı yazdırma
   if (!lcd_durum)
   {
-    if (clear_state == true) lcd.clear();
+    if (clear_state == true) display.clear();
     clear_state = false;
     display.setCursor(0,0);
     display.print("Basinc:");
@@ -233,7 +232,7 @@ void loop()
   }
   if (lcd_durum)
   {
-    if (clear_state == true) lcd.clear();
+    if (clear_state == true) display.clear();
     clear_state = false;
     display.setCursor(0,0);
     display.print("x1:");

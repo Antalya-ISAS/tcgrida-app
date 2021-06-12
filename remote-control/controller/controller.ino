@@ -123,7 +123,7 @@ void setup()
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize I2C addr to 0x3C ( for 128x64 Display )
   display.clearDisplay();
   
-  display.drawBitmap(0, 0, bitmap_iudsz, 126, 60, WHITE);
+  display.drawBitmap(0, 0, bitmap_iudsz, 126, 60, WHITE); // show Antalya İSAS logo
   display.display();
   delay(5000);
   display.clearDisplay();
@@ -131,12 +131,13 @@ void setup()
   Serial.begin(9600);
   SPI.begin();
   
-  display.setTextSize(2);
+  display.setTextSize(2); 
   display.setTextColor(WHITE);
   display.setCursor(0,0);
   display.println("TCG Grida");
   display.display();
   delay(5000);
+  display.clearDisplay();
   
   pinMode(button , INPUT);
   attachInterrupt(digitalPinToInterrupt(button),lcd_state,CHANGE);
@@ -189,6 +190,9 @@ void loop()
   else{
     //Serial.println("hata");
     }
+  
+  dis_sicaklik = dht.readTemperature();
+  dis_nem = dht.readHumidity();
 
   // Analogread 0-1023 arasında okuma yapar, burada esc değerleri olan 1000-2000 arasına eşitleniyor.
   // Herhangi bir joystick değerini 3000'den çıkarmak, joystick eksenini ters çevirme anlamına gelir.
@@ -201,9 +205,6 @@ void loop()
   valueJoyStick_Y_1 = 1500 + (valueJoyStick_Y_1 - 1500) / hizBoleni;
   valueJoyStick_X_2 = 1500 + (valueJoyStick_X_2 - 1500) / hizBoleni;
   valueJoyStick_Y_2 = 1500 + (valueJoyStick_Y_2 - 1500) / hizBoleni;
-  
-  dis_sicaklik = dht.readTemperature();
-  dis_nem = dht.readHumidity();
   
   if (valueJoyStick_X_1 > maxdeger) valueJoyStick_X_1 = maxdeger;
   if (valueJoyStick_Y_1 > maxdeger) valueJoyStick_Y_1 = maxdeger;
@@ -246,64 +247,83 @@ void loop()
   Serial.print("Y2");
   Serial.println(valueJoyStick_Y_2);
   */
+  
   if(!lcd_durum)
   {
-  if(clear_state == true) display.clearDisplay();
-  clear_state = false;
-  display.setCursor(0,0);
-  display.print("Basinc:");
-  display.setCursor(8, 0);
-  display.print(basinc_deger);
-  display.setCursor(0,1);
-  display.print("Sicaklik:");
-  display.setCursor(10,1);
-  display.print(sicak_deger);
+      if(clear_state == true) display.clearDisplay();
+      clear_state = false;
+    
+      display.setTextSize(2); 
+      display.setTextColor(WHITE);
+      display.setCursor(0,0);
+      display.print("Basinc:");
+      display.setCursor(8, 0);
+      display.print(basinc_deger);
+    
+      display.setCursor(0,16);
+      display.print("Sicaklik:");
+      display.setCursor(10,1);
+      display.print(sicak_deger);
+    
+      display.display();
+      delay(2000); //Şimdilik denemek için delay ekliyorum, sonra sileriz.
   }
-  if(lcd_durum)
+  
+  else if(lcd_durum)
   {
-  if(clear_state == true) display.clearDisplay();
-  clear_state = false;
-  display.setCursor(0,0);
-  display.print("x1:");
-  display.setCursor(3,0);
-  display.print(valueJoyStick_X_1);
-  display.setCursor(8,0);
-  display.print("x2:");
-  display.setCursor(11,0);
-  display.print(3000 - (valueJoyStick_Y_2));
-  display.setCursor(0,1);
-  display.print("y2:");
-  display.setCursor(3,1);
-  display.print(valueJoyStick_X_2);
-  display.setCursor(8,1);
-  display.print("%");
-  if(dis_nem < 10)
-  {
-    display.setCursor(9,1);
-    display.print("0");
-    display.setCursor(10,1);
-    display.print(dis_nem);
+    if(clear_state == true) display.clearDisplay();
+    clear_state = false;
+    
+    display.setCursor(0,0);
+    display.print("x1:");
+    display.setCursor(3,0);
+    display.print(valueJoyStick_X_1);
+    display.setCursor(8,0);
+    display.print("x2:");
+    display.setCursor(11,0);
+    display.print(3000 - (valueJoyStick_Y_2)); // Burada neden 3000'den çıkartıyoruz? 201. satırda çıkarmıştık zaten.
+    display.setCursor(0,1);
+    display.print("y2:");
+    display.setCursor(3,1);
+    display.print(valueJoyStick_X_2);
+    display.setCursor(8,1);
+    display.print("%");
+
+    // Show humidity level
+    if(dis_nem < 10)
+    {
+      display.setCursor(9,1);
+      display.print("0");
+      display.setCursor(10,1);
+      display.print(dis_nem);
+    }
+    else
+    {
+      display.setCursor(9,1);
+      display.print(dis_nem);
+    }
+
+    // Show temperature level (Celcius)
+    if(dis_sicaklik < 10)
+    {
+      display.setCursor(12,1);
+      display.print("0");
+      display.setCursor(13,1);
+      display.print(dis_sicaklik);
+    }
+    else
+    {
+      display.setCursor(12,1);
+      display.print(dis_sicaklik);
+    }
+    display.setCursor(14,1);
+    display.print("C");
+    
+    display.display();
+    delay(5000);
   }
-  else
-  {
-    display.setCursor(9,1);
-    display.print(dis_nem);
-  }
-  if(dis_sicaklik < 10)
-  {
-    display.setCursor(12,1);
-    display.print("0");
-    display.setCursor(13,1);
-    display.print(dis_sicaklik);
-  }
-  else
-  {
-    display.setCursor(12,1);
-    display.print(dis_sicaklik);
-  }
-  display.setCursor(14,1);
-  display.print("C");
-  }
+  
   mcp2515.sendMessage(&canSend);
   delay(20);
+  
 }

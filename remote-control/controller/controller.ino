@@ -50,10 +50,8 @@ union ArrayToDouble {
   double number;
 } doubler;
 
-#define IUDSZ_BMPWIDTH  128
-#define IUDSZ_BMPHEIGHT  60
 
-const unsigned char bitmap_iudsz[] PROGMEM = {
+const unsigned char isas_logo[] PROGMEM = {
   B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11111111,B11110000,
   B11000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00110000,
   B11000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00000000,B00110000,
@@ -123,8 +121,8 @@ void setup()
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize I2C addr to 0x3C ( for 128x64 Display )
   display.clearDisplay();
   
-  display.drawBitmap(0, 0, bitmap_iudsz, 126, 60, WHITE); // show Antalya İSAS logo
-  display.display(); //çıkarılıp çıkarılamadığı test edilecek!!!
+  display.drawBitmap(0, 0, isas_logo, 126, 60, WHITE); // show Antalya İSAS logo
+  display.display(); 
   delay(5000);
   display.clearDisplay();
   

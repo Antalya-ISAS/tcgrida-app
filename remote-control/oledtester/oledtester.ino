@@ -9,26 +9,73 @@ void setup() {
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize I2C addr to 0x3C ( for 128x64 Display )
   display.clearDisplay();
   display.display();
-  display.setTextSize(2); 
+  display.setTextSize(2);
   display.setTextColor(WHITE);
   display.clearDisplay();
+  display.drawRect(2,17,126,46,WHITE);
+  display.drawLine(2,40,126,40,WHITE);
+  display.drawLine(48,17,48,62,WHITE);
+
 }
 
 void loop() {
-  //an example for testing codes layout on the screen.
-    display.setCursor(0,0);
-    display.print("   Bilgi");
-    display.setCursor(22,16);
-    display.print("x1:");
-    display.setCursor(58,16);
-    display.print("1500");
-    display.setCursor(22,32);
-    display.print("x2:");
-    display.setCursor(58,32);
-    display.print(3000 - (1500)); 
-    display.setCursor(22,48);
-    display.print("y2:");
-    display.setCursor(58,48);
-    display.print("1500");
-     display.display();
+  display.drawRect(2,17,126,46,WHITE);
+  display.drawLine(2,40,126,40,WHITE);
+  display.drawLine(48,17,48,62,WHITE);
+
+  
+  display.setCursor(0,0);
+  display.print("Cevre Blg.");
+   // Show temperature level (Celcius)
+  if (11 < 10)
+  { 
+    display.setCursor(5, 22);
+    display.print("Sic");
+    display.setCursor(39, 22);
+    display.print(":");
+    display.setCursor(53, 22);
+    display.print("0");
+    display.setCursor(82, 22);
+    display.print(dis_sicaklik);
+    display.setCursor(96,22);
+    display.print("C");
+  }
+  else
+  {
+    display.setCursor(5, 22);
+    display.print("Sic");
+    display.setCursor(39, 22);
+    display.print(":");
+    display.setCursor(68, 22);
+    display.print(dis_sicaklik);
+    display.print("C");
+  }
+
+  // Show humidity level 
+  if (11 < 10)
+  {
+    display.setCursor(5, 44);
+    display.print("Nem");
+    display.setCursor(39, 44);
+    display.print(":");
+    display.setCursor(68, 44);
+    display.print("%");
+    display.setCursor(82, 44);
+    display.print(0);
+    display.setCursor(96,44);
+    display.print(dis_nem);
+  }
+  else
+  { 
+    display.setCursor(5, 44);
+    display.print("Nem");
+    display.setCursor(39, 44);
+    display.print(":");
+    display.setCursor(68, 44);
+    display.print("%");
+    display.setCursor(82, 44);
+    display.print(dis_nem);
+
+  }
+  display.display();
 }

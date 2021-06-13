@@ -17,6 +17,7 @@ void setup() {
 }
 
 void loop() {
+  
   display.setCursor(105,1);
   display.print("%20");
   display.drawRect(104,0,19,9,WHITE);

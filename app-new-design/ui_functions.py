@@ -27,6 +27,8 @@ GLOBAL_TITLE_BAR = True
 ## ==> COUT INITIAL MENU
 count = 1
 
+Mozart
+
 class UIFunctions(MainWindow):
 
     ## ==> GLOBALS

@@ -14,8 +14,6 @@
 ##
 ################################################################################
 
-Şakira
-
 import sys
 import platform
 from PyQt5 import QtCore, QtGui, QtWidgets

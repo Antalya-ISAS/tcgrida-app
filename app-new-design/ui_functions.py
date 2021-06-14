@@ -17,7 +17,7 @@
 ## ==> GUI FILE
 import cv2
 from PyQt5.QtGui import QImage, QPixmap
-
+from ui_main import *
 from main import *
 
 ## ==> GLOBALS
@@ -171,22 +171,10 @@ class UIFunctions(MainWindow):
         newText = '| ' + text.upper()
         self.ui.label_top_info_2.setText(newText)
 
-    ## ==> USER ICON
+    ## ==> RECORDING BUTTON
     ########################################################################
-    def userIcon(self, initialsTooltip, icon, showHide):
-        if showHide:
-            # SET TEXT
-            self.ui.label_user_icon.setText(initialsTooltip)
 
-            # SET ICON
-            if icon:
-                style = self.ui.label_user_icon.styleSheet()
-                setIcon = "QLabel { background-image: " + icon + "; }"
-                self.ui.label_user_icon.setStyleSheet(style + setIcon)
-                self.ui.label_user_icon.setText('')
-                self.ui.label_user_icon.setToolTip(initialsTooltip)
-        else:
-            self.ui.label_user_icon.hide()
+
 
     ########################################################################
     ## END - GUI FUNCTIONS
@@ -243,15 +231,4 @@ class UIFunctions(MainWindow):
 
     ########################################################################
     ## END - GUI DEFINITIONS
-    ########################################################################
-
-
-    ########################################################################
-    ## START - OPENCV FUNCTIONS
-    ########################################################################
-
-    
-
-    ########################################################################
-    ## END - OPENCV FUNCTIONS
     ########################################################################

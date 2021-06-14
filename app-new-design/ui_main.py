@@ -179,19 +179,24 @@ class Ui_MainWindow(object):
 "\n"
 "/* RADIO BUTTON */\n"
 "QRadioButton::indicator {\n"
-"    border: 3px solid rgb(52, 59, 72);\n"
-"	width: 15px;\n"
-"	height: 15px;\n"
+"    border: 5px solid rgb(84, 22, 22);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
 "	border-radius"
-                        ": 10px;\n"
-"    background: rgb(44, 49, 60);\n"
+                        ": 20px;\n"
+"    background: rgb(188, 3, 3);\n"
 "}\n"
 "QRadioButton::indicator:hover {\n"
-"    border: 3px solid rgb(58, 66, 81);\n"
+"    border: 5px solid rgb(84, 22, 22);\n"
+"    background: rgb(137, 0, 0);\n"
 "}\n"
 "QRadioButton::indicator:checked {\n"
-"    background: 3px solid rgb(94, 106, 130);\n"
-"	border: 3px solid rgb(52, 59, 72);	\n"
+"    background: rgb(137, 10, 10);\n"
+"    border: 5px solid rgb(100, 0, 0);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
+"	border-radius"
+                        ": 20px;\n"
 "}\n"
 "\n"
 "/* COMBOBOX */\n"
@@ -568,29 +573,13 @@ class Ui_MainWindow(object):
         self.layout_menu_bottom.setSpacing(10)
         self.layout_menu_bottom.setObjectName(u"layout_menu_bottom")
         self.layout_menu_bottom.setContentsMargins(0, 0, 0, 25)
-        self.label_user_icon = QLabel(self.frame_extra_menus)
-        self.label_user_icon.setObjectName(u"label_user_icon")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.label_user_icon.sizePolicy().hasHeightForWidth())
-        self.label_user_icon.setSizePolicy(sizePolicy4)
-        self.label_user_icon.setMinimumSize(QSize(60, 60))
-        self.label_user_icon.setMaximumSize(QSize(60, 60))
-        font4 = QFont()
-        font4.setFamily(u"Segoe UI")
-        font4.setPointSize(12)
-        self.label_user_icon.setFont(font4)
-        self.label_user_icon.setStyleSheet(u"QLabel {\n"
-"	border-radius: 30px;\n"
-"	background-color: rgb(44, 49, 60);\n"
-"	border: 5px solid rgb(39, 44, 54);\n"
-"	background-position: center;\n"
-"	background-repeat: no-repeat;\n"
-"}")
-        self.label_user_icon.setAlignment(Qt.AlignCenter)
 
-        self.layout_menu_bottom.addWidget(self.label_user_icon, 0, Qt.AlignHCenter)
+        ## RECORDING BUTTON
+        self.button_record = QRadioButton(self.frame_extra_menus)
+        self.button_record.setObjectName(u"Record")
+        self.button_record.setStyleSheet(u"")
+
+        self.layout_menu_bottom.addWidget(self.button_record, 0, Qt.AlignHCenter)
 
 
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)

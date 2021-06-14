@@ -74,7 +74,7 @@ void setup()
   
   display.setTextSize(2); 
   display.setTextColor(WHITE);
-  display.setCursor(24,10);
+  display.setCursor(10,24);
   display.println("TCG Grida");
   display.display();
   delay(5000);

@@ -635,15 +635,15 @@ class Ui_MainWindow(object):
 
         #self.verticalLayout_10.addWidget(self.label_6)
 
-        self.label = QLabel(self.page_home)
-        self.label.setObjectName(u"label")
+        self.page_home.label = QLabel()
+        self.page_home.label.setObjectName(u"label")
         #font6 = QFont()
         #font6.setFamily(u"Segoe UI")
         #font6.setPointSize(14)
         #self.label.setFont(font6)
-        self.label.setAlignment(Qt.AlignCenter)
+        self.page_home.label.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_10.addWidget(self.label)
+        self.verticalLayout_10.addWidget(self.page_home.label)
 
         self.stackedWidget.addWidget(self.page_home)
         self.page_widgets = QWidget()

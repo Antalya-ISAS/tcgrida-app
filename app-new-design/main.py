@@ -35,10 +35,11 @@ class MainWindow(QMainWindow):
         print('Version: ' +platform.release())
 
         self.ui.page_home.timer = QTimer()
-        self.ui.page_home.timer.timeout.connect(UIFunctions.nextFrameSlot)
+        self.ui.page_home.timer.timeout.connect(self.nextFrameSlot)
 
         #TODO: Aşağıdaki satir çalışır hale getirilmeli. Şu an uygulamanın kapanmasına sebep oluyor.
-        UIFunctions.openCamPC(self.ui.page_home)
+        self.openCamPC()
+        
 
         ########################################################################
         ## START - WINDOW ATTRIBUTES
@@ -77,13 +78,13 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
         ## USER ICON ==> SHOW HIDE
-        UIFunctions.userIcon(self, "", "url(:/16x16/icons/logo.png)", True)
+        UIFunctions.userIcon(self, "", "url(:/16x16/icons/16x16/logo.png)", True)
 
         ## ==> MOVE WINDOW / MAXIMIZE / RESTORE
         ########################################################################
         def moveWindow(event):
             # IF MAXIMIZED CHANGE TO NORMAL
-            if UIFunctions.returStatus() == 1:
+            if UIFunctions.returStatus(self) == 1:
                 UIFunctions.maximize_restore(self)
 
             # MOVE WINDOW
@@ -134,6 +135,31 @@ class MainWindow(QMainWindow):
             UIFunctions.labelPage(self, "FOLLOW US!")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
+    def openCamPC(self):
+        self.ui.page_home.vc = cv2.VideoCapture(0)
+        # vc.set(5, 30)  #set FPS
+        self.ui.page_home.vc.set(3, 300)  # set width
+        self.ui.page_home.vc.set(4, 400)  # set height
+        self.ui.page_home.timer.start(round(1000. / 24))
+
+    #def openCamUSB(self):
+        #self.vc = cv2.VideoCapture(1)
+        # vc.set(5, 30)  #set FPS
+        #self.vc.set(3, 300)  # set width
+        #self.vc.set(4, 400)  # set height
+        #self.timer.start(round(1000. / 24))
+
+    # https://stackoverflow.com/questions/41103148/capture-webcam-video-using-pyqt
+    def nextFrameSlot(self):
+        rval, frame = self.ui.page_home.vc.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        resize = cv2.cv2.resize(frame, (300, 400))
+        image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
+        pixmap = QPixmap.fromImage(image)
+       # logo_pixmap = cv2.cv2.imread('logo.png')
+       # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
+
+        self.ui.page_home.label.setPixmap(pixmap)
     ## ==> END ##
 
 if __name__ == "__main__":

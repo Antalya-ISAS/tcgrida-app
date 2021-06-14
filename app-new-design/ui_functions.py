@@ -250,31 +250,7 @@ class UIFunctions(MainWindow):
     ## START - OPENCV FUNCTIONS
     ########################################################################
 
-    def openCamPC(self):
-        self.vc = cv2.VideoCapture(0)
-        # vc.set(5, 30)  #set FPS
-        self.vc.set(3, 400)  # set width
-        self.vc.set(4, 400)  # set height
-        self.timer.start(round(1000. / 24))
-
-    def openCamUSB(self):
-        self.vc = cv2.VideoCapture(1)
-        # vc.set(5, 30)  #set FPS
-        self.vc.set(3, 400)  # set width
-        self.vc.set(4, 400)  # set height
-        self.timer.start(round(1000. / 24))
-
-    # https://stackoverflow.com/questions/41103148/capture-webcam-video-using-pyqt
-    def nextFrameSlot(self):
-        rval, frame = self.vc.read()
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        resize = cv2.cv2.resize(frame, (400, 400))
-        image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
-        pixmap = QPixmap.fromImage(image)
-       # logo_pixmap = cv2.cv2.imread('logo.png')
-       # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
-
-        self.label.setPixmap(pixmap)
+    
 
     ########################################################################
     ## END - OPENCV FUNCTIONS

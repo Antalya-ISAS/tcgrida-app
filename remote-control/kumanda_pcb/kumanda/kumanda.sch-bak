@@ -1,0 +1,229 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MEGA_PRO_EMBED_CH340G___ATMEGA2560:MEGA_PRO_EMBED_CH340G___ATMEGA2560 U1
+U 1 1 60C212D2
+P 3400 4600
+F 0 "U1" H 3400 7267 50  0000 C CNN
+F 1 "MEGA_PRO_EMBED_CH340G___ATMEGA2560" H 3400 7176 50  0000 C CNN
+F 2 "MODULE_MEGA_PRO_EMBED_CH340G___ATMEGA2560" H 3400 4600 50  0001 L BNN
+F 3 "" H 3400 4600 50  0001 L BNN
+F 4 "12/May/2017" H 3400 4600 50  0001 L BNN "PARTREV"
+F 5 "" H 3400 4600 50  0001 L BNN "MAXIMUM_PACKAGE_HIEGHT"
+F 6 "Manufacturer Recommendations" H 3400 4600 50  0001 L BNN "STANDARD"
+F 7 "Robotdyn" H 3400 4600 50  0001 L BNN "MANUFACTURER"
+	1    3400 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 60C27A3F
+P 9400 1250
+F 0 "H1" H 9500 1296 50  0000 L CNN
+F 1 "MountingHole" H 9500 1205 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9400 1250 50  0001 C CNN
+F 3 "~" H 9400 1250 50  0001 C CNN
+	1    9400 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 60C27B21
+P 9400 1600
+F 0 "H2" H 9500 1646 50  0000 L CNN
+F 1 "MountingHole" H 9500 1555 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9400 1600 50  0001 C CNN
+F 3 "~" H 9400 1600 50  0001 C CNN
+	1    9400 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 60C28E13
+P 9450 1950
+F 0 "H3" H 9550 1996 50  0000 L CNN
+F 1 "MountingHole" H 9550 1905 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9450 1950 50  0001 C CNN
+F 3 "~" H 9450 1950 50  0001 C CNN
+	1    9450 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 60C28E1D
+P 9450 2250
+F 0 "H4" H 9550 2296 50  0000 L CNN
+F 1 "MountingHole" H 9550 2205 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9450 2250 50  0001 C CNN
+F 3 "~" H 9450 2250 50  0001 C CNN
+	1    9450 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 VIB1
+U 1 1 60C624BB
+P 6700 3500
+F 0 "VIB1" H 6780 3542 50  0000 L CNN
+F 1 "Conn_01x03" H 6780 3451 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 6700 3500 50  0001 C CNN
+F 3 "~" H 6700 3500 50  0001 C CNN
+	1    6700 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 POT1
+U 1 1 60C62DF7
+P 6700 4050
+F 0 "POT1" H 6780 4092 50  0000 L CNN
+F 1 "Conn_01x03" H 6780 4001 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 6700 4050 50  0001 C CNN
+F 3 "~" H 6700 4050 50  0001 C CNN
+	1    6700 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 POT2
+U 1 1 60C6321A
+P 7550 4000
+F 0 "POT2" H 7630 4042 50  0000 L CNN
+F 1 "Conn_01x03" H 7630 3951 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 7550 4000 50  0001 C CNN
+F 3 "~" H 7550 4000 50  0001 C CNN
+	1    7550 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 DHT1
+U 1 1 60C63350
+P 6700 3050
+F 0 "DHT1" H 6780 3092 50  0000 L CNN
+F 1 "Conn_01x03" H 6780 3001 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 6700 3050 50  0001 C CNN
+F 3 "~" H 6700 3050 50  0001 C CNN
+	1    6700 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x04 OLED_I2C1
+U 1 1 60C67BF7
+P 6650 5800
+F 0 "OLED_I2C1" H 6730 5792 50  0000 L CNN
+F 1 "Conn_01x04" H 6730 5701 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-04A_1x04_P2.54mm_Vertical" H 6650 5800 50  0001 C CNN
+F 3 "~" H 6650 5800 50  0001 C CNN
+	1    6650 5800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 VIB2
+U 1 1 60C77FDA
+P 7550 3500
+F 0 "VIB2" H 7630 3542 50  0000 L CNN
+F 1 "Conn_01x03" H 7630 3451 50  0000 L CNN
+F 2 "Connector_Molex:Molex_KK-254_AE-6410-03A_1x03_P2.54mm_Vertical" H 7550 3500 50  0001 C CNN
+F 3 "~" H 7550 3500 50  0001 C CNN
+	1    7550 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 CAN_Bus2
+U 1 1 60C7B460
+P 8300 4650
+F 0 "CAN_Bus2" H 8380 4642 50  0000 L CNN
+F 1 "Conn_01x02" H 8380 4551 50  0000 L CNN
+F 2 "" H 8300 4650 50  0001 C CNN
+F 3 "~" H 8300 4650 50  0001 C CNN
+	1    8300 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x07 CAN_Bus1
+U 1 1 60C799FE
+P 7550 4650
+F 0 "CAN_Bus1" H 7630 4692 50  0000 L CNN
+F 1 "Conn_01x07" H 7630 4601 50  0000 L CNN
+F 2 "" H 7550 4650 50  0001 C CNN
+F 3 "~" H 7550 4650 50  0001 C CNN
+	1    7550 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 CAN_H_L1
+U 1 1 60C7C262
+P 9100 4650
+F 0 "CAN_H_L1" H 9180 4642 50  0000 L CNN
+F 1 "Conn_01x02" H 9180 4551 50  0000 L CNN
+F 2 "" H 9100 4650 50  0001 C CNN
+F 3 "~" H 9100 4650 50  0001 C CNN
+	1    9100 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:RJ45 J3
+U 1 1 60C7E37E
+P 9000 3500
+F 0 "J3" H 9057 4167 50  0000 C CNN
+F 1 "RJ45" H 9057 4076 50  0000 C CNN
+F 2 "" V 9000 3525 50  0001 C CNN
+F 3 "~" V 9000 3525 50  0001 C CNN
+	1    9000 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x05 Joy1
+U 1 1 60C83B6D
+P 6650 5150
+F 0 "Joy1" H 6730 5192 50  0000 L CNN
+F 1 "Conn_01x05" H 6730 5101 50  0000 L CNN
+F 2 "" H 6650 5150 50  0001 C CNN
+F 3 "~" H 6650 5150 50  0001 C CNN
+	1    6650 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x05 Joy2
+U 1 1 60C842E4
+P 7150 5150
+F 0 "Joy2" H 7230 5192 50  0000 L CNN
+F 1 "Conn_01x05" H 7230 5101 50  0000 L CNN
+F 2 "" H 7150 5150 50  0001 C CNN
+F 3 "~" H 7150 5150 50  0001 C CNN
+	1    7150 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 Switch1
+U 1 1 60C85709
+P 6700 2500
+F 0 "Switch1" H 6780 2542 50  0000 L CNN
+F 1 "Conn_01x03" H 6780 2451 50  0000 L CNN
+F 2 "" H 6700 2500 50  0001 C CNN
+F 3 "~" H 6700 2500 50  0001 C CNN
+	1    6700 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 Switch2
+U 1 1 60C85F12
+P 7500 2550
+F 0 "Switch2" H 7580 2592 50  0000 L CNN
+F 1 "Conn_01x03" H 7580 2501 50  0000 L CNN
+F 2 "" H 7500 2550 50  0001 C CNN
+F 3 "~" H 7500 2550 50  0001 C CNN
+	1    7500 2550
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

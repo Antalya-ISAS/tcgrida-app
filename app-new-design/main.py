@@ -34,11 +34,11 @@ class MainWindow(QMainWindow):
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
 
-        self.timer = QTimer()
-        self.timer.timeout.connect(UIFunctions.nextFrameSlot)
+        self.ui.page_home.timer = QTimer()
+        self.ui.page_home.timer.timeout.connect(UIFunctions.nextFrameSlot)
 
         #TODO: Aşağıdaki satir çalışır hale getirilmeli. Şu an uygulamanın kapanmasına sebep oluyor.
-        #UIFunctions.openCamPC(self.ui.page_home)
+        UIFunctions.openCamPC(self.ui.page_home)
 
         ########################################################################
         ## START - WINDOW ATTRIBUTES

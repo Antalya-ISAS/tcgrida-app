@@ -68,7 +68,8 @@ class MainWindow(QMainWindow):
         ## ==> ADD CUSTOM MENUS
         self.ui.stackedWidget.setMinimumWidth(20)
         UIFunctions.addNewMenu(self, "HOME", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
-        UIFunctions.addNewMenu(self, "INFO PAGE", "btn_new_use", "url(:/16x16/icons/16x16/cil-align-center.png)", True)
+        UIFunctions.addNewMenu(self, "INFO PAGE", "btn_new_user", "url(:/16x16/icons/16x16/cil-align-center.png)", True)
+        UIFunctions.addNewMenu(self, "SETTINGS", "btn_settings", "url(:/16x16/icons/16x16/cil-settings.png)", True)
         UIFunctions.addNewMenu(self, "FOLLOW US!", "btn_widgets", "url(:/16x16/icons/16x16/cil-thumb-up.png)", False)
 
         # START MENU => SELECTION
@@ -89,9 +90,12 @@ class MainWindow(QMainWindow):
 
             # MOVE WINDOW
             if event.buttons() == Qt.LeftButton:
-                self.move(self.pos() + event.globalPos() - self.dragPos)
-                self.dragPos = event.globalPos()
-                event.accept()
+                try:
+                    self.move(self.pos() + event.globalPos() - self.dragPos)
+                    self.dragPos = event.globalPos()
+                    event.accept()
+                except:
+                    pass
 
         # WIDGET TO MOVE
         self.ui.frame_label_top_btns.mouseMoveEvent = moveWindow
@@ -133,6 +137,13 @@ class MainWindow(QMainWindow):
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_widgets)
             UIFunctions.resetStyle(self, "btn_widgets")
             UIFunctions.labelPage(self, "FOLLOW US!")
+            btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
+        
+        # PAGE SETTINGS
+        if btnWidget.objectName() == "btn_settings":
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_widgets)
+            UIFunctions.resetStyle(self, "btn_settings")
+            UIFunctions.labelPage(self, "SETTINGS")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
     def openCamPC(self):

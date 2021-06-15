@@ -68,7 +68,7 @@ class MainWindow(QMainWindow):
         ## ==> ADD CUSTOM MENUS
         self.ui.stackedWidget.setMinimumWidth(20)
         UIFunctions.addNewMenu(self, "HOME", "btn_home", "url(:/16x16/icons/16x16/cil-home.png)", True)
-        UIFunctions.addNewMenu(self, "INFO PAGE", "btn_new_user", "url(:/16x16/icons/16x16/cil-align-center.png)", True)
+        UIFunctions.addNewMenu(self, "INFO PAGE", "btn_info", "url(:/16x16/icons/16x16/cil-align-center.png)", True)
         UIFunctions.addNewMenu(self, "SETTINGS", "btn_settings", "url(:/16x16/icons/16x16/cil-settings.png)", True)
         UIFunctions.addNewMenu(self, "FOLLOW US!", "btn_widgets", "url(:/16x16/icons/16x16/cil-thumb-up.png)", False)
 
@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
         # PAGE INFO
-        if btnWidget.objectName() == "btn_new_user":
+        if btnWidget.objectName() == "btn_info":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home) #TODO: burası self.ui.page_info yapılacak
             UIFunctions.resetStyle(self, "btn_new_user")
             UIFunctions.labelPage(self, "INFO PAGE")

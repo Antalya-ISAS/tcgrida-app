@@ -736,7 +736,7 @@ class Ui_MainWindow(object):
         self.radioButton.setObjectName(u"radioButton")
         self.radioButton.setStyleSheet(u"")
 
-        self.gridLayout_2.addWidget(self.radioButton, 0, 1, 1, 1)
+        # self.gridLayout_2.addWidget(self.radioButton, 0, 1, 1, 1)
 
         self.verticalSlider = QSlider(self.frame_2)
         self.verticalSlider.setObjectName(u"verticalSlider")

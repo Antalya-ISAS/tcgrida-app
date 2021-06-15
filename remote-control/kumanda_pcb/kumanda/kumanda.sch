@@ -247,8 +247,6 @@ Wire Wire Line
 Connection ~ 9050 4250
 Connection ~ 8600 3550
 Wire Wire Line
-	6150 3550 3300 3550
-Wire Wire Line
 	3300 3550 3300 2950
 Wire Wire Line
 	3300 2950 3150 2950
@@ -287,11 +285,7 @@ Wire Wire Line
 Connection ~ 7400 3550
 Wire Wire Line
 	4150 5700 4150 5500
-Wire Wire Line
-	4150 5500 6100 5500
 Connection ~ 4150 5700
-Wire Wire Line
-	4150 5700 4550 5700
 Wire Wire Line
 	3900 3150 3400 3150
 Wire Wire Line
@@ -318,16 +312,10 @@ Wire Wire Line
 Connection ~ 3400 5150
 Wire Wire Line
 	3400 5750 4100 5750
-Wire Wire Line
-	4550 5750 4550 5800
 Connection ~ 3400 5750
 Wire Wire Line
 	4100 5750 4100 5400
-Wire Wire Line
-	4100 5400 6100 5400
 Connection ~ 4100 5750
-Wire Wire Line
-	4100 5750 4550 5750
 Wire Wire Line
 	9250 3350 9250 3750
 Wire Wire Line
@@ -370,21 +358,6 @@ Wire Wire Line
 Connection ~ 9250 5200
 Wire Wire Line
 	8700 5200 8700 5600
-$Comp
-L MEGA_PRO_EMBED_CH340G___ATMEGA2560:MEGA_PRO_EMBED_CH340G___ATMEGA2560 U1
-U 1 1 60C212D2
-P 6200 4300
-F 0 "U1" H 6200 6967 50  0000 C CNN
-F 1 "MEGA_PRO_EMBED_CH340G___ATMEGA2560" H 6200 6876 50  0000 C CNN
-F 2 "MODULE_MEGA_PRO_EMBED_CH340G_:_ATMEGA2560" H 6200 4300 50  0001 L BNN
-F 3 "" H 6200 4300 50  0001 L BNN
-F 4 "12/May/2017" H 6200 4300 50  0001 L BNN "PARTREV"
-F 5 "" H 6200 4300 50  0001 L BNN "MAXIMUM_PACKAGE_HIEGHT"
-F 6 "Manufacturer Recommendations" H 6200 4300 50  0001 L BNN "STANDARD"
-F 7 "Robotdyn" H 6200 4300 50  0001 L BNN "MANUFACTURER"
-	1    6200 4300
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	8800 5000 8800 5450
 $Comp
@@ -489,13 +462,7 @@ Wire Wire Line
 	7950 5600 8600 5600
 Connection ~ 7950 5450
 Wire Wire Line
-	3100 5050 5300 5050
-Wire Wire Line
-	5300 5050 5300 5000
-Wire Wire Line
 	3100 4350 3500 4350
-Wire Wire Line
-	3500 4350 3500 3400
 Wire Wire Line
 	3500 3400 7700 3400
 Wire Wire Line
@@ -542,4 +509,273 @@ Wire Wire Line
 	8600 5100 5100 5100
 Wire Wire Line
 	5100 5100 5100 5000
+$Comp
+L MEGA_PRO_EMBED_CH340G___ATMEGA2560-git:MEGA_PRO_EMBED_CH340G___ATMEGA2560 U1
+U 1 1 60C9CA00
+P 6200 4300
+F 0 "U1" V 6246 6830 50  0000 L CNN
+F 1 "MEGA_PRO_EMBED_CH340G___ATMEGA2560" V 6155 6830 50  0000 L CNN
+F 2 "MODULE_MEGA_PRO_EMBED_CH340G_git:_ATMEGA2560" H 6200 4300 50  0001 L BNN
+F 3 "" H 6200 4300 50  0001 L BNN
+F 4 "12/May/2017" H 6200 4300 50  0001 L BNN "PARTREV"
+F 5 "" H 6200 4300 50  0001 L BNN "MAXIMUM_PACKAGE_HIEGHT"
+F 6 "Manufacturer Recommendations" H 6200 4300 50  0001 L BNN "STANDARD"
+F 7 "Robotdyn" H 6200 4300 50  0001 L BNN "MANUFACTURER"
+	1    6200 4300
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	4550 5750 4550 5800
+Wire Wire Line
+	4550 5900 4450 5900
+Wire Wire Line
+	4450 5150 6000 5150
+Wire Wire Line
+	6000 5150 6000 5000
+Wire Wire Line
+	6150 3550 3300 3550
+Wire Wire Line
+	4550 6000 3650 6000
+Wire Wire Line
+	3650 6000 3650 3000
+Wire Wire Line
+	3650 3000 5600 3000
+Wire Wire Line
+	5600 3000 5600 3500
+Wire Wire Line
+	5600 3500 6000 3500
+Wire Wire Line
+	6000 3500 6000 3600
+Wire Wire Line
+	4150 5700 4550 5700
+Wire Wire Line
+	4450 5900 4450 5150
+Wire Wire Line
+	4100 5750 4550 5750
+Text Label 4550 6000 2    50   ~ 0
+SDA
+Text Label 4550 5900 2    50   ~ 0
+SCL
+Text Label 4550 5800 2    50   ~ 0
+VCC
+Text Label 4550 5700 2    50   ~ 0
+GND
+Text Label 3150 2950 0    50   ~ 0
+GND
+Text Label 3100 3650 0    50   ~ 0
+GND
+Text Label 3100 4550 0    50   ~ 0
+GND
+Text Label 3100 5250 0    50   ~ 0
+GND
+Text Label 3100 5950 0    50   ~ 0
+GND
+Text Label 7600 5700 2    50   ~ 0
+CAN_H
+Text Label 7600 5800 2    50   ~ 0
+CAN_L
+Text Label 9350 3550 2    50   ~ 0
+GND
+Text Label 9350 3950 2    50   ~ 0
+GND
+Text Label 9350 4250 2    50   ~ 0
+GND
+Text Label 9350 5000 2    50   ~ 0
+GND
+Text Label 8800 5600 1    39   ~ 0
+GND
+Text Label 8900 5600 1    39   ~ 0
+VCC
+Text Label 9350 5200 2    50   ~ 0
+VCC
+Text Label 9350 4350 2    50   ~ 0
+VCC
+Text Label 9350 3750 2    50   ~ 0
+VCC
+Text Label 9350 3350 2    50   ~ 0
+VCC
+Text Label 8000 3150 3    50   ~ 0
+VCC
+Text Label 7400 2850 2    50   ~ 0
+GND
+Text Label 6100 3100 3    50   ~ 0
+GND
+Text Label 3150 3150 0    50   ~ 0
+VCC
+Text Label 3100 3850 0    50   ~ 0
+VCC
+Text Label 3100 4450 0    50   ~ 0
+VCC
+Text Label 3100 5150 0    50   ~ 0
+VCC
+Text Label 3100 5750 0    50   ~ 0
+VCC
+Text Label 8600 5600 1    39   ~ 0
+RX
+Text Label 8700 5600 1    39   ~ 0
+TX
+Wire Wire Line
+	2650 3250 5400 3250
+Wire Wire Line
+	5400 3250 5400 3600
+Wire Wire Line
+	2650 6150 5650 6150
+Wire Wire Line
+	5650 6150 5650 5800
+Wire Wire Line
+	5650 5800 6100 5800
+Wire Wire Line
+	2650 3250 2650 6150
+Wire Wire Line
+	4150 5500 5550 5500
+Wire Wire Line
+	5550 5500 5550 5900
+Wire Wire Line
+	5550 5900 6100 5900
+Wire Wire Line
+	4100 5400 5950 5400
+Wire Wire Line
+	5950 5400 5950 6000
+Wire Wire Line
+	5950 6000 6100 6000
+Text Label 6100 6000 2    50   ~ 0
+VCC
+Text Label 6100 5900 2    50   ~ 0
+GND
+Text Label 6100 5700 2    50   ~ 0
+SO
+Text Label 6100 5600 2    50   ~ 0
+SI
+Text Label 6100 5400 2    50   ~ 0
+INT
+Text Label 6100 5500 2    50   ~ 0
+SCK
+Wire Wire Line
+	4600 5000 4600 5350
+Wire Wire Line
+	4600 5350 5850 5350
+Wire Wire Line
+	5850 5350 5850 5500
+Wire Wire Line
+	5850 5500 6100 5500
+Wire Wire Line
+	6100 5700 5600 5700
+Wire Wire Line
+	5600 5700 5600 5200
+Wire Wire Line
+	5600 5200 4500 5200
+Wire Wire Line
+	4500 5200 4500 5000
+Wire Wire Line
+	6100 5600 4400 5600
+Wire Wire Line
+	4400 5600 4400 5000
+Text Label 9350 4450 2    50   ~ 0
+X
+Text Label 9350 4550 2    50   ~ 0
+Y
+Text Label 9350 4650 2    50   ~ 0
+SW
+Text Label 3100 4350 0    50   ~ 0
+X
+Text Label 3100 4250 0    50   ~ 0
+Y
+Text Label 3100 4150 0    50   ~ 0
+SW
+Text Label 6300 3100 3    50   ~ 0
+CAN_H
+Text Label 6400 3100 3    50   ~ 0
+CAN_L
+Wire Wire Line
+	3500 4350 3500 3400
+Wire Wire Line
+	3100 5850 3500 5850
+Wire Wire Line
+	3500 5850 3500 6200
+Wire Wire Line
+	3500 6200 2500 6200
+Wire Wire Line
+	2500 6200 2500 2800
+Wire Wire Line
+	2500 2800 5300 2800
+Wire Wire Line
+	5300 2800 5300 3600
+Wire Wire Line
+	9350 5100 9100 5100
+Wire Wire Line
+	9100 5100 9100 6350
+Wire Wire Line
+	9100 6350 5400 6350
+Wire Wire Line
+	5400 6350 5400 5000
+Wire Wire Line
+	3100 3750 3750 3750
+Wire Wire Line
+	3750 3750 3750 2250
+Wire Wire Line
+	3750 2250 7150 2250
+Wire Wire Line
+	7150 2250 7150 3500
+Wire Wire Line
+	7150 3500 7900 3500
+Wire Wire Line
+	7900 3500 7900 3600
+Text Label 3100 3750 0    50   ~ 0
+A4
+Text Label 3150 4350 0    50   ~ 0
+A0
+Text Label 3150 4250 0    50   ~ 0
+A1
+Text Label 9300 4450 2    50   ~ 0
+A2
+Text Label 9300 4550 2    50   ~ 0
+A3
+Text Label 3100 5850 0    50   ~ 0
+D6
+Wire Wire Line
+	3100 5050 5700 5050
+Wire Wire Line
+	5700 5050 5700 5000
+Text Label 3100 5050 0    50   ~ 0
+D15
+Text Label 9350 5100 2    50   ~ 0
+D9
+Text Label 6100 5800 2    50   ~ 0
+D8
+Wire Wire Line
+	3150 3050 5850 3050
+Wire Wire Line
+	5850 3050 5850 3600
+Wire Wire Line
+	5850 3600 5900 3600
+Text Label 3150 3050 0    50   ~ 0
+D18
+Text Label 9350 3450 2    50   ~ 0
+D19
+Wire Wire Line
+	9350 3450 9150 3450
+Wire Wire Line
+	9150 3450 9150 2950
+Wire Wire Line
+	9150 2950 10400 2950
+Wire Wire Line
+	10400 2950 10400 6200
+Wire Wire Line
+	10400 6200 7200 6200
+Wire Wire Line
+	7200 6200 7200 5050
+Wire Wire Line
+	7200 5050 5900 5050
+Wire Wire Line
+	5900 5050 5900 5000
+Wire Wire Line
+	9350 3850 9000 3850
+Wire Wire Line
+	9000 3850 9000 3500
+Wire Wire Line
+	9000 3500 8000 3500
+Wire Wire Line
+	8000 3500 8000 3600
+Text Label 9350 3850 2    50   ~ 0
+A6
 $EndSCHEMATC

@@ -129,7 +129,7 @@ U 1 1 60C7B460
 P 7800 5700
 F 0 "CAN_Bus2" H 7880 5692 50  0000 L CNN
 F 1 "Conn_01x02" H 7880 5601 50  0000 L CNN
-F 2 "Connector_Molex:Molex_KK-254_AE-6410-02A_1x02_P2.54mm_Vertical" H 7800 5700 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7800 5700 50  0001 C CNN
 F 3 "~" H 7800 5700 50  0001 C CNN
 	1    7800 5700
 	1    0    0    -1  
@@ -140,7 +140,7 @@ U 1 1 60C799FE
 P 6300 5700
 F 0 "CAN_Bus1" H 6380 5742 50  0000 L CNN
 F 1 "Conn_01x07" H 6380 5651 50  0000 L CNN
-F 2 "Connector_Molex:Molex_KK-254_AE-6410-07A_1x07_P2.54mm_Vertical" H 6300 5700 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical" H 6300 5700 50  0001 C CNN
 F 3 "~" H 6300 5700 50  0001 C CNN
 	1    6300 5700
 	1    0    0    -1  
@@ -151,7 +151,7 @@ U 1 1 60C7C262
 P 7000 6150
 F 0 "CAN_H_L1" H 7080 6142 50  0000 L CNN
 F 1 "Conn_01x02" H 7080 6051 50  0000 L CNN
-F 2 "Connector_Molex:Molex_KK-254_AE-6410-02A_1x02_P2.54mm_Vertical" H 7000 6150 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7000 6150 50  0001 C CNN
 F 3 "~" H 7000 6150 50  0001 C CNN
 	1    7000 6150
 	0    1    1    0   
@@ -247,15 +247,9 @@ Wire Wire Line
 Connection ~ 9050 4250
 Connection ~ 8600 3550
 Wire Wire Line
-	3300 3550 3300 2950
-Wire Wire Line
 	3300 2950 3150 2950
-Connection ~ 6150 3550
-Wire Wire Line
-	3300 3550 3300 3650
 Wire Wire Line
 	3300 3650 3100 3650
-Connection ~ 3300 3550
 Wire Wire Line
 	3300 3650 3300 4550
 Wire Wire Line
@@ -401,8 +395,6 @@ $EndComp
 Wire Wire Line
 	8700 5200 5800 5200
 Wire Wire Line
-	5800 5200 5800 5000
-Wire Wire Line
 	7950 5150 8750 5150
 Wire Wire Line
 	8750 5150 8750 3450
@@ -413,7 +405,7 @@ Wire Wire Line
 Wire Wire Line
 	8100 5450 7950 5450
 Wire Wire Line
-	7600 6000 10000 6000
+	7600 6000 7750 6000
 Wire Wire Line
 	10000 6000 10000 3200
 Wire Wire Line
@@ -451,8 +443,6 @@ Wire Wire Line
 Wire Wire Line
 	10300 3100 10300 6150
 Wire Wire Line
-	10300 6150 7550 6150
-Wire Wire Line
 	7550 6150 7550 5700
 Wire Wire Line
 	7550 5700 7600 5700
@@ -474,8 +464,6 @@ Wire Wire Line
 Wire Wire Line
 	3550 5300 7700 5300
 Wire Wire Line
-	7700 5300 7700 5000
-Wire Wire Line
 	3100 4150 3600 4150
 Wire Wire Line
 	3600 4150 3600 3500
@@ -496,8 +484,6 @@ Wire Wire Line
 Wire Wire Line
 	8900 4550 8900 5050
 Wire Wire Line
-	8900 5050 7800 5050
-Wire Wire Line
 	7800 5050 7800 5000
 Wire Wire Line
 	9350 4650 9350 4850
@@ -508,32 +494,11 @@ Wire Wire Line
 Wire Wire Line
 	8600 5100 5100 5100
 Wire Wire Line
-	5100 5100 5100 5000
-$Comp
-L MEGA_PRO_EMBED_CH340G___ATMEGA2560-git:MEGA_PRO_EMBED_CH340G___ATMEGA2560 U1
-U 1 1 60C9CA00
-P 6200 4300
-F 0 "U1" V 6246 6830 50  0000 L CNN
-F 1 "MEGA_PRO_EMBED_CH340G___ATMEGA2560" V 6155 6830 50  0000 L CNN
-F 2 "MODULE_MEGA_PRO_EMBED_CH340G_git:_ATMEGA2560" H 6200 4300 50  0001 L BNN
-F 3 "" H 6200 4300 50  0001 L BNN
-F 4 "12/May/2017" H 6200 4300 50  0001 L BNN "PARTREV"
-F 5 "" H 6200 4300 50  0001 L BNN "MAXIMUM_PACKAGE_HIEGHT"
-F 6 "Manufacturer Recommendations" H 6200 4300 50  0001 L BNN "STANDARD"
-F 7 "Robotdyn" H 6200 4300 50  0001 L BNN "MANUFACTURER"
-	1    6200 4300
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
 	4550 5750 4550 5800
 Wire Wire Line
 	4550 5900 4450 5900
 Wire Wire Line
 	4450 5150 6000 5150
-Wire Wire Line
-	6000 5150 6000 5000
-Wire Wire Line
-	6150 3550 3300 3550
 Wire Wire Line
 	4550 6000 3650 6000
 Wire Wire Line
@@ -651,8 +616,6 @@ INT
 Text Label 6100 5500 2    50   ~ 0
 SCK
 Wire Wire Line
-	4600 5000 4600 5350
-Wire Wire Line
 	4600 5350 5850 5350
 Wire Wire Line
 	5850 5350 5850 5500
@@ -665,11 +628,7 @@ Wire Wire Line
 Wire Wire Line
 	5600 5200 4500 5200
 Wire Wire Line
-	4500 5200 4500 5000
-Wire Wire Line
 	6100 5600 4400 5600
-Wire Wire Line
-	4400 5600 4400 5000
 Text Label 9350 4450 2    50   ~ 0
 X
 Text Label 9350 4550 2    50   ~ 0
@@ -707,8 +666,6 @@ Wire Wire Line
 Wire Wire Line
 	9100 6350 5400 6350
 Wire Wire Line
-	5400 6350 5400 5000
-Wire Wire Line
 	3100 3750 3750 3750
 Wire Wire Line
 	3750 3750 3750 2250
@@ -733,8 +690,6 @@ A3
 Text Label 3100 5850 0    50   ~ 0
 D6
 Wire Wire Line
-	3100 5050 5700 5050
-Wire Wire Line
 	5700 5050 5700 5000
 Text Label 3100 5050 0    50   ~ 0
 D15
@@ -746,8 +701,6 @@ Wire Wire Line
 	3150 3050 5850 3050
 Wire Wire Line
 	5850 3050 5850 3600
-Wire Wire Line
-	5850 3600 5900 3600
 Text Label 3150 3050 0    50   ~ 0
 D18
 Text Label 9350 3450 2    50   ~ 0
@@ -765,8 +718,6 @@ Wire Wire Line
 Wire Wire Line
 	7200 6200 7200 5050
 Wire Wire Line
-	7200 5050 5900 5050
-Wire Wire Line
 	5900 5050 5900 5000
 Wire Wire Line
 	9350 3850 9000 3850
@@ -778,4 +729,440 @@ Wire Wire Line
 	8000 3500 8000 3600
 Text Label 9350 3850 2    50   ~ 0
 A6
+Text GLabel 8600 3550 1    50   Input ~ 0
+GND
+Text GLabel 1650 7100 0    50   Input ~ 0
+GND
+Text GLabel 1650 7000 0    50   Input ~ 0
+AV
+Text GLabel 1650 6900 0    50   Input ~ 0
+VBUS
+Text GLabel 1650 6800 0    50   Input ~ 0
+AD-
+Text GLabel 1650 6700 0    50   Input ~ 0
+AD+
+Text GLabel 1650 6600 0    50   Input ~ 0
+GND
+$Comp
+L Connector_Generic:Conn_01x06 J4
+U 1 1 60CAFA0F
+P 1850 6800
+F 0 "J4" H 1930 6792 50  0000 L CNN
+F 1 "Conn_01x06" H 1930 6701 50  0000 L CNN
+F 2 "analog_cam:Analog-cam" H 1850 6800 50  0001 C CNN
+F 3 "~" H 1850 6800 50  0001 C CNN
+	1    1850 6800
+	1    0    0    -1  
+$EndComp
+Text GLabel 6200 3100 3    50   Input ~ 0
+AV
+Text GLabel 8000 3150 3    50   Input ~ 0
+VBUS
+Text GLabel 7700 3150 3    50   Input ~ 0
+AD-
+Text GLabel 7800 3150 3    50   Input ~ 0
+AD+
+Text Label 1650 6600 0    50   ~ 0
+GND
+Text Label 1650 6700 0    50   ~ 0
+AD+
+Text Label 1650 6800 0    50   ~ 0
+AD-
+Text Label 1650 6900 0    50   ~ 0
+VCC
+Text Label 1650 7000 0    50   ~ 0
+AV
+Text Label 1650 7100 0    50   ~ 0
+GND
+Wire Wire Line
+	1650 7000 1300 7000
+Wire Wire Line
+	1300 7000 1300 7250
+Wire Wire Line
+	1300 7250 4450 7250
+Wire Wire Line
+	4450 7250 4450 6800
+Wire Wire Line
+	7350 6150 7350 6500
+Wire Wire Line
+	7350 6500 6400 6500
+Wire Wire Line
+	6400 6500 6400 6950
+Wire Wire Line
+	6400 6950 5250 6950
+Wire Wire Line
+	5250 6950 5250 6750
+Wire Wire Line
+	7350 6150 7550 6150
+Connection ~ 7550 6150
+Wire Wire Line
+	7550 6150 10300 6150
+Wire Wire Line
+	7750 6000 7750 6450
+Wire Wire Line
+	7750 6450 6150 6450
+Wire Wire Line
+	6150 6450 6150 6800
+Wire Wire Line
+	6150 6800 5750 6800
+Connection ~ 7750 6000
+Wire Wire Line
+	7750 6000 10000 6000
+$Comp
+L Device:R R4
+U 1 1 60D7D085
+P 5350 1750
+F 0 "R4" V 5557 1750 50  0000 C CNN
+F 1 "R" V 5466 1750 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 5280 1750 50  0001 C CNN
+F 3 "~" H 5350 1750 50  0001 C CNN
+	1    5350 1750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:Buzzer BZ1
+U 1 1 60D7E000
+P 4750 1850
+F 0 "BZ1" H 4755 1525 50  0000 C CNN
+F 1 "Buzzer" H 4755 1616 50  0000 C CNN
+F 2 "Buzzer_Beeper:Buzzer_12x9.5RM7.6" V 4725 1950 50  0001 C CNN
+F 3 "~" V 4725 1950 50  0001 C CNN
+	1    4750 1850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4850 1750 5200 1750
+Text GLabel 5500 1750 2    50   Input ~ 0
+GND
+Text GLabel 3900 3600 1    50   Input ~ 0
+VCC
+Text GLabel 4850 1950 2    50   Input ~ 0
+D10
+Text GLabel 5500 3600 1    50   Input ~ 0
+D10
+Text GLabel 5600 5000 3    50   Input ~ 0
+D13
+Text GLabel 5500 5000 3    50   Input ~ 0
+D11
+Text GLabel 5300 5000 3    50   Input ~ 0
+D7
+Text GLabel 1400 1250 0    50   Input ~ 0
+D13
+Text GLabel 1400 1150 0    50   Input ~ 0
+D12
+Text GLabel 1400 1050 0    50   Input ~ 0
+D11
+Text GLabel 1400 950  0    50   Input ~ 0
+D7
+Text GLabel 1400 850  0    50   Input ~ 0
+D5
+$Comp
+L Connector_Generic:Conn_01x09 PWM1
+U 1 1 60DE0D20
+P 1600 1150
+F 0 "PWM1" H 1680 1192 50  0000 L CNN
+F 1 "Conn_01x09" H 1680 1101 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x09_P2.54mm_Vertical" H 1600 1150 50  0001 C CNN
+F 3 "~" H 1600 1150 50  0001 C CNN
+	1    1600 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x09 Analog1
+U 1 1 60DE18A7
+P 1600 2100
+F 0 "Analog1" H 1680 2142 50  0000 L CNN
+F 1 "Conn_01x09" H 1680 2051 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x09_P2.54mm_Vertical" H 1600 2100 50  0001 C CNN
+F 3 "~" H 1600 2100 50  0001 C CNN
+	1    1600 2100
+	1    0    0    -1  
+$EndComp
+Text GLabel 1400 750  0    50   Input ~ 0
+D4
+Text GLabel 1400 1350 0    50   Input ~ 0
+D44
+Text GLabel 1400 1450 0    50   Input ~ 0
+D45
+Text GLabel 1400 1550 0    50   Input ~ 0
+D46
+Text GLabel 7200 3600 1    50   Input ~ 0
+D44
+Text GLabel 7300 5000 3    50   Input ~ 0
+D45
+Text GLabel 7300 3600 1    50   Input ~ 0
+D46
+Text GLabel 1400 1700 0    50   Input ~ 0
+A5
+Text GLabel 1400 1800 0    50   Input ~ 0
+A7
+Text GLabel 1400 1900 0    50   Input ~ 0
+A8
+Text GLabel 1400 2000 0    50   Input ~ 0
+A9
+Text GLabel 1400 2100 0    50   Input ~ 0
+A10
+Text GLabel 1400 2200 0    50   Input ~ 0
+A11
+Text GLabel 1400 2300 0    50   Input ~ 0
+A12
+Text GLabel 1400 2400 0    50   Input ~ 0
+A13
+Text GLabel 1400 2500 0    50   Input ~ 0
+A14
+Text GLabel 7900 5000 3    50   Input ~ 0
+A5
+Text GLabel 8000 5000 3    50   Input ~ 0
+A7
+Text GLabel 8100 3600 1    50   Input ~ 0
+A8
+Text GLabel 8100 5000 3    50   Input ~ 0
+A9
+Text GLabel 8200 3600 1    50   Input ~ 0
+A10
+Text GLabel 8200 5000 3    50   Input ~ 0
+A11
+Text GLabel 8300 3600 1    50   Input ~ 0
+A12
+Text GLabel 8300 5000 3    50   Input ~ 0
+A13
+Wire Wire Line
+	5850 3600 5900 3600
+Connection ~ 3300 3550
+Connection ~ 6150 3550
+Wire Wire Line
+	3300 3550 3300 3650
+Wire Wire Line
+	3300 3550 3300 2950
+Wire Wire Line
+	7700 5300 7700 5000
+Wire Wire Line
+	6000 5150 6000 5000
+Wire Wire Line
+	5800 5200 5800 5000
+Wire Wire Line
+	5400 6350 5400 5000
+Wire Wire Line
+	5100 5100 5100 5000
+Wire Wire Line
+	4600 5000 4600 5350
+Wire Wire Line
+	4500 5200 4500 5000
+Wire Wire Line
+	4400 5600 4400 5000
+Wire Wire Line
+	8900 5050 7800 5050
+Wire Wire Line
+	7200 5050 5900 5050
+Wire Wire Line
+	3100 5050 5700 5050
+Wire Wire Line
+	6150 3550 3300 3550
+$Comp
+L MEGA_PRO_EMBED_CH340G___ATMEGA2560-git:MEGA_PRO_EMBED_CH340G___ATMEGA2560 U1
+U 1 1 60C9CA00
+P 6200 4300
+F 0 "U1" V 6246 6830 50  0000 L CNN
+F 1 "MEGA_PRO_EMBED_CH340G___ATMEGA2560" V 6155 6830 50  0000 L CNN
+F 2 "MODULE_MEGA_PRO_EMBED_CH340G_git:_ATMEGA2560" H 6200 4300 50  0001 L BNN
+F 3 "" H 6200 4300 50  0001 L BNN
+F 4 "12/May/2017" H 6200 4300 50  0001 L BNN "PARTREV"
+F 5 "" H 6200 4300 50  0001 L BNN "MAXIMUM_PACKAGE_HIEGHT"
+F 6 "Manufacturer Recommendations" H 6200 4300 50  0001 L BNN "STANDARD"
+F 7 "Robotdyn" H 6200 4300 50  0001 L BNN "MANUFACTURER"
+	1    6200 4300
+	0    -1   -1   0   
+$EndComp
+Text GLabel 8400 3600 1    50   Input ~ 0
+A14
+Text GLabel 5200 5000 3    50   Input ~ 0
+D5
+Text GLabel 5200 3600 1    50   Input ~ 0
+D4
+Text GLabel 5600 3600 1    50   Input ~ 0
+D12
+$Comp
+L Connector_Generic:Conn_01x18 5V1
+U 1 1 60FFDBCE
+P 2200 1600
+F 0 "5V1" H 2280 1592 50  0000 L CNN
+F 1 "Conn_01x18" H 2280 1501 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x18_P2.54mm_Vertical" H 2200 1600 50  0001 C CNN
+F 3 "~" H 2200 1600 50  0001 C CNN
+	1    2200 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x18 GND1
+U 1 1 61015838
+P 2875 1575
+F 0 "GND1" H 2955 1567 50  0000 L CNN
+F 1 "Conn_01x18" H 2955 1476 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x18_P2.54mm_Vertical" H 2875 1575 50  0001 C CNN
+F 3 "~" H 2875 1575 50  0001 C CNN
+	1    2875 1575
+	1    0    0    -1  
+$EndComp
+Text GLabel 2000 800  0    50   Input ~ 0
+VCC
+Text GLabel 2000 900  0    50   Input ~ 0
+VCC
+Text GLabel 2000 1000 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1100 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1200 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1300 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1400 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1500 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1600 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1700 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1800 0    50   Input ~ 0
+VCC
+Text GLabel 2000 1900 0    50   Input ~ 0
+VCC
+Text GLabel 2000 2000 0    50   Input ~ 0
+VCC
+Text GLabel 2000 2100 0    50   Input ~ 0
+VCC
+Text GLabel 2000 2200 0    50   Input ~ 0
+VCC
+Text GLabel 2000 2300 0    50   Input ~ 0
+VCC
+Text GLabel 2000 2400 0    50   Input ~ 0
+VCC
+Text GLabel 2000 2500 0    50   Input ~ 0
+VCC
+Text GLabel 2675 875  0    50   Input ~ 0
+GND
+Text GLabel 2675 775  0    50   Input ~ 0
+GND
+Text GLabel 2675 1075 0    50   Input ~ 0
+GND
+Text GLabel 2675 975  0    50   Input ~ 0
+GND
+Text GLabel 2675 1275 0    50   Input ~ 0
+GND
+Text GLabel 2675 1175 0    50   Input ~ 0
+GND
+Text GLabel 2675 1475 0    50   Input ~ 0
+GND
+Text GLabel 2675 1375 0    50   Input ~ 0
+GND
+Text GLabel 2675 1675 0    50   Input ~ 0
+GND
+Text GLabel 2675 1575 0    50   Input ~ 0
+GND
+Text GLabel 2675 1875 0    50   Input ~ 0
+GND
+Text GLabel 2675 1775 0    50   Input ~ 0
+GND
+Text GLabel 2675 2075 0    50   Input ~ 0
+GND
+Text GLabel 2675 1975 0    50   Input ~ 0
+GND
+Text GLabel 2675 2275 0    50   Input ~ 0
+GND
+Text GLabel 2675 2175 0    50   Input ~ 0
+GND
+Text GLabel 2675 2475 0    50   Input ~ 0
+GND
+Text GLabel 2675 2375 0    50   Input ~ 0
+GND
+$Comp
+L Connector_Generic:Conn_01x01 AV1
+U 1 1 611A97CB
+P 4450 6600
+F 0 "AV1" V 4414 6512 50  0000 R CNN
+F 1 "Conn_01x01" V 4323 6512 50  0000 R CNN
+F 2 "" H 4450 6600 50  0001 C CNN
+F 3 "~" H 4450 6600 50  0001 C CNN
+	1    4450 6600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 CAN_L1
+U 1 1 611AA2F2
+P 5750 6600
+F 0 "CAN_L1" V 5714 6512 50  0000 R CNN
+F 1 "Conn_01x01" V 5623 6512 50  0000 R CNN
+F 2 "" H 5750 6600 50  0001 C CNN
+F 3 "~" H 5750 6600 50  0001 C CNN
+	1    5750 6600
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 CAN_H1
+U 1 1 611B5442
+P 5250 6550
+F 0 "CAN_H1" V 5214 6462 50  0000 R CNN
+F 1 "Conn_01x01" V 5123 6462 50  0000 R CNN
+F 2 "" H 5250 6550 50  0001 C CNN
+F 3 "~" H 5250 6550 50  0001 C CNN
+	1    5250 6550
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x04 3.3V1
+U 1 1 611D9033
+P 1175 3000
+F 0 "3.3V1" H 1255 2992 50  0000 L CNN
+F 1 "Conn_01x04" H 1255 2901 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 1175 3000 50  0001 C CNN
+F 3 "~" H 1175 3000 50  0001 C CNN
+	1    1175 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x04 GND2
+U 1 1 611D9A3C
+P 1750 3000
+F 0 "GND2" H 1830 2992 50  0000 L CNN
+F 1 "Conn_01x04" H 1830 2901 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 1750 3000 50  0001 C CNN
+F 3 "~" H 1750 3000 50  0001 C CNN
+	1    1750 3000
+	1    0    0    -1  
+$EndComp
+Text GLabel 975  2900 0    50   Input ~ 0
+3.3V
+Text GLabel 975  3000 0    50   Input ~ 0
+3.3V
+Text GLabel 975  3100 0    50   Input ~ 0
+3.3V
+Text GLabel 975  3200 0    50   Input ~ 0
+3.3V
+Text GLabel 1550 2900 0    50   Input ~ 0
+GND
+Text GLabel 1550 3000 0    50   Input ~ 0
+GND
+Text GLabel 1550 3100 0    50   Input ~ 0
+GND
+Text GLabel 1550 3200 0    50   Input ~ 0
+GND
+Text GLabel 4000 3600 1    50   Input ~ 0
+3.3V
+$Comp
+L Connector:Screw_Terminal_01x02 J5
+U 1 1 6122B52B
+P 1125 3775
+F 0 "J5" H 1043 3450 50  0000 C CNN
+F 1 "Screw_Terminal_01x02" H 1043 3541 50  0000 C CNN
+F 2 "" H 1125 3775 50  0001 C CNN
+F 3 "~" H 1125 3775 50  0001 C CNN
+	1    1125 3775
+	-1   0    0    1   
+$EndComp
+Text GLabel 1325 3775 2    50   Input ~ 0
+VIN
+Text GLabel 1325 3675 2    50   Input ~ 0
+GND
+Text GLabel 3800 3600 1    50   Input ~ 0
+VIN
 $EndSCHEMATC

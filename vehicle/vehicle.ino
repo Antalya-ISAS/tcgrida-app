@@ -6,8 +6,8 @@
 #define mindeger 1060
 //Motorları tersine çevirmek için açıklama satırlarını iptal edin
 //#define TERSONSAG
-//#define TERSONSOL
-#define TERSARKASOL 
+#define TERSONSOL
+//#define TERSARKASOL 
 #define TERSARKASAG 
 
 struct can_frame canMsg; // gelen mesaj

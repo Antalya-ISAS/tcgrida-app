@@ -37,7 +37,7 @@ class UIFunctions(MainWindow):
 
     # OPEN THE LINKS FROM THE "FOLLOW US" PAGE
     def open_link(link):
-        webbrowser.open(link)
+        webbrowser.open_new_tab(link)
 
     # NEW NEW NEW NEW NEW FUNCTION
     def openDirWindow(self):

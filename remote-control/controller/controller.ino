@@ -1,7 +1,7 @@
 #include "logo.h"
 
 #include <Adafruit_Sensor.h>
-#include <Adafruit_SSD1306.h>
+//#include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
 #include <DHT.h>
 #include <Wire.h>

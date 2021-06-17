@@ -37,6 +37,8 @@ class MainWindow(QMainWindow):
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
 
+        self.num_photos = 0 # this will be used to count the num of photos
+
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()
         self.ui.page_home.timer.timeout.connect(self.nextFrameSlot)
@@ -82,11 +84,14 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
         ## CONNECT SNAPSHOT BUTTON
-        self.ui.photo_button.clicked.connect(self.take_photo)
+        self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self, "")) #path is empty for now
 
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://google.com"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://stackoverflow.com"))
+
+        ## CONNECT FOLDER BUTTON ####################################################3333 changed changed
+        self.ui.pushButton.clicked.connect(lambda: UIFunctions.openDirWindow(self))
 
         ## WINDOWS ==> MOVE / MAXIMIZE / RESTORE
         def moveWindow(event):
@@ -179,11 +184,6 @@ class MainWindow(QMainWindow):
        # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
 
         self.ui.page_home.label.setPixmap(pixmap)
-
-    # TAKE SNAPSHOT
-    def take_photo(self):
-        rval, frame = self.ui.page_home.vc.read()
-        out = cv2.imwrite('capture.jpg', frame)
             
     ###################################################
     ## END -> DYNAMIC MENUS - FUNCTIONS

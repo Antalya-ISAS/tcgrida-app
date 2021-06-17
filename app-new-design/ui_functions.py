@@ -27,6 +27,7 @@ GLOBAL_TITLE_BAR = True
 ## ==> COUT INITIAL MENU
 count = 1
 
+
 class UIFunctions(MainWindow):
 
     ## ==> GLOBALS
@@ -37,6 +38,19 @@ class UIFunctions(MainWindow):
     def open_link(link):
         print("hello, im supposed to open links on a web browser")
         print("here you go: " + link)
+
+    # NEW NEW NEW NEW NEW FUNCTION
+    def openDirWindow(self):
+        dir_ = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+        self.ui.lineEdit.setText(str(dir_))
+
+        # TAKE SNAPSHOT
+    def take_photo(self, path):
+        file_name = "capture%d.jpg"%self.num_photos
+        rval, frame = self.ui.page_home.vc.read()
+        out = cv2.imwrite(file_name, frame)
+        self.num_photos += 1
+        
 
     ########################################################################
     ## START - GUI FUNCTIONS

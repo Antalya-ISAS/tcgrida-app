@@ -86,8 +86,8 @@ class MainWindow(QMainWindow):
 
         ## CONNECT LINK BUTTONS
         #TODO: Burada NoneType hatası çıkmaması gerekiyor. 
-        self.ui.instaLinkButton.clicked.connect(UIFunctions.open_link("https://google.com"))
-        self.ui.gitLinkButton.clicked.connect(UIFunctions.open_link("https://stackoverflow.com"))
+        self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://google.com"))
+        self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://stackoverflow.com"))
 
         ## WINDOWS ==> MOVE / MAXIMIZE / RESTORE
         def moveWindow(event):

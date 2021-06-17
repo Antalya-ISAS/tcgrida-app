@@ -15,6 +15,7 @@
 ################################################################################
 
 ## ==> GUI FILE
+import webbrowser
 import cv2
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
@@ -36,8 +37,7 @@ class UIFunctions(MainWindow):
 
     # OPEN THE LINKS FROM THE "FOLLOW US" PAGE
     def open_link(link):
-        print("hello, im supposed to open links on a web browser")
-        print("here you go: " + link)
+        webbrowser.open(link)
 
     # NEW NEW NEW NEW NEW FUNCTION
     def openDirWindow(self):

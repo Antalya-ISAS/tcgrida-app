@@ -87,8 +87,8 @@ class MainWindow(QMainWindow):
         self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self, "")) #path is empty for now
 
         ## CONNECT LINK BUTTONS
-        self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://google.com"))
-        self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://stackoverflow.com"))
+        self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
+        self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))
 
         ## CONNECT FOLDER BUTTON ####################################################3333 changed changed
         self.ui.pushButton.clicked.connect(lambda: UIFunctions.openDirWindow(self))

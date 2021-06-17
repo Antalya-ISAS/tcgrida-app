@@ -85,7 +85,6 @@ class MainWindow(QMainWindow):
         self.ui.photo_button.clicked.connect(self.take_photo)
 
         ## CONNECT LINK BUTTONS
-        #TODO: Burada NoneType hatası çıkmaması gerekiyor. 
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://google.com"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://stackoverflow.com"))
 

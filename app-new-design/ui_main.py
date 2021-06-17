@@ -16,7 +16,7 @@
 ################################################################################
 import cv2
 from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
+    QRect, QSize, QUrl, Qt, center)
 from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
@@ -176,7 +176,20 @@ class Ui_MainWindow(object):
 "	border: 3px solid rgb(52, 59, 72);	\n"
 "	background-image: url(:/16x16/icons/16x16/cil-check-alt.png);\n"
 "}\n"
-"\n"
+"/* COMMAND LINK BUTTON */\n"
+"QCommandLinkButton {	\n"
+"	color: rgb(85, 170, 255);\n"
+"	border-radius: 5px;\n"
+"	padding: 5px;\n"
+"}\n"
+"QCommandLinkButton:hover {	\n"
+"	color: rgb(210, 210, 210);\n"
+"	background-color: rgb(44, 49, 60);\n"
+"}\n"
+"QCommandLinkButton:pressed {	\n"
+"	color: rgb(210, 210, 210);\n"
+"	background-color: rgb(52, 58, 71);\n"
+"}"
 "/* RADIO BUTTON */\n"
 "QRadioButton::indicator {\n"
 "    border: 5px solid rgb(84, 22, 22);\n"
@@ -574,12 +587,30 @@ class Ui_MainWindow(object):
         self.layout_menu_bottom.setObjectName(u"layout_menu_bottom")
         self.layout_menu_bottom.setContentsMargins(0, 0, 0, 25)
 
-        ## RECORDING BUTTON
-        self.button_record = QRadioButton(self.frame_extra_menus)
-        self.button_record.setObjectName(u"Record")
-        self.button_record.setStyleSheet(u"")
+        ## PHOTO BUTTON
+        self.photo_button = QPushButton(self.frame_extra_menus)
+        self.photo_button.setObjectName(u"PHOTO")
+        icon3 = QIcon()
+        icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.photo_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
+        self.photo_button.setStyleSheet(u"QPushButton {	\n"
+"	border: 5px solid rgb(85, 170, 255);\n"
+"	background-color: rgb(22, 25, 28);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
+"       padding:5px;\n"
+"	border-radius"
+                        ": 25px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(52, 59, 72);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 5px solid rgb(220, 220, 220);\n"
+"	background-color: rgb(85, 170, 255);\n"
+"}")
 
-        self.layout_menu_bottom.addWidget(self.button_record, 0, Qt.AlignHCenter)
+        self.layout_menu_bottom.addWidget(self.photo_button, 0, Qt.AlignHCenter)
 
 
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)
@@ -608,6 +639,10 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setStyleSheet(u"background: transparent;")
 
+        ###################################################
+        ## HOME PAGE
+        ###################################################
+
         self.page_home = QWidget()
         self.page_home.setObjectName(u"page_home")
         self.verticalLayout_10 = QVBoxLayout(self.page_home)
@@ -635,6 +670,17 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.addWidget(self.page_home.label)
 
         self.stackedWidget.addWidget(self.page_home)
+
+        ###################################################
+        ## INFO PAGE
+        ###################################################
+
+        #TODO: Add info page.
+
+        ###################################################
+        ## SETTINGS PAGE
+        ###################################################
+
         self.page_widgets = QWidget()
         self.page_widgets.setObjectName(u"page_widgets")
         self.verticalLayout_6 = QVBoxLayout(self.page_widgets)
@@ -689,9 +735,49 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(-1, -1, -1, 0)
 
+        self.lineEdit = QLineEdit(self.frame_content_wid_1)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setMinimumSize(QSize(0, 30))
+        self.lineEdit.setStyleSheet(u"QLineEdit {\n"
+"	background-color: rgb(27, 29, 35);\n"
+"	border-radius: 5px;\n"
+"	border: 2px solid rgb(27, 29, 35);\n"
+"	padding-left: 10px;\n"
+"}\n"
+"QLineEdit:hover {\n"
+"	border: 2px solid rgb(64, 71, 88);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"	border: 2px solid rgb(91, 101, 124);\n"
+"}")
+
+        self.gridLayout.addWidget(self.lineEdit, 0, 0, 1, 1)
+
+        self.pushButton = QPushButton(self.frame_content_wid_1)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(150, 30))
         font8 = QFont()
         font8.setFamily(u"Segoe UI")
         font8.setPointSize(9)
+        self.pushButton.setFont(font8)
+        self.pushButton.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(52, 59, 72);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(52, 59, 72);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(57, 65, 80);\n"
+"	border: 2px solid rgb(61, 70, 86);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(35, 40, 49);\n"
+"	border: 2px solid rgb(43, 50, 61);\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/16x16/icons/16x16/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon3)
+
+        self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
 
 
         self.labelVersion_3 = QLabel(self.frame_content_wid_1)
@@ -838,6 +924,75 @@ class Ui_MainWindow(object):
         self.horizontalLayout_12.setSpacing(0)
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
         self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+
+        ###################################################
+        ## "FOLLOW US" PAGE
+        ###################################################
+
+        self.page_links = QWidget()
+        self.page_links.setObjectName(u"page_links")
+        
+        self.frame_4 = QFrame(self.page_links)
+        self.frame_4.setObjectName(u"frame_4")
+        self.frame_4.setMinimumSize(QSize(0, 150))
+        self.frame_4.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
+"border-radius: 5px;")
+        self.frame_4.setFrameShape(QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_links = QVBoxLayout(self.frame_4)
+        self.verticalLayout_links.setObjectName(u"verticalLayout_links")
+        self.verticalLayout_links.setAlignment(Qt.AlignCenter)
+
+        # TITLE
+
+        self.page_links.label = QLabel()
+        self.page_links.label.setObjectName(u"label")
+
+        font6 = QFont()
+        font6.setFamily(u"Segoe UI")
+        font6.setPointSize(17)
+        self.page_links.label.setFont(font6)
+
+        self.page_links.label.setText("KEEP UP WITH OUR LATEST UPDATES! ")
+        self.page_links.label.setOpenExternalLinks(True)
+        self.page_links.label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_links.addWidget(self.page_links.label)
+
+        self.stackedWidget.addWidget(self.page_links)
+
+        # LINK BUTTONS - INSTAGRAM
+
+        self.instaLinkButton = QCommandLinkButton(self.frame_4)
+        self.instaLinkButton.setText("Our Instagram Page!")
+        self.instaLinkButton.setObjectName(u"instaLinkButton")
+        self.instaLinkButton.setStyleSheet(u"")
+        icon4 = QIcon()
+        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.instaLinkButton.setIcon(icon4)
+
+        self.instaLinkButton.setDescription("Instagram")
+
+        self.verticalLayout_links.addWidget(self.instaLinkButton, alignment = Qt.AlignCenter)
+
+        # LINK BUTTONS - GITHUB
+
+        self.gitLinkButton = QCommandLinkButton(self.frame_4)
+        self.gitLinkButton.setText("Our Github Page!")
+        self.gitLinkButton.setObjectName(u"gitLinkButton")
+        self.gitLinkButton.setStyleSheet(u"")
+        icon4 = QIcon()
+        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.gitLinkButton.setIcon(icon4)
+
+        self.gitLinkButton.setDescription("Github")
+
+        self.verticalLayout_links.addWidget(self.gitLinkButton, alignment = Qt.AlignCenter)
+
+        ###################################################
+        ## PALETTES
+        ###################################################
 
         palette1 = QPalette()
         palette1.setBrush(QPalette.Active, QPalette.WindowText, brush6)

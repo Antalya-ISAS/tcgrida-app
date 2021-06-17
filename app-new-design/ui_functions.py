@@ -33,6 +33,11 @@ class UIFunctions(MainWindow):
     GLOBAL_STATE = 0
     GLOBAL_TITLE_BAR = True
 
+    # OPEN THE LINKS FROM THE "FOLLOW US" PAGE
+    def open_link(link):
+        print("hello, im supposed to open links on a web browser")
+        print("here you go: " + link)
+
     ########################################################################
     ## START - GUI FUNCTIONS
     ########################################################################

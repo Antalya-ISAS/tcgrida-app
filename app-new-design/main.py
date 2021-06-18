@@ -89,9 +89,10 @@ class MainWindow(QMainWindow):
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))
+        self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.youtube.com/watch?v=xEuX6HCUFWI")) #TODO: Buraya sitenin linki eklenecek.
 
         ## CONNECT FOLDER BUTTON ####################################################3333 changed changed
-        self.ui.pushButton.clicked.connect(lambda: UIFunctions.openDirWindow(self))
+        self.ui.pushButtonSettings.clicked.connect(lambda: UIFunctions.openDirWindow(self))
 
         ## WINDOWS ==> MOVE / MAXIMIZE / RESTORE
         def moveWindow(event):
@@ -144,7 +145,7 @@ class MainWindow(QMainWindow):
         
         # PAGE SETTINGS
         if btnWidget.objectName() == "btn_settings":
-            self.ui.stackedWidget.setCurrentWidget(self.ui.page_widgets)
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_settings)
             UIFunctions.resetStyle(self, "btn_settings")
             UIFunctions.labelPage(self, "SETTINGS")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))

@@ -21,6 +21,7 @@ from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
 from PyQt5.QtWidgets import *
+from qtwidgets import AnimatedToggle
 
 import files_rc
 
@@ -681,6 +682,98 @@ class Ui_MainWindow(object):
         ## SETTINGS PAGE
         ###################################################
 
+        self.page_settings = QWidget()
+        self.page_settings.setObjectName(u"page_settings")
+
+        self.frame_5 = QFrame(self.page_settings)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setMinimumSize(QSize(0, 150))
+        self.frame_5.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
+"border-radius: 50%;\n")
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayoutSettings = QVBoxLayout(self.frame_5)
+        self.verticalLayoutSettings.setObjectName(u"verticalLayoutSettings")
+        self.verticalLayoutSettings.setAlignment(Qt.AlignCenter)
+
+        self.page_settings.label = QLabel()
+        self.page_settings.label.setObjectName(u"settings_label")
+        self.page_settings.label.setStyleSheet("margin-bottom: 20px;\n")
+
+        font6 = QFont()
+        font6.setFamily(u"Segoe UI")
+        font6.setPointSize(11)
+        self.page_settings.label.setFont(font6)
+
+        self.page_settings.label.setText("SETTINGS MENU")
+        self.page_settings.label.setOpenExternalLinks(True)
+        self.page_settings.label.setAlignment(Qt.AlignCenter)
+
+        self.labelBoxBlenderInstalation = QLabel()
+        self.labelBoxBlenderInstalation.setObjectName(u"labelBoxBlenderInstalation")
+        self.labelBoxBlenderInstalation.setFont(font1)
+        self.labelBoxBlenderInstalation.setStyleSheet(u"")
+
+        self.lineEditSettings = QLineEdit(self.frame_5)
+        self.lineEditSettings.setObjectName(u"lineEditSettings")
+        self.lineEditSettings.setMinimumSize(QSize(0, 30))
+        self.lineEditSettings.setStyleSheet(u"QLineEdit {\n"
+"	background-color: rgb(27, 29, 35);\n"
+"	border-radius: 5px;\n"
+"	border: 2px solid rgb(27, 29, 35);\n"
+"	padding-left: 10px;\n"
+"       height: 20px;\n"
+"       width: 900px;\n"
+"}\n"
+"QLineEdit:hover {\n"
+"	border: 2px solid rgb(64, 71, 88);\n"
+"}\n"
+"QLineEdit:focus {\n"
+"	border: 2px solid rgb(91, 101, 124);\n"
+"}")
+        self.pushButtonSettings = QPushButton(self.frame_5)
+        self.pushButtonSettings.setObjectName(u"pushButton")
+        self.pushButtonSettings.setMinimumSize(QSize(150, 30))
+        font8 = QFont()
+        font8.setFamily(u"Segoe UI")
+        font8.setPointSize(9)
+        self.pushButtonSettings.setFont(font8)
+        self.pushButtonSettings.setStyleSheet(u"QPushButton {\n"
+"	border: 2px solid rgb(52, 59, 72);\n"
+"	border-radius: 5px;	\n"
+"	background-color: rgb(52, 59, 72);\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(57, 65, 80);\n"
+"	border: 2px solid rgb(61, 70, 86);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	background-color: rgb(35, 40, 49);\n"
+"	border: 2px solid rgb(43, 50, 61);\n"
+"}")
+        icon3 = QIcon()
+        icon3.addFile(u":/16x16/icons/16x16/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
+
+        self.toggle = AnimatedToggle(
+                checked_color="#007fff",
+                pulse_checked_color="#003366"
+        )
+        self.toggle.setObjectName(u"toggle")
+        self.toggle.setStyleSheet("margin-top:100px;\n")
+
+        self.pushButtonSettings.setIcon(icon3)
+        self.horizontalLayoutSettings = QHBoxLayout()
+        self.horizontalLayoutSettings.addWidget(self.lineEditSettings)
+        self.horizontalLayoutSettings.addWidget(self.pushButtonSettings)
+
+        self.verticalLayoutSettings.addWidget(self.page_settings.label)
+        self.verticalLayoutSettings.addLayout(self.horizontalLayoutSettings)
+        self.verticalLayoutSettings.addWidget(self.toggle)
+        self.stackedWidget.addWidget(self.page_settings)
+
+
+
         self.page_widgets = QWidget()
         self.page_widgets.setObjectName(u"page_widgets")
         self.verticalLayout_6 = QVBoxLayout(self.page_widgets)
@@ -951,7 +1044,7 @@ class Ui_MainWindow(object):
 
         font6 = QFont()
         font6.setFamily(u"Segoe UI")
-        font6.setPointSize(17)
+        font6.setPointSize(15)
         self.page_links.label.setFont(font6)
 
         self.page_links.label.setText("KEEP UP WITH OUR LATEST UPDATES! ")
@@ -989,6 +1082,20 @@ class Ui_MainWindow(object):
         self.gitLinkButton.setDescription("Github")
 
         self.verticalLayout_links.addWidget(self.gitLinkButton, alignment = Qt.AlignCenter)
+
+        # LINK BUTTONS - WEBSITE
+        
+        self.webLinkButton=QCommandLinkButton(self.frame_4)
+        self.webLinkButton.setText("Our Website!")
+        self.webLinkButton.setObjectName(u"webLinkButton")
+        self.webLinkButton.setStyleSheet(u"")
+        icon4 = QIcon()
+        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.webLinkButton.setIcon(icon4)
+
+        self.webLinkButton.setDescription("Website")
+        
+        self.verticalLayout_links.addWidget(self.webLinkButton, alignment = Qt.AlignCenter)
 
         ###################################################
         ## PALETTES

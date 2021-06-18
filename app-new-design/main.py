@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
         ## CONNECT SNAPSHOT BUTTON
-        self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self, "")) #path is empty for now
+        self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self, dir)) #path is empty for now
 
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))

@@ -16,9 +16,9 @@
 ################################################################################
 import cv2
 from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt, center)
+    QRect, QSize, QUrl, Qt)
 from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
+    QFontDatabase, QIcon, QImage, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
 from PyQt5.QtWidgets import *
 from qtwidgets import AnimatedToggle
@@ -26,6 +26,7 @@ from qtwidgets import AnimatedToggle
 import files_rc
 
 class Ui_MainWindow(object):
+    #QWebEngineSettings.globalSettings().setAttribute(QWebEngineSettings.PluginsEnabled,True)
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -691,7 +692,7 @@ class Ui_MainWindow(object):
         self.frame.setObjectName(u"frame")
         self.frame.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;\n"
-"padding: 5px;"
+"padding: 10px;"
 )
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
@@ -771,7 +772,7 @@ class Ui_MainWindow(object):
         self.frame_2.setMinimumSize(QSize(0, 150))
         self.frame_2.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;\n"
-"padding: 5px;"
+"padding: 10px;"
 )
         self.frame_2.setFrameShape(QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Raised)
@@ -830,7 +831,7 @@ class Ui_MainWindow(object):
         self.frame_3.setMinimumSize(QSize(0, 150))
         self.frame_3.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;\n"
-"padding: 5px;"
+"padding: 10px;"
 )
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
@@ -883,16 +884,28 @@ class Ui_MainWindow(object):
         self.verticalLayout_links.setObjectName(u"verticalLayout_links")
         self.verticalLayout_links.setAlignment(Qt.AlignCenter)
 
+        #self.verticalLayout_13 = QVBoxLayout(self.page_links)
+        #self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        #self.verticalLayout_13.setAlignment(Qt.AlignCenter)
+
+        ## Logoyu görmediğim için şimdilik yorum haline getirdim.
+        #self.page_links.logo = QLabel(self.frame_4)
+        #self.page_links.logo.setObjectName(u"label_logo")
+        #self.page_links.logo.setAlignment(Qt.AlignCenter)
+        #imagelabel = QPixmap("url(:/16x16/icons/logo.jpeg)")
+        #self.page_links.logo.setPixmap(imagelabel)
+
+        #self.verticalLayout_links.addWidget(self.page_links.logo)
+
         # TITLE
 
-        self.page_links.label = QLabel()
+        self.page_links.label = QLabel(self.frame_4)
         self.page_links.label.setObjectName(u"label")
 
         font6 = QFont()
         font6.setFamily(u"Segoe UI")
         font6.setPointSize(15)
         self.page_links.label.setFont(font6)
-
         self.page_links.label.setText("KEEP UP WITH OUR LATEST UPDATES! ")
         self.page_links.label.setOpenExternalLinks(True)
         self.page_links.label.setAlignment(Qt.AlignCenter)
@@ -942,6 +955,14 @@ class Ui_MainWindow(object):
         self.webLinkButton.setDescription("Website")
         
         self.verticalLayout_links.addWidget(self.webLinkButton, alignment = Qt.AlignCenter)
+
+        # Embed Video
+        
+        #self.webview=QtWebEngineWidgets.QWebEngineView()
+        #self.webview.setUrl(QUrl("https://youtu.be/01ofdSy_Puo"))
+        #self.verticalLayout_13.addWidget(self.webview)
+
+        #self.verticalLayout_13.addLayout(self.verticalLayout_links)
 
         ###################################################
         ## PALETTES

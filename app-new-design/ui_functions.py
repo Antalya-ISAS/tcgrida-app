@@ -15,8 +15,7 @@
 ################################################################################
 
 ## ==> GUI FILE
-import webbrowser
-import cv2
+import webbrowser, os, cv2
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
 from main import *
@@ -24,10 +23,10 @@ from main import *
 ## ==> GLOBALS
 GLOBAL_STATE = 0
 GLOBAL_TITLE_BAR = True
+dir = None
 
 ## ==> COUT INITIAL MENU
 count = 1
-
 
 class UIFunctions(MainWindow):
 
@@ -41,15 +40,27 @@ class UIFunctions(MainWindow):
 
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
-        dir_ = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
-        self.ui.lineEditSettings.setText(str(dir_))
+        global dir
+        dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+        self.ui.lineEditSettings.setText(str(dir))
 
     # TAKE SNAPSHOT
     def take_photo(self, path):
         file_name = "capture%d.jpg"%self.num_photos
         rval, frame = self.ui.page_home.vc.read()
-        out = cv2.imwrite(file_name, frame)
-        self.num_photos += 1
+        if path is None:
+            message = QMessageBox(self)
+            message.setIcon(QMessageBox.Warning)
+            message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+            message.setWindowTitle("Choose a directory")
+            # TODO: Aslında burada Settings'e git demek yerine "ok" butonuna basılınca openDirWindow() fonksiyonunu çalıştırıp yeni path kaydetsek çok daha kullanışlı olur.
+            message.setText("Please choose a directory from the Settings menu to save your snapshots.")
+            message.setDefaultButton(QMessageBox.Ok)
+            message.exec()
+
+        else:
+            out = cv2.imwrite(os.path.join(path, file_name), frame)
+            self.num_photos += 1
         
 
     ########################################################################

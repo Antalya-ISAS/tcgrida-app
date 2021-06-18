@@ -42,7 +42,7 @@ class UIFunctions(MainWindow):
     # NEW NEW NEW NEW NEW FUNCTION
     def openDirWindow(self):
         dir_ = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
-        self.ui.lineEdit.setText(str(dir_))
+        self.ui.lineEditSettings.setText(str(dir_))
 
         # TAKE SNAPSHOT
     def take_photo(self, path):

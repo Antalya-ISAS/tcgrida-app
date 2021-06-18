@@ -859,7 +859,7 @@ class Ui_MainWindow(object):
         )
 
         self.toggle.setObjectName(u"toggle")
-        self.toggle.setStyleSheet("margin-top:100px;\n")
+        
 
         self.verticalLayout_12.addWidget(self.toggle)
         self.verticalLayoutSettings.addWidget(self.frame_3)

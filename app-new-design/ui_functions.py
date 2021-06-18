@@ -15,7 +15,7 @@
 ################################################################################
 
 ## ==> GUI FILE
-import webbrowser, os, cv2
+import webbrowser, os, cv2, datetime
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
 from main import *
@@ -23,7 +23,6 @@ from main import *
 ## ==> GLOBALS
 GLOBAL_STATE = 0
 GLOBAL_TITLE_BAR = True
-dir = None
 
 ## ==> COUT INITIAL MENU
 count = 1
@@ -40,15 +39,16 @@ class UIFunctions(MainWindow):
 
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
-        global dir
-        dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
-        self.ui.lineEditSettings.setText(str(dir))
+        self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+        self.ui.lineEditSettings.setText(str(self.dir))
 
     # TAKE SNAPSHOT
-    def take_photo(self, path):
-        file_name = "capture%d.jpg"%self.num_photos
+    def take_photo(self):
+        dt = str(datetime.datetime.now())
+        file_name = ("tcGrida_%s.jpg"%dt)
+        print("The photo will be saved as " + file_name)
         rval, frame = self.ui.page_home.vc.read()
-        if path is None:
+        if self.dir is "":
             message = QMessageBox(self)
             message.setIcon(QMessageBox.Warning)
             message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
@@ -59,8 +59,9 @@ class UIFunctions(MainWindow):
             message.exec()
 
         else:
-            out = cv2.imwrite(os.path.join(path, file_name), frame)
-            self.num_photos += 1
+            # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
+            out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
+            print("Photo saved to %s"%self.dir)
         
 
     ########################################################################

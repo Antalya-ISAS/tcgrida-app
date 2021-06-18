@@ -14,6 +14,7 @@
 ## https://doc.qt.io/qtforpython/licenses.html
 ##
 ################################################################################
+
 import cv2
 from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
     QRect, QSize, QUrl, Qt)
@@ -644,6 +645,13 @@ class Ui_MainWindow(object):
         ###################################################
         ## HOME PAGE
         ###################################################
+
+        ## NOT: Arduino ile kablosuz bağlantı kurarsak basınç vs. değerleri sayısal olarak home'daki görüntünün üstünde
+        ## göstermek için cv2.putText(frame, dt,
+        ##                    (10, 100),
+        ##                    font, 1,
+        ##                    (210, 155, 155), 
+        ##                    4, cv2.LINE_8) şeklinde yazabiliriz. dt = datetime
 
         self.page_home = QWidget()
         self.page_home.setObjectName(u"page_home")

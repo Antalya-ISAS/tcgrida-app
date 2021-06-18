@@ -89,9 +89,9 @@ class MainWindow(QMainWindow):
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))
-        self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.youtube.com/watch?v=xEuX6HCUFWI")) #TODO: Buraya sitenin linki eklenecek.
+        self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://antalyaisas.com/")) 
 
-        ## CONNECT FOLDER BUTTON ####################################################3333 changed changed
+        ## CONNECT FOLDER BUTTON
         self.ui.pushButtonSettings.clicked.connect(lambda: UIFunctions.openDirWindow(self))
 
         ## WINDOWS ==> MOVE / MAXIMIZE / RESTORE

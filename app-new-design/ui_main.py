@@ -684,38 +684,42 @@ class Ui_MainWindow(object):
 
         self.page_settings = QWidget()
         self.page_settings.setObjectName(u"page_settings")
-
-        self.frame_5 = QFrame(self.page_settings)
-        self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setMinimumSize(QSize(0, 150))
-        self.frame_5.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
-"border-radius: 50%;\n")
-        self.frame_5.setFrameShape(QFrame.StyledPanel)
-        self.frame_5.setFrameShadow(QFrame.Raised)
-
-        self.verticalLayoutSettings = QVBoxLayout(self.frame_5)
+        self.verticalLayoutSettings = QVBoxLayout(self.page_settings)
         self.verticalLayoutSettings.setObjectName(u"verticalLayoutSettings")
-        self.verticalLayoutSettings.setAlignment(Qt.AlignCenter)
 
-        self.page_settings.label = QLabel()
-        self.page_settings.label.setObjectName(u"settings_label")
-        self.page_settings.label.setStyleSheet("margin-bottom: 20px;\n")
+        self.frame = QFrame(self.page_settings)
+        self.frame.setObjectName(u"frame")
+        self.frame.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
+"border-radius: 5px;\n"
+"padding: 5px;"
+)
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_15 = QVBoxLayout(self.frame)
+        self.verticalLayout_15.setSpacing(0)
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.horizontalLayout_11 = QHBoxLayout(self.frame)
+        self.horizontalLayout_11.setSpacing(0)
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+
+        # TITLE
+
+        self.frame.label = QLabel()
+        self.frame.label.setObjectName(u"frame_label")
 
         font6 = QFont()
         font6.setFamily(u"Segoe UI")
-        font6.setPointSize(11)
-        self.page_settings.label.setFont(font6)
+        font6.setPointSize(15)
+        self.frame.label.setFont(font6)
 
-        self.page_settings.label.setText("SETTINGS MENU")
-        self.page_settings.label.setOpenExternalLinks(True)
-        self.page_settings.label.setAlignment(Qt.AlignCenter)
+        self.frame.label.setText("Choose which directory your snapshots will be saved to:")
+        self.frame.label.setOpenExternalLinks(True)
+        self.frame.label.setAlignment(Qt.AlignCenter)
 
-        self.labelBoxBlenderInstalation = QLabel()
-        self.labelBoxBlenderInstalation.setObjectName(u"labelBoxBlenderInstalation")
-        self.labelBoxBlenderInstalation.setFont(font1)
-        self.labelBoxBlenderInstalation.setStyleSheet(u"")
+        self.verticalLayout_15.addWidget(self.frame.label)
 
-        self.lineEditSettings = QLineEdit(self.frame_5)
+        self.lineEditSettings = QLineEdit(self.frame)
         self.lineEditSettings.setObjectName(u"lineEditSettings")
         self.lineEditSettings.setMinimumSize(QSize(0, 30))
         self.lineEditSettings.setStyleSheet(u"QLineEdit {\n"
@@ -723,8 +727,6 @@ class Ui_MainWindow(object):
 "	border-radius: 5px;\n"
 "	border: 2px solid rgb(27, 29, 35);\n"
 "	padding-left: 10px;\n"
-"       height: 20px;\n"
-"       width: 900px;\n"
 "}\n"
 "QLineEdit:hover {\n"
 "	border: 2px solid rgb(64, 71, 88);\n"
@@ -732,8 +734,11 @@ class Ui_MainWindow(object):
 "QLineEdit:focus {\n"
 "	border: 2px solid rgb(91, 101, 124);\n"
 "}")
-        self.pushButtonSettings = QPushButton(self.frame_5)
-        self.pushButtonSettings.setObjectName(u"pushButton")
+
+        self.horizontalLayout_11.addWidget(self.lineEditSettings)
+
+        self.pushButtonSettings = QPushButton(self.frame)
+        self.pushButtonSettings.setObjectName(u"pushButtonSettings")
         self.pushButtonSettings.setMinimumSize(QSize(150, 30))
         font8 = QFont()
         font8.setFamily(u"Segoe UI")
@@ -754,197 +759,42 @@ class Ui_MainWindow(object):
 "}")
         icon3 = QIcon()
         icon3.addFile(u":/16x16/icons/16x16/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
-
-        self.toggle = AnimatedToggle(
-                checked_color="#007fff",
-                pulse_checked_color="#003366"
-        )
-        self.toggle.setObjectName(u"toggle")
-        self.toggle.setStyleSheet("margin-top:100px;\n")
-
         self.pushButtonSettings.setIcon(icon3)
-        self.horizontalLayoutSettings = QHBoxLayout()
-        self.horizontalLayoutSettings.addWidget(self.lineEditSettings)
-        self.horizontalLayoutSettings.addWidget(self.pushButtonSettings)
 
-        self.verticalLayoutSettings.addWidget(self.page_settings.label)
-        self.verticalLayoutSettings.addLayout(self.horizontalLayoutSettings)
-        self.verticalLayoutSettings.addWidget(self.toggle)
-        self.stackedWidget.addWidget(self.page_settings)
+        self.horizontalLayout_11.addWidget(self.pushButtonSettings)
+        self.verticalLayout_15.addLayout(self.horizontalLayout_11)
+        self.verticalLayoutSettings.addWidget(self.frame)
 
-
-
-        self.page_widgets = QWidget()
-        self.page_widgets.setObjectName(u"page_widgets")
-        self.verticalLayout_6 = QVBoxLayout(self.page_widgets)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.frame = QFrame(self.page_widgets)
-        self.frame.setObjectName(u"frame")
-        self.frame.setStyleSheet(u"border-radius: 5px;")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_15 = QVBoxLayout(self.frame)
-        self.verticalLayout_15.setSpacing(0)
-        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
-        self.frame_div_content_1 = QFrame(self.frame)
-        self.frame_div_content_1.setObjectName(u"frame_div_content_1")
-        self.frame_div_content_1.setMinimumSize(QSize(0, 110))
-        self.frame_div_content_1.setMaximumSize(QSize(16777215, 110))
-        self.frame_div_content_1.setStyleSheet(u"background-color: rgb(41, 45, 56);\n"
-"border-radius: 5px;\n"
-"")
-        self.frame_div_content_1.setFrameShape(QFrame.NoFrame)
-        self.frame_div_content_1.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_7 = QVBoxLayout(self.frame_div_content_1)
-        self.verticalLayout_7.setSpacing(0)
-        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.frame_title_wid_1 = QFrame(self.frame_div_content_1)
-        self.frame_title_wid_1.setObjectName(u"frame_title_wid_1")
-        self.frame_title_wid_1.setMaximumSize(QSize(16777215, 35))
-        self.frame_title_wid_1.setStyleSheet(u"background-color: rgb(39, 44, 54);")
-        self.frame_title_wid_1.setFrameShape(QFrame.StyledPanel)
-        self.frame_title_wid_1.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_8 = QVBoxLayout(self.frame_title_wid_1)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.labelBoxBlenderInstalation = QLabel(self.frame_title_wid_1)
-        self.labelBoxBlenderInstalation.setObjectName(u"labelBoxBlenderInstalation")
-        self.labelBoxBlenderInstalation.setFont(font1)
-        self.labelBoxBlenderInstalation.setStyleSheet(u"")
-
-        self.verticalLayout_8.addWidget(self.labelBoxBlenderInstalation)
-
-
-        self.verticalLayout_7.addWidget(self.frame_title_wid_1)
-
-        self.frame_content_wid_1 = QFrame(self.frame_div_content_1)
-        self.frame_content_wid_1.setObjectName(u"frame_content_wid_1")
-        self.frame_content_wid_1.setFrameShape(QFrame.NoFrame)
-        self.frame_content_wid_1.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_9 = QHBoxLayout(self.frame_content_wid_1)
-        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(-1, -1, -1, 0)
-
-        self.lineEdit = QLineEdit(self.frame_content_wid_1)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setMinimumSize(QSize(0, 30))
-        self.lineEdit.setStyleSheet(u"QLineEdit {\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid rgb(27, 29, 35);\n"
-"	padding-left: 10px;\n"
-"}\n"
-"QLineEdit:hover {\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"	border: 2px solid rgb(91, 101, 124);\n"
-"}")
-
-        self.gridLayout.addWidget(self.lineEdit, 0, 0, 1, 1)
-
-        self.pushButton = QPushButton(self.frame_content_wid_1)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(150, 30))
-        font8 = QFont()
-        font8.setFamily(u"Segoe UI")
-        font8.setPointSize(9)
-        self.pushButton.setFont(font8)
-        self.pushButton.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(52, 59, 72);\n"
-"	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(57, 65, 80);\n"
-"	border: 2px solid rgb(61, 70, 86);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	background-color: rgb(35, 40, 49);\n"
-"	border: 2px solid rgb(43, 50, 61);\n"
-"}")
-        icon3 = QIcon()
-        icon3.addFile(u":/16x16/icons/16x16/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon3)
-
-        self.gridLayout.addWidget(self.pushButton, 0, 1, 1, 1)
-
-
-        self.labelVersion_3 = QLabel(self.frame_content_wid_1)
-        self.labelVersion_3.setObjectName(u"labelVersion_3")
-        self.labelVersion_3.setStyleSheet(u"color: rgb(98, 103, 111);")
-        self.labelVersion_3.setLineWidth(1)
-        self.labelVersion_3.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
-
-        self.gridLayout.addWidget(self.labelVersion_3, 1, 0, 1, 2)
-
-
-        self.horizontalLayout_9.addLayout(self.gridLayout)
-
-
-        self.verticalLayout_7.addWidget(self.frame_content_wid_1)
-
-
-        self.verticalLayout_15.addWidget(self.frame_div_content_1)
-
-
-        self.verticalLayout_6.addWidget(self.frame)
-
-        self.frame_2 = QFrame(self.page_widgets)
+        ## CHOOSE CAM
+        self.frame_2 = QFrame(self.page_settings)
         self.frame_2.setObjectName(u"frame_2")
         self.frame_2.setMinimumSize(QSize(0, 150))
         self.frame_2.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
-"border-radius: 5px;")
+"border-radius: 5px;\n"
+"padding: 5px;"
+)
         self.frame_2.setFrameShape(QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.verticalLayout_11 = QVBoxLayout(self.frame_2)
         self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.gridLayout_2 = QGridLayout()
-        self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.checkBox = QCheckBox(self.frame_2)
-        self.checkBox.setObjectName(u"checkBox")
-        self.checkBox.setAutoFillBackground(False)
-        self.checkBox.setStyleSheet(u"")
 
-        self.gridLayout_2.addWidget(self.checkBox, 0, 0, 1, 1)
+        # TITLE
 
-        self.radioButton = QRadioButton(self.frame_2)
-        self.radioButton.setObjectName(u"radioButton")
-        self.radioButton.setStyleSheet(u"")
+        self.frame_2.label = QLabel()
+        self.frame_2.label.setObjectName(u"frame2_label")
 
-        # self.gridLayout_2.addWidget(self.radioButton, 0, 1, 1, 1)
+        font6 = QFont()
+        font6.setFamily(u"Segoe UI")
+        font6.setPointSize(15)
+        self.frame_2.label.setFont(font6)
 
-        self.verticalSlider = QSlider(self.frame_2)
-        self.verticalSlider.setObjectName(u"verticalSlider")
-        self.verticalSlider.setStyleSheet(u"")
-        self.verticalSlider.setOrientation(Qt.Vertical)
+        self.frame_2.label.setText("Choose which camera will be captured:")
+        self.frame_2.label.setOpenExternalLinks(True)
+        self.frame_2.label.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_2.addWidget(self.verticalSlider, 0, 2, 3, 1)
+        self.verticalLayout_11.addWidget(self.frame_2.label)
 
-        self.scrollArea = QScrollArea(self.frame_2)
-        self.scrollArea.setObjectName(u"scrollArea")
-        self.scrollArea.setStyleSheet(u"QScrollArea {\n"
-"	border: none;\n"
-"	border-radius: 0px;\n"
-"}\n"
-"QScrollBar:horizontal {\n"
-"    border: none;\n"
-"    background: rgb(52, 59, 72);\n"
-"    height: 14px;\n"
-"    margin: 0px 21px 0 21px;\n"
-"	border-radius: 0px;\n"
-"}\n"
-" QScrollBar:vertical {\n"
-"	border: none;\n"
-"    background: rgb(52, 59, 72);\n"
-"    width: 14px;\n"
-"    margin: 21px 0 21px 0;\n"
-"	border-radius: 0px;\n"
-" }\n"
-"")
+        # ...
 
         self.comboBox = QComboBox(self.frame_2)
         self.comboBox.addItem("")
@@ -971,52 +821,48 @@ class Ui_MainWindow(object):
 "}")
         self.comboBox.setIconSize(QSize(16, 16))
         self.comboBox.setFrame(True)
+        self.verticalLayout_11.addWidget(self.comboBox)
+        self.verticalLayoutSettings.addWidget(self.frame_2)
 
-        self.gridLayout_2.addWidget(self.comboBox, 1, 0, 1, 2)
-
-        self.commandLinkButton = QCommandLinkButton(self.frame_2)
-        self.commandLinkButton.setObjectName(u"commandLinkButton")
-        self.commandLinkButton.setStyleSheet(u"QCommandLinkButton {	\n"
-"	color: rgb(85, 170, 255);\n"
-"	border-radius: 5px;\n"
-"	padding: 5px;\n"
-"}\n"
-"QCommandLinkButton:hover {	\n"
-"	color: rgb(210, 210, 210);\n"
-"	background-color: rgb(44, 49, 60);\n"
-"}\n"
-"QCommandLinkButton:pressed {	\n"
-"	color: rgb(210, 210, 210);\n"
-"	background-color: rgb(52, 58, 71);\n"
-"}")
-        icon4 = QIcon()
-        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.commandLinkButton.setIcon(icon4)
-
-        self.gridLayout_2.addWidget(self.commandLinkButton, 1, 6, 1, 1)
-
-        self.horizontalSlider = QSlider(self.frame_2)
-        self.horizontalSlider.setObjectName(u"horizontalSlider")
-        self.horizontalSlider.setStyleSheet(u"")
-        self.horizontalSlider.setOrientation(Qt.Horizontal)
-
-        self.gridLayout_2.addWidget(self.horizontalSlider, 2, 0, 1, 2)
-
-
-        self.verticalLayout_11.addLayout(self.gridLayout_2)
-
-
-        self.verticalLayout_6.addWidget(self.frame_2)
-
-        self.frame_3 = QFrame(self.page_widgets)
+        ## DETERMINE LIGHT OR DARK MODE
+        self.frame_3 = QFrame(self.page_settings)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setMinimumSize(QSize(0, 150))
+        self.frame_3.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
+"border-radius: 5px;\n"
+"padding: 5px;"
+)
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_12 = QHBoxLayout(self.frame_3)
-        self.horizontalLayout_12.setSpacing(0)
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.horizontalLayout_12.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_12 = QVBoxLayout(self.frame_3)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+
+        # TITLE
+
+        self.frame_3.label = QLabel()
+        self.frame_3.label.setObjectName(u"frame3_label")
+
+        font6 = QFont()
+        font6.setFamily(u"Segoe UI")
+        font6.setPointSize(15)
+        self.frame_3.label.setFont(font6)
+
+        self.frame_3.label.setText("Appearance: (Dark mode or light mode)")
+        self.frame_3.label.setOpenExternalLinks(True)
+        self.frame_3.label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout_12.addWidget(self.frame_3.label)
+
+        self.toggle = AnimatedToggle(
+                checked_color="#007fff",
+                pulse_checked_color="#003366"
+        )
+
+        self.toggle.setObjectName(u"toggle")
+        self.toggle.setStyleSheet("margin-top:100px;\n")
+
+        self.verticalLayout_12.addWidget(self.toggle)
+        self.verticalLayoutSettings.addWidget(self.frame_3)
 
         ###################################################
         ## "FOLLOW US" PAGE
@@ -1138,12 +984,7 @@ class Ui_MainWindow(object):
         palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush18)
 #endif
 
-
-
-
-        self.verticalLayout_6.addWidget(self.frame_3)
-
-        self.stackedWidget.addWidget(self.page_widgets)
+        self.stackedWidget.addWidget(self.page_settings)
 
         self.verticalLayout_9.addWidget(self.stackedWidget)
 
@@ -1217,10 +1058,8 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.btn_minimize, self.btn_maximize_restore)
         QWidget.setTabOrder(self.btn_maximize_restore, self.btn_close)
         QWidget.setTabOrder(self.btn_close, self.btn_toggle_menu)
-        QWidget.setTabOrder(self.btn_toggle_menu, self.checkBox)
-        QWidget.setTabOrder(self.checkBox, self.comboBox)
-        QWidget.setTabOrder(self.comboBox, self.radioButton)
-        QWidget.setTabOrder(self.radioButton, self.horizontalSlider)
+        QWidget.setTabOrder(self.btn_toggle_menu, self.comboBox)
+        QWidget.setTabOrder(self.comboBox, self.toggle)
 
         self.retranslateUi(MainWindow)
 
@@ -1245,14 +1084,10 @@ class Ui_MainWindow(object):
         self.btn_close.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
 #endif // QT_CONFIG(tooltip)
         self.btn_close.setText("")
-        self.checkBox.setText(QCoreApplication.translate("MainWindow", u"CheckBox", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"RadioButton", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Test 1", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Test 2", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"Test 3", None))
 
-        self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"CommandLinkButton", None))
-        self.commandLinkButton.setDescription(QCoreApplication.translate("MainWindow", u"Open External Link", None))
+        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"PC Camera", None))
+        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"USB Camera 1", None))
+        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"USB Camera 2", None))
 
         self.label_credits.setText(QCoreApplication.translate("MainWindow", u"", None))
         self.label_version.setText(QCoreApplication.translate("MainWindow", u"Antalya ISAS", None))

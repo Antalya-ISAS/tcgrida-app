@@ -39,12 +39,12 @@ class UIFunctions(MainWindow):
     def open_link(link):
         webbrowser.open_new_tab(link)
 
-    # NEW NEW NEW NEW NEW FUNCTION
+    # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
         dir_ = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
         self.ui.lineEditSettings.setText(str(dir_))
 
-        # TAKE SNAPSHOT
+    # TAKE SNAPSHOT
     def take_photo(self, path):
         file_name = "capture%d.jpg"%self.num_photos
         rval, frame = self.ui.page_home.vc.read()

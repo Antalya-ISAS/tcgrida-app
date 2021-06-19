@@ -48,7 +48,7 @@ class UIFunctions(MainWindow):
         file_name = ("tcGrida_%s.jpg"%dt)
         print("The photo will be saved as " + file_name)
         rval, frame = self.ui.page_home.vc.read()
-        if self.dir is "":
+        if self.dir == "":
             message = QMessageBox(self)
             message.setIcon(QMessageBox.Warning)
             message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
@@ -60,8 +60,9 @@ class UIFunctions(MainWindow):
 
         else:
             # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
-            out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
-            print("Photo saved to %s"%self.dir)
+            out = cv2.imwrite(os.path.join(self.ui.lineEditSettings.text(), file_name), frame)
+            print("Photo saved to %s"%self.ui.lineEditSettings.text())
+            print(out)
         
 
     ########################################################################

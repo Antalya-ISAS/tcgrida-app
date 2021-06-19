@@ -44,8 +44,9 @@ class UIFunctions(MainWindow):
 
     # TAKE SNAPSHOT
     def take_photo(self):
-        dt = str(datetime.datetime.now())
-        file_name = ("tcGrida_%s.jpg"%dt)
+        dt = str(datetime.date.today())
+        #file_name = ("tcGrida_%s.jpg"%dt)
+        file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
         print("The photo will be saved as " + file_name)
         rval, frame = self.ui.page_home.vc.read()
         if self.dir == "":

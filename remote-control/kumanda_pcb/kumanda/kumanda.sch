@@ -1165,4 +1165,27 @@ Text GLabel 1325 3675 2    50   Input ~ 0
 GND
 Text GLabel 3800 3600 1    50   Input ~ 0
 VIN
+$Comp
+L Connector_Generic:Conn_01x06 USB_kod1
+U 1 1 60CFD659
+P 1325 5000
+F 0 "USB_kod1" H 1405 4992 50  0000 L CNN
+F 1 "Conn_01x06" H 1405 4901 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 1325 5000 50  0001 C CNN
+F 3 "~" H 1325 5000 50  0001 C CNN
+	1    1325 5000
+	1    0    0    -1  
+$EndComp
+Text GLabel 1125 4900 0    50   Input ~ 0
+RX
+Text GLabel 1125 5000 0    50   Input ~ 0
+TX
+Text GLabel 1125 5100 0    50   Input ~ 0
+GND
+Text GLabel 1125 5200 0    50   Input ~ 0
+5v
+Text GLabel 1125 5300 0    50   Input ~ 0
+DTR
+Text GLabel 4700 5000 3    50   Input ~ 0
+DTR
 $EndSCHEMATC

@@ -91,6 +91,7 @@ class MainWindow(QMainWindow):
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))
         self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://antalyaisas.com/")) 
+        self.ui.formLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://airtable.com/shrD4gdRqPPUZeYjH")) 
 
         ## CONNECT FOLDER BUTTON
         self.ui.pushButtonSettings.clicked.connect(lambda: UIFunctions.openDirWindow(self))
@@ -178,8 +179,8 @@ class MainWindow(QMainWindow):
     def nextFrameSlot(self):
         rval, frame = self.ui.page_home.vc.read()
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-       # resize = cv2.cv2.resize(frame, (self.ui.page_home.width(), self.ui.page_home.height()))
-       # image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
+        #resize = cv2.cv2.resize(frame, (self.ui.page_home.width()*2, self.ui.page_home.height()*2))
+        #image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
         image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
         pixmap = QPixmap.fromImage(image)
        # logo_pixmap = cv2.cv2.imread('logo.png')

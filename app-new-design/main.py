@@ -47,9 +47,6 @@ class MainWindow(QMainWindow):
         ## START CAPTURING PC CAMERA
         self.openCamPC()
 
-        ## SAVE IMAGE PATH FOR THE PHOTOS
-        ## ....
-
         ###################################################
         ## WINDOW ATTRIBUTES
         ###################################################

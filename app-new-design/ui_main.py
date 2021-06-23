@@ -884,28 +884,27 @@ class Ui_MainWindow(object):
         
         self.frame_4 = QFrame(self.page_links)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setMinimumSize(QSize(self.page_links.width(), self.page_links.height()))
         self.frame_4.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;")
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_links = QVBoxLayout(self.frame_4)
+        self.verticalLayout_links = QVBoxLayout()
         self.verticalLayout_links.setObjectName(u"verticalLayout_links")
         self.verticalLayout_links.setAlignment(Qt.AlignCenter)
 
-        #self.verticalLayout_13 = QVBoxLayout(self.frame_4)
-        #self.verticalLayout_13.setObjectName(u"verticalLayout_13")
-        #self.verticalLayout_13.setAlignment(Qt.AlignCenter)
+        self.verticalLayout_13 = QVBoxLayout()
+        self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.verticalLayout_13.setAlignment(Qt.AlignCenter)
 
-        ## Logoyu görmediğim için şimdilik yorum haline getirdim.
+        ## TODO: Bu logo neden görünmüyor?
         self.page_links.logo = QLabel(self.frame_4)
         self.page_links.logo.setObjectName(u"label_logo")
         self.page_links.logo.setAlignment(Qt.AlignCenter)
         imagelabel = QPixmap("url(:/16x16/icons/logo.jpeg)")
         self.page_links.logo.setPixmap(imagelabel)
 
-        self.verticalLayout_links.addWidget(self.page_links.logo)
+        self.verticalLayout_13.addWidget(self.page_links.logo)
 
         # TITLE
 
@@ -976,11 +975,11 @@ class Ui_MainWindow(object):
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
         self.formLinkButton.setIcon(icon4)
 
-        self.formLinkButton.setDescription("We appreciate any feedback!")
+        self.formLinkButton.setDescription("Any Comments?")
 
         self.verticalLayout_links.addWidget(self.formLinkButton, alignment = Qt.AlignCenter)
 
-        #4.250
+        # TODO: HTML'de çok cahil olduğum için <iframe> ile olmuyorsa <embed> ile olur belki diye umdum ama olmadı, öncekiyle aynı hatalar çıkıyor. Düzeltilmeli.
         # Embed Video
         
         self.webview = QWebEngineView(self.frame_4)
@@ -988,11 +987,14 @@ class Ui_MainWindow(object):
         self.webview.page().fullScreenRequested.connect(lambda request: request.accept())
         baseUrl = "local"
         htmlString = """
-                <iframe width="350" height="212" src="https://www.youtube.com/watch?v=01ofdSy_Puo" frameborder="0" allowfullscreen></iframe>
+                        <embed style="width=%40; height=%30" src="https://www.youtube.com/embed/01ofdSy_Puo" allow="autoplay; fullscreen" allowfullscreen muted></embed>  
                         """
-
         self.webview.setHtml(htmlString, QUrl(baseUrl))
-        self.verticalLayout_links.addWidget(self.webview)
+        self.verticalLayout_13.addWidget(self.webview)
+
+        self.horizontalLinks = QHBoxLayout(self.frame_4)
+        self.horizontalLinks.addLayout(self.verticalLayout_links)
+        self.horizontalLinks.addLayout(self.verticalLayout_13)
 
         ###################################################
         ## PALETTES

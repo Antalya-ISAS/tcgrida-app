@@ -965,6 +965,19 @@ class Ui_MainWindow(object):
         
         self.verticalLayout_links.addWidget(self.webLinkButton, alignment = Qt.AlignCenter)
 
+        # LINK BUTTONS - YOUTUBE
+        self.youtubeLinkButton=QCommandLinkButton(self.frame_4)
+        self.youtubeLinkButton.setText("Our Video!")
+        self.youtubeLinkButton.setObjectName(u"youtubeLinkButton")
+        self.youtubeLinkButton.setStyleSheet(u"")
+        icon4 = QIcon()
+        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.youtubeLinkButton.setIcon(icon4)
+
+        self.youtubeLinkButton.setDescription("Youtube")
+
+        self.verticalLayout_links.addWidget(self.youtubeLinkButton, alignment=Qt.AlignCenter)
+
         # LINK BUTTONS - FORM
 
         self.formLinkButton = QCommandLinkButton(self.frame_4)
@@ -982,14 +995,20 @@ class Ui_MainWindow(object):
         # TODO: HTML'de çok cahil olduğum için <iframe> ile olmuyorsa <embed> ile olur belki diye umdum ama olmadı, öncekiyle aynı hatalar çıkıyor. Düzeltilmeli.
         # Embed Video
         
-        self.webview = QWebEngineView(self.frame_4)
+        # self.webview = QWebEngineView(self.frame_4)
+        # self.webview.settings().setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
+        # self.webview.page().fullScreenRequested.connect(lambda request: request.accept())
+        # baseUrl = "local"
+        # htmlString = """
+        #                 <embed style="width=%40; height=%30" src="https://www.youtube.com/embed/01ofdSy_Puo" allow="autoplay; fullscreen" allowfullscreen muted></embed>  
+        #                 """
+        # self.webview.setHtml(htmlString, QUrl(baseUrl))
+
+        # TODO: Bu yol ile embed oluyor ama app üzerinde kötü gözüküyor.
+        self.webview=QWebEngineView()
         self.webview.settings().setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
         self.webview.page().fullScreenRequested.connect(lambda request: request.accept())
-        baseUrl = "local"
-        htmlString = """
-                        <embed style="width=%40; height=%30" src="https://www.youtube.com/embed/01ofdSy_Puo" allow="autoplay; fullscreen" allowfullscreen muted></embed>  
-                        """
-        self.webview.setHtml(htmlString, QUrl(baseUrl))
+        self.webview.setUrl(QUrl("https://www.youtube.com/embed/01ofdSy_Puo"))
         self.verticalLayout_13.addWidget(self.webview)
 
         self.horizontalLinks = QHBoxLayout(self.frame_4)

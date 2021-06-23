@@ -88,7 +88,8 @@ class MainWindow(QMainWindow):
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))
         self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://antalyaisas.com/")) 
-        self.ui.formLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://airtable.com/shrD4gdRqPPUZeYjH")) 
+        self.ui.formLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://airtable.com/shrD4gdRqPPUZeYjH"))
+        self.ui.youtubeLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.youtube.com/embed/01ofdSy_Puo")) 
 
         ## CONNECT FOLDER BUTTON
         self.ui.pushButtonSettings.clicked.connect(lambda: UIFunctions.openDirWindow(self))

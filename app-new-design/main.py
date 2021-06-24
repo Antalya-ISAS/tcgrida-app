@@ -44,8 +44,12 @@ class MainWindow(QMainWindow):
         self.ui.page_home.timer = QTimer()
         self.ui.page_home.timer.timeout.connect(self.nextFrameSlot)
 
-        ## START CAPTURING PC CAMERA
-        self.openCamPC()
+        ## START CAPTURING CAMERA VIEW
+        self.openCam(0)
+        print(self.ui.comboBox.currentText())
+        self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(self.ui.comboBox.currentText()[-1]))
+        print(self.ui.comboBox.currentText())
+        # TODO: Uygulamanın kapanmaması sağlanmalı.
 
         ###################################################
         ## WINDOW ATTRIBUTES
@@ -89,7 +93,7 @@ class MainWindow(QMainWindow):
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))
         self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://antalyaisas.com/")) 
         self.ui.formLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://airtable.com/shrD4gdRqPPUZeYjH"))
-        self.ui.youtubeLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.youtube.com/embed/01ofdSy_Puo")) 
+        self.ui.youtubeLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.youtube.com/channel/UCWZvgA6EhvlmvoRbStbpwaQ/featured")) 
 
         ## CONNECT FOLDER BUTTON
         self.ui.pushButtonSettings.clicked.connect(lambda: UIFunctions.openDirWindow(self))
@@ -157,17 +161,9 @@ class MainWindow(QMainWindow):
             UIFunctions.labelPage(self, "FOLLOW US!")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
-    # OPEN PC CAMERA
-    def openCamPC(self):
-        self.ui.page_home.vc = cv2.VideoCapture(0)
-        # vc.set(5, 30)  #set FPS
-        self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
-        self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height
-        self.ui.page_home.timer.start(round(1000. / 24))
-
-    # OPEN USB CAMERA
-    def openCamUSB(self):
-        self.ui.page_home.vc = cv2.VideoCapture(1)
+    # OPEN CAMERA
+    def openCam(self, cam):
+        self.ui.page_home.vc = cv2.VideoCapture(cam)
         # vc.set(5, 30)  #set FPS
         self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
         self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height

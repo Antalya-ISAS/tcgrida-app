@@ -387,10 +387,15 @@ class Ui_MainWindow(object):
         self.frame_icon_top_bar.setObjectName(u"frame_icon_top_bar")
         self.frame_icon_top_bar.setMaximumSize(QSize(30, 30))
         self.frame_icon_top_bar.setStyleSheet(u"background: transparent;\n"
-"background-image: url(:/16x16/icons/16x16/cil-terminal.png);\n"
+"background-image: url(:/16x16/icons/16x16/cil_drop.png);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;\n"
 "")
+
+        # Aslında logoyu küçültüp 390. satıra url(:/16x16/icons/16x16/cil_logo.png); demiştim ama pixmap oluşturamadı.
+        # TODO: Neden pixmap oluşturulamadığını bulmalıyız.
+
+
         self.frame_icon_top_bar.setFrameShape(QFrame.StyledPanel)
         self.frame_icon_top_bar.setFrameShadow(QFrame.Raised)
 
@@ -594,11 +599,12 @@ class Ui_MainWindow(object):
         ## PHOTO BUTTON
         self.photo_button = QPushButton(self.frame_extra_menus)
         self.photo_button.setObjectName(u"PHOTO")
+        self.photo_button.setToolTip("Take a snapshot!")
         icon3 = QIcon()
         icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
         self.photo_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
         self.photo_button.setStyleSheet(u"QPushButton {	\n"
-"	border: 5px solid rgb(85, 170, 255);\n"
+"	border: 5px solid rgb(61, 180, 255);\n"
 "	background-color: rgb(22, 25, 28);\n"
 "	width: 30px;\n"
 "	height: 30px;\n"
@@ -658,17 +664,6 @@ class Ui_MainWindow(object):
         self.page_home.setObjectName(u"page_home")
         self.verticalLayout_10 = QVBoxLayout(self.page_home)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        #self.label_6 = QLabel(self.page_home)
-        #self.label_6.setObjectName(u"label_6")
-        #font5 = QFont()
-        #font5.setFamily(u"Segoe UI")
-        #font5.setPointSize(40)
-        #self.label_6.setFont(font5)
-        #self.label_6.setStyleSheet(u"")
-        #self.label_6.showMaximized()
-        #self.label_6.setAlignment(Qt.AlignCenter)
-
-        #self.verticalLayout_10.addWidget(self.label_6)
 
         self.page_home.label = QLabel()
         self.page_home.label.setObjectName(u"label")
@@ -859,7 +854,6 @@ class Ui_MainWindow(object):
         self.frame_3.label.setFont(font6)
 
         self.frame_3.label.setText("Appearance: (Dark mode or light mode)")
-        self.frame_3.label.setOpenExternalLinks(True)
         self.frame_3.label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_12.addWidget(self.frame_3.label)
@@ -889,11 +883,23 @@ class Ui_MainWindow(object):
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
 
-        self.verticalLayout_links = QVBoxLayout()
+        self.frame_5 = QFrame(self.page_links)
+        self.frame_5.setObjectName(u"frame_5")
+        self.frame_5.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
+"border-radius: 5px;")
+        self.frame_5.setFrameShape(QFrame.StyledPanel)
+        self.frame_5.setFrameShadow(QFrame.Raised)
+
+        self.horizontalLayout_links = QHBoxLayout(self.page_links)
+        self.horizontalLayout_links.setObjectName(u"horizontalLayout_links")
+        self.horizontalLayout_links.addWidget(self.frame_4)
+        self.horizontalLayout_links.addWidget(self.frame_5)
+
+        self.verticalLayout_links = QVBoxLayout(self.frame_4)
         self.verticalLayout_links.setObjectName(u"verticalLayout_links")
         self.verticalLayout_links.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_13 = QVBoxLayout()
+        self.verticalLayout_13 = QVBoxLayout(self.frame_5)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.verticalLayout_13.setAlignment(Qt.AlignCenter)
 
@@ -904,7 +910,7 @@ class Ui_MainWindow(object):
         imagelabel = QPixmap("url(:/16x16/icons/logo.jpeg)")
         self.page_links.logo.setPixmap(imagelabel)
 
-        self.verticalLayout_13.addWidget(self.page_links.logo)
+        self.verticalLayout_links.addWidget(self.page_links.logo)
 
         # TITLE
 
@@ -967,7 +973,7 @@ class Ui_MainWindow(object):
 
         # LINK BUTTONS - YOUTUBE
         self.youtubeLinkButton=QCommandLinkButton(self.frame_4)
-        self.youtubeLinkButton.setText("Our Video!")
+        self.youtubeLinkButton.setText("Our Youtube Channel!")
         self.youtubeLinkButton.setObjectName(u"youtubeLinkButton")
         self.youtubeLinkButton.setStyleSheet(u"")
         icon4 = QIcon()
@@ -992,28 +998,12 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_links.addWidget(self.formLinkButton, alignment = Qt.AlignCenter)
 
-        # TODO: HTML'de çok cahil olduğum için <iframe> ile olmuyorsa <embed> ile olur belki diye umdum ama olmadı, öncekiyle aynı hatalar çıkıyor. Düzeltilmeli.
-        # Embed Video
-        
-        # self.webview = QWebEngineView(self.frame_4)
-        # self.webview.settings().setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
-        # self.webview.page().fullScreenRequested.connect(lambda request: request.accept())
-        # baseUrl = "local"
-        # htmlString = """
-        #                 <embed style="width=%40; height=%30" src="https://www.youtube.com/embed/01ofdSy_Puo" allow="autoplay; fullscreen" allowfullscreen muted></embed>  
-        #                 """
-        # self.webview.setHtml(htmlString, QUrl(baseUrl))
-
         # TODO: Bu yol ile embed oluyor ama app üzerinde kötü gözüküyor.
         self.webview=QWebEngineView()
         self.webview.settings().setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
         self.webview.page().fullScreenRequested.connect(lambda request: request.accept())
         self.webview.setUrl(QUrl("https://www.youtube.com/embed/01ofdSy_Puo"))
         self.verticalLayout_13.addWidget(self.webview)
-
-        self.horizontalLinks = QHBoxLayout(self.frame_4)
-        self.horizontalLinks.addLayout(self.verticalLayout_links)
-        self.horizontalLinks.addLayout(self.verticalLayout_13)
 
         ###################################################
         ## PALETTES
@@ -1157,7 +1147,7 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.btn_close.setText("")
 
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"PC Camera", None))
+        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"PC Camera 0", None))
         self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"USB Camera 1", None))
         self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"USB Camera 2", None))
 

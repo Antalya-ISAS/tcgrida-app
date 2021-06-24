@@ -28,10 +28,19 @@ from qtwidgets import AnimatedToggle
 import files_rc
 
 class Ui_MainWindow(object):
-    #QWebEngineSettings.globalSettings().setAttribute(QWebEngineSettings.PluginsEnabled,True)
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
+
+        # Aşırı alakasız toggle kodu. 
+        self.toggle = AnimatedToggle(
+                checked_color="#007fff",
+                pulse_checked_color="#003366"
+        )
+
+        self.toggle.setObjectName(u"toggle")
+
+        # Toggle bitiyor, mainwindow buradan devam ediyor.
         MainWindow.resize(1000, 720)
         MainWindow.setMinimumSize(QSize(1000, 720))
         palette = QPalette()
@@ -133,13 +142,12 @@ class Ui_MainWindow(object):
         font.setFamily(u"Segoe UI")
         font.setPointSize(10)
         MainWindow.setFont(font)
-        MainWindow.setStyleSheet(u"QMainWindow {background: transparent; }\n"
-"QToolTip {\n"
-"	color: #ffffff;\n"
-"	background-color: rgba(27, 29, 35, 160);\n"
-"	border: 1px solid rgb(40, 40, 40);\n"
-"	border-radius: 2px;\n"
-"}")
+        
+        if self.toggle.isChecked():
+            MainWindow.setStyleSheet(Style.style_bt_standard.replace("BG_REPLACE", "rgba(230, 230, 230, 160)"))
+        else:
+            MainWindow.setStyleSheet(Style.style_bt_standard.replace("BG_REPLACE", "rgba(27, 29, 35, 160)"))
+
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"background: transparent;\n"
@@ -857,13 +865,6 @@ class Ui_MainWindow(object):
         self.frame_3.label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_12.addWidget(self.frame_3.label)
-
-        self.toggle = AnimatedToggle(
-                checked_color="#007fff",
-                pulse_checked_color="#003366"
-        )
-
-        self.toggle.setObjectName(u"toggle")
         
 
         self.verticalLayout_12.addWidget(self.toggle)

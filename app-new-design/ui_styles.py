@@ -15,9 +15,17 @@
 ################################################################################
 
 class Style():
+    #rgba(27, 29, 35, 160) background dark, rgba(230, 230, 230, 160) bg light
 
     style_bt_standard = (
     """
+    QMainWindow {background: transparent; }
+        QToolTip {
+        color: #ffffff;
+        background-color: BG_REPLACE;
+        border: 1px solid rgb(40, 40, 40);
+        border-radius: 2px;
+    }
     QPushButton {
         background-image: ICON_REPLACE;
         background-position: left center;

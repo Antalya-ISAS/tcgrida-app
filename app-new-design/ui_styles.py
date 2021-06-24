@@ -19,8 +19,8 @@ class Style():
 
     style_bt_standard = (
     """
-    QMainWindow {background: transparent; }
-        QToolTip {
+    QMainWindow { background: transparent; }
+    QToolTip {
         color: #ffffff;
         background-color: BG_REPLACE;
         border: 1px solid rgb(40, 40, 40);

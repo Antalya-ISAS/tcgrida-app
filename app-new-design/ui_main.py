@@ -24,7 +24,7 @@ from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from qtwidgets import AnimatedToggle
-
+from ui_styles import Style
 import files_rc
 
 class Ui_MainWindow(object):

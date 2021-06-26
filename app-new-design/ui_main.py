@@ -690,7 +690,30 @@ class Ui_MainWindow(object):
         ###################################################
 
         #TODO: Add info page.
+        self.page_info = QWidget()
+        self.page_info.setObjectName(u"page_info")
+        self.verticalLayoutInfo =QVBoxLayout(self.page_info)
+        self.verticalLayoutInfo.setObjectName(u"verticalLayoutInfo")
+        
+        
 
+
+        self.label = QLabel()
+        self.label.setObjectName(u"frame_label")
+
+        font6 = QFont()
+        font6.setFamily(u"Segoe UI")
+        font6.setPointSize(15)
+        self.label.setFont(font6)
+
+        self.label.setText("Coming Soon!")
+
+        self.label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayoutInfo.addWidget(self.label)
+        
+
+        self.stackedWidget.addWidget(self.page_info)
         ###################################################
         ## SETTINGS PAGE
         ###################################################

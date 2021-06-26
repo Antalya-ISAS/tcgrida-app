@@ -142,7 +142,7 @@ class MainWindow(QMainWindow):
 
         # PAGE INFO
         if btnWidget.objectName() == "btn_info":
-            self.ui.stackedWidget.setCurrentWidget(self.ui.page_home) #TODO: burası self.ui.page_info yapılacak
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_info) #TODO: burası self.ui.page_info yapılacak
             UIFunctions.resetStyle(self, "btn_new_user")
             UIFunctions.labelPage(self, "INFO PAGE")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))

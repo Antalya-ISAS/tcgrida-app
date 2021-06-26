@@ -17,8 +17,8 @@
 import sys, time, os
 import platform
 from PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia
-from PyQt5.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
-                          QSize, QTime, QUrl, Qt, QEvent, QTimer)
+from PyQt5.QtCore import (QCoreApplication, QFile, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
+                          QSize, QTextStream, QTime, QUrl, Qt, QEvent, QTimer)
 from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
 from PyQt5.QtWidgets import *
 
@@ -27,6 +27,11 @@ from app_modules import *
 
 ## LINK TEMPLATE FOR THE "FOLLOW US" PAGE
 linkTemplate = '<a href={0}>{1}</a>'
+
+## MODE
+mode = False
+
+## print(QtGui.QImageWriter.supportedImageFormats())
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -43,6 +48,9 @@ class MainWindow(QMainWindow):
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()
         self.ui.page_home.timer.timeout.connect(self.nextFrameSlot)
+
+        ## START TIMER (WEBCAM CHANGE)
+        self.timer = QTimer()
 
         ## START CAPTURING CAMERA VIEW
         self.openCam(0)
@@ -89,7 +97,7 @@ class MainWindow(QMainWindow):
         self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self)) 
 
         ## CONNECT TOGGLE BUTTON
-        self.ui.toggle.clicked.connect(lambda: UIFunctions.change_mode(self)) 
+        self.ui.toggle.clicked.connect(lambda: UIFunctions.change_mode(self, mode)) 
 
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
@@ -175,7 +183,8 @@ class MainWindow(QMainWindow):
     # https://stackoverflow.com/questions/41103148/capture-webcam-video-using-pyqt
     def nextFrameSlot(self):
         rval, frame = self.ui.page_home.vc.read()
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        #TODO: Buraya bir kontrol mekanizması getirilmeli ve frame boş ise boş olmayana kadar beklenmeli
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)    
         #resize = cv2.cv2.resize(frame, (self.ui.page_home.width()*2, self.ui.page_home.height()*2))
         #image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
         image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
@@ -193,6 +202,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeui.ttf')
     QtGui.QFontDatabase.addApplicationFont('fonts/segoeuib.ttf')
+
     window = MainWindow()
     sys.exit(app.exec_())
 

@@ -19,7 +19,7 @@ import cv2
 from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
     QRect, QSize, QUrl, Qt)
 from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QImage, QLinearGradient, QPalette, QPainter, QPixmap,
+    QFontDatabase, QIcon, QImage, QImageReader, QImageWriter, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
@@ -291,14 +291,10 @@ class Ui_MainWindow(object):
         self.frame_icon_top_bar.setObjectName(u"frame_icon_top_bar")
         self.frame_icon_top_bar.setMaximumSize(QSize(30, 30))
         self.frame_icon_top_bar.setStyleSheet(u"background: transparent;\n"
-"background-image: url(:/16x16/icons/16x16/cil_drop.png);\n"
+"background-image: url(:/16x16/icons/16x16/cil-drop.png);\n"
 "background-position: center;\n"
 "background-repeat: no-repeat;\n"
 "")
-
-        # Aslında logoyu küçültüp 390. satıra url(:/16x16/icons/16x16/cil_logo.png); demiştim ama pixmap oluşturamadı.
-        # TODO: Neden pixmap oluşturulamadığını bulmalıyız.
-
 
         self.frame_icon_top_bar.setFrameShape(QFrame.StyledPanel)
         self.frame_icon_top_bar.setFrameShadow(QFrame.Raised)
@@ -827,8 +823,10 @@ class Ui_MainWindow(object):
         self.page_links.logo = QLabel(self.frame_4)
         self.page_links.logo.setObjectName(u"label_logo")
         self.page_links.logo.setAlignment(Qt.AlignCenter)
-        imagelabel = QPixmap("url(:/16x16/icons/logo.jpeg)")
-        self.page_links.logo.setPixmap(imagelabel)
+        logo_image = QImage("url(:/16x16/icons/cil-logo.png)")
+        logo_pixmap = QPixmap.fromImage(logo_image)
+        self.page_links.logo.setPixmap(logo_pixmap)
+        self.page_links.logo.resize(logo_pixmap.width(), logo_pixmap.height())
 
         self.verticalLayout_links.addWidget(self.page_links.logo)
 

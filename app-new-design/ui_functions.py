@@ -27,9 +27,6 @@ GLOBAL_TITLE_BAR = True
 ## ==> COUT INITIAL MENU
 count = 1
 
-## MODE
-mode = False
-
 class UIFunctions(MainWindow):
 
     ## ==> GLOBALS
@@ -46,8 +43,7 @@ class UIFunctions(MainWindow):
         self.ui.lineEditSettings.setText(str(self.dir))
 
     # CHANGE APPEARANCE
-    def change_mode(self):
-        global mode
+    def change_mode(self, mode):
         mode != mode
 
         if mode:
@@ -56,6 +52,7 @@ class UIFunctions(MainWindow):
         else:
             self.ui.label_credits.setStyleSheet("background : rgb(0, 0, 255)")
             #self.ui.setStyleSheet(Style.style_bg_standard.replace("BG_REPLACE", "rgba(230, 230, 230, 160)"))
+
 
     # TAKE SNAPSHOT
     def take_photo(self):

@@ -27,6 +27,9 @@ GLOBAL_TITLE_BAR = True
 ## ==> COUT INITIAL MENU
 count = 1
 
+## MODE
+mode = False
+
 class UIFunctions(MainWindow):
 
     ## ==> GLOBALS
@@ -41,6 +44,18 @@ class UIFunctions(MainWindow):
     def openDirWindow(self):
         self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
         self.ui.lineEditSettings.setText(str(self.dir))
+
+    # CHANGE APPEARANCE
+    def change_mode(self):
+        global mode
+        mode != mode
+
+        if mode:
+            self.ui.label_credits.setStyleSheet("background : rgb(255,255,255)")
+            #self.ui.setStyleSheet(Style.style_bg_standard.replace("BG_REPLACE", "rgba(27, 29, 35, 160)"))
+        else:
+            self.ui.label_credits.setStyleSheet("background : rgb(0, 0, 255)")
+            #self.ui.setStyleSheet(Style.style_bg_standard.replace("BG_REPLACE", "rgba(230, 230, 230, 160)"))
 
     # TAKE SNAPSHOT
     def take_photo(self):

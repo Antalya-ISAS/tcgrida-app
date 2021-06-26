@@ -88,6 +88,9 @@ class MainWindow(QMainWindow):
         ## CONNECT SNAPSHOT BUTTON
         self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self)) 
 
+        ## CONNECT TOGGLE BUTTON
+        self.ui.toggle.clicked.connect(lambda: UIFunctions.change_mode(self)) 
+
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))

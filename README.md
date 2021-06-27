@@ -2,7 +2,7 @@
 
 ## tcGrida's app and remote control, vehicle codes. 
 
-[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
+[![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.txt)
  [![CodeFactor](https://www.codefactor.io/repository/github/antalya-isas/tcgrida/badge)](https://www.codefactor.io/repository/github/antalya-isas/tcgrida) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/eea002b87cec40e28f3f13d75b06b0c4)](https://www.codacy.com/gh/Antalya-ISAS/tcgrida/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Antalya-ISAS/tcgrida&amp;utm_campaign=Badge_Grade)
 
 ### What is tcGrida?

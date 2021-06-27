@@ -28,7 +28,7 @@ class UI_Window(QWidget):
         self.label.showMaximized()
 
         # Load USB Camera
-        self.openCamPC()
+        self.openCamUSB()
 
         # Create buttons
         btnOpen = QPushButton("PC")

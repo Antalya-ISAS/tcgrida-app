@@ -66,17 +66,21 @@ class UIFunctions(MainWindow):
             message.setIcon(QMessageBox.Warning)
             message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
             message.setWindowTitle("Choose a directory")
-            # TODO: Aslında burada Settings'e git demek yerine "ok" butonuna basılınca openDirWindow() fonksiyonunu çalıştırıp yeni path kaydetsek çok daha kullanışlı olur.
             message.setText("Please choose a directory from the Settings menu to save your snapshots.")
             message.setDefaultButton(QMessageBox.Ok)
-            message.exec()
+            message_state = message.exec()
+            #TODO: Burada openDirWindow'u çalıştırması gerek ama uygulama kapanıyor.
+            if(message_state == 1024):
+                self.openDirWindow()
 
         else:
             # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
             out = cv2.imwrite(os.path.join(self.ui.lineEditSettings.text(), file_name), frame)
             print("Photo saved to %s"%self.ui.lineEditSettings.text())
             print(out)
-        
+
+
+
 
     ########################################################################
     ## START - GUI FUNCTIONS

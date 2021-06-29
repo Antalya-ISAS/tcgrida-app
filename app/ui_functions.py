@@ -71,7 +71,8 @@ class UIFunctions(MainWindow):
             message_state = message.exec()
             #TODO: Burada openDirWindow'u çalıştırması gerek ama uygulama kapanıyor.
             if(message_state == 1024):
-                self.openDirWindow()
+                self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+                self.ui.lineEditSettings.setText(str(self.dir))
 
         else:
             # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım

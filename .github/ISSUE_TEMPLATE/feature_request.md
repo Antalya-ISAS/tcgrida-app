@@ -3,7 +3,7 @@ name: Feature request
 about: Suggest an idea for this project
 title: Requesting ...
 labels: enhancement
-assignees: sefikaozturk, ahmet140, Ardasak, jrambrosia, megekaracom, ardaarat
+assignees: sefikaozturk, egeakman, ahmet140, Ardasak, jrambrosia, megekaracom, ardaarat
 
 ---
 

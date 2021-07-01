@@ -3,10 +3,13 @@
 
 
 # Python Cache Files
-__pycache__
+*/__pycache__/*
 
 # .idea Files
 */.idea/*
+
+# .theia Files
+*/.theia/*
 
 ### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider

@@ -42,6 +42,15 @@ class UIFunctions(MainWindow):
         self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
         self.ui.lineEditSettings.setText(str(self.dir))
 
+        self.cursor.execute("SELECT * FROM settings_path")
+        liste = self.cursor.fetchall()
+
+        for item in liste:
+            for i in item:
+                old_path=i
+        self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
+        self.database.commit()
+
     # CHANGE APPEARANCE
     def change_mode(self, mode):
         mode != mode
@@ -73,6 +82,15 @@ class UIFunctions(MainWindow):
             if(message_state == 1024):
                 self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
                 self.ui.lineEditSettings.setText(str(self.dir))
+
+                self.cursor.execute("SELECT * FROM settings_path")
+                liste = self.cursor.fetchall()
+
+                for item in liste:
+                    for i in item:
+                        old_path=i
+                self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
+                self.database.commit()
 
         else:
             # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım

@@ -53,7 +53,15 @@ class MainWindow(QMainWindow):
         self.cursor.execute("SELECT * FROM settings_path")
         liste = self.cursor.fetchall()
         if(len(liste)==0):
-            print("a")
+            self.cursor.execute("INSERT INTO settings_path Values(?)",("",))
+            self.database.commit()
+
+        else:
+            for column in liste:
+                for item in column:
+                    self.dir = str(item)
+                    self.ui.lineEditSettings.setText(self.dir)
+
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()
         self.ui.page_home.timer.timeout.connect(self.nextFrameSlot)

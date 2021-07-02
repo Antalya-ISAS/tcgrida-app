@@ -65,9 +65,12 @@ class UIFunctions(MainWindow):
 
     # TAKE SNAPSHOT
     def take_photo(self):
-        dt = str(datetime.date.today())
-        #file_name = ("tcGrida_%s.jpg"%dt)
-        file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
+        today = datetime.datetime.now()
+        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
+        
+        
+        file_name = (f"tcGrida_{date_time}.jpg")
+        # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
         print("The photo will be saved as " + file_name)
         rval, frame = self.ui.page_home.vc.read()
         if self.dir == "":
@@ -97,7 +100,7 @@ class UIFunctions(MainWindow):
             out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
             print("Photo saved to %s"%self.dir)
             print(out)
-            self.num_photos+=1
+            # self.num_photos+=1
 
 
 

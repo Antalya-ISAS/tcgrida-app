@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
 
-        self.num_photos = 0 # this will be used to count the num of photos
+        # self.num_photos = 0 # this will be used to count the num of photos
         self.dir = "" # this will be used to store paths
 
         self.database = sqlite3.connect("settings.db")

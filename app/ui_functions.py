@@ -76,9 +76,10 @@ class UIFunctions(MainWindow):
 
         else:
             # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
-            out = cv2.imwrite(os.path.join(self.ui.lineEditSettings.text(), file_name), frame)
-            print("Photo saved to %s"%self.ui.lineEditSettings.text())
+            out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
+            print("Photo saved to %s"%self.dir)
             print(out)
+            self.num_photos+=1
 
 
 

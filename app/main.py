@@ -45,6 +45,15 @@ class MainWindow(QMainWindow):
         self.num_photos = 0 # this will be used to count the num of photos
         self.dir = "" # this will be used to store paths
 
+        self.database = sqlite3.connect("settings.db")
+        self.cursor = self.database.cursor()
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_path (path TEXT)")
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_appearance(appearance INT)")
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_camera (camera INT)")
+        self.cursor.execute("SELECT * FROM settings_path")
+        liste = self.cursor.fetchall()
+        if(len(liste)==0):
+            print("a")
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()
         self.ui.page_home.timer.timeout.connect(self.nextFrameSlot)
@@ -87,24 +96,24 @@ class MainWindow(QMainWindow):
         UIFunctions.addNewMenu(self, "SETTINGS", "btn_settings", "url(:/16x16/icons/16x16/cil-settings.png)", True)
         UIFunctions.addNewMenu(self, "FOLLOW US!", "btn_links", "url(:/16x16/icons/16x16/cil-thumb-up.png)", False)
 
-        ## SELECT START MENU 
+        ## SELECT START MENU
         UIFunctions.selectStandardMenu(self, "btn_home")
 
         ## SELECT START PAGE
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
 
         ## CONNECT SNAPSHOT BUTTON
-        self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self)) 
+        self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self))
 
         ## CONNECT TOGGLE BUTTON
-        self.ui.toggle.clicked.connect(lambda: UIFunctions.change_mode(self, mode)) 
+        self.ui.toggle.clicked.connect(lambda: UIFunctions.change_mode(self, mode))
 
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
         self.ui.gitLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://github.com/Antalya-ISAS"))
-        self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://antalyaisas.com/")) 
+        self.ui.webLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://antalyaisas.com/"))
         self.ui.formLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://airtable.com/shrD4gdRqPPUZeYjH"))
-        self.ui.youtubeLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.youtube.com/channel/UCWZvgA6EhvlmvoRbStbpwaQ/featured")) 
+        self.ui.youtubeLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.youtube.com/channel/UCWZvgA6EhvlmvoRbStbpwaQ/featured"))
 
         ## CONNECT FOLDER BUTTON
         self.ui.pushButtonSettings.clicked.connect(lambda: UIFunctions.openDirWindow(self))
@@ -157,7 +166,7 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, "btn_new_user")
             UIFunctions.labelPage(self, "INFO PAGE")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
-        
+
         # PAGE SETTINGS
         if btnWidget.objectName() == "btn_settings":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_settings)
@@ -184,7 +193,7 @@ class MainWindow(QMainWindow):
     def nextFrameSlot(self):
         rval, frame = self.ui.page_home.vc.read()
         #TODO: Buraya bir kontrol mekanizması getirilmeli ve frame boş ise boş olmayana kadar beklenmeli
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)    
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         #resize = cv2.cv2.resize(frame, (self.ui.page_home.width()*2, self.ui.page_home.height()*2))
         #image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
         image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
@@ -193,7 +202,7 @@ class MainWindow(QMainWindow):
        # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
 
         self.ui.page_home.label.setPixmap(pixmap)
-            
+
     ###################################################
     ## END -> DYNAMIC MENUS - FUNCTIONS
     ###################################################
@@ -205,4 +214,3 @@ if __name__ == "__main__":
 
     window = MainWindow()
     sys.exit(app.exec_())
-

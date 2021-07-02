@@ -13,7 +13,7 @@
 ## https://doc.qt.io/qtforpython/licenses.html
 ##
 ################################################################################
-
+import sqlite3
 import sys, time, os
 import platform
 from PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia

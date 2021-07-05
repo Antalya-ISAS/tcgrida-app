@@ -27,6 +27,10 @@ GLOBAL_TITLE_BAR = True
 ## ==> COUT INITIAL MENU
 count = 1
 
+## DATE
+today = datetime.datetime.now()
+date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
+
 class UIFunctions(MainWindow):
 
     ## ==> GLOBALS
@@ -69,23 +73,32 @@ class UIFunctions(MainWindow):
 
     # VIDEO FUNC
     def shot_video(self):
+        self.ui.video_button.setStyleSheet(u"border: 5px solid rgb(220, 220, 220);\n"
+"   border-radius: 25px;\n"
+"	background-color: rgb(180, 0, 0);")
+
         rval, frame = self.ui.page_home.vc.read()
         if self.dir == "":
             UIFunctions.message_box(self, "Please choose a directory to save the video.")
-        file_name =("tcGridaVid_" + dt + "(" + str(self.num_videos) + ")" + ".mp4")
+        file_name =(f"tcGridaVid_{date_time}.mp4")
         #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
         self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), cv2.VideoWriter_fourcc(*'H264'), 20, (self.ui.page_home.width(),self.ui.page_home.height()))
         self.out.write(frame)
 
     def stop_video(self):
+        self.ui.video_button.setStyleSheet(u"QPushButton {	\n"
+"	border: 5px solid rgb(180, 0, 0);\n"
+"	background-color: rgb(58, 8, 8);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
+"       padding:5px;\n"
+"	border-radius"
+                        ": 25px;\n"
+"}")
         self.out.release()
-        self.num_videos += 1
 
     # TAKE SNAPSHOT
-    def take_photo(self):
-        today = datetime.datetime.now()
-        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
-        
+    def take_photo(self):   
         file_name = (f"tcGrida_{date_time}.jpg")
         # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
         print("The photo will be saved as " + file_name)

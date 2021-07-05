@@ -111,6 +111,7 @@ class MainWindow(QMainWindow):
 
         ## CONNECT RECORDING BUTTON
         self.ui.video_button.clicked.connect(lambda: UIFunctions.shot_video(self))
+        self.ui.stop_button.clicked.connect(lambda: UIFunctions.stop_video(self))
 
         ## CONNECT TOGGLE BUTTON
         self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self))

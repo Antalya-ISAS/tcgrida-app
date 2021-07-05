@@ -422,5 +422,6 @@
     <file>icons/20x20/cil-x-circle.png</file>
     <file>icons/20x20/cil-zoom-in.png</file>
     <file>icons/20x20/cil-zoom-out.png</file>
+    <file>icons/cil-logo.png</file>
   </qresource>
 </RCC>

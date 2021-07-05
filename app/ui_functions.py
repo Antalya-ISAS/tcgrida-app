@@ -53,13 +53,18 @@ class UIFunctions(MainWindow):
 
     # CHANGE APPEARANCE
     def change_mode(self, mode):
-        mode != mode
 
-        if mode:
-            self.ui.label_credits.setStyleSheet("background : rgb(255,255,255)")
+        if self.ui.toggle.isChecked():
+            self.ui.frame.setStyleSheet("background : rgb(255,255,255)")
             #self.ui.setStyleSheet(Style.style_bg_standard.replace("BG_REPLACE", "rgba(27, 29, 35, 160)"))
         else:
-            self.ui.label_credits.setStyleSheet("background : rgb(0, 0, 255)")
+            self.ui.frame.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
+"border-radius: 5px;\n"
+"padding: 10px;"
+)
+            self.ui.frame_top.setStyleSheet("background : rgb(27, 29, 35)")
+            self.ui.frame_top_btns.setStyleSheet("background : rgb(27, 29, 35)")
+            self.ui.frame_top_info.setStyleSheet("background : rgb(27, 29, 35)")
             #self.ui.setStyleSheet(Style.style_bg_standard.replace("BG_REPLACE", "rgba(230, 230, 230, 160)"))
 
 

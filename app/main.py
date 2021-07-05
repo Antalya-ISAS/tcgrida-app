@@ -52,6 +52,7 @@ class MainWindow(QMainWindow):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_camera (camera INT)")
         self.cursor.execute("SELECT * FROM settings_path")
         liste = self.cursor.fetchall()
+
         if(len(liste)==0):
             self.cursor.execute("INSERT INTO settings_path Values(?)",("",))
             self.database.commit()
@@ -114,7 +115,7 @@ class MainWindow(QMainWindow):
         self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self))
 
         ## CONNECT TOGGLE BUTTON
-        self.ui.toggle.clicked.connect(lambda: UIFunctions.change_mode(self, mode))
+        self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self, mode))
 
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
@@ -196,20 +197,25 @@ class MainWindow(QMainWindow):
         self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
         self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height
         self.ui.page_home.timer.start(round(1000. / 24))
+        
 
     # https://stackoverflow.com/questions/41103148/capture-webcam-video-using-pyqt
     def nextFrameSlot(self):
-        rval, frame = self.ui.page_home.vc.read()
-        #TODO: Buraya bir kontrol mekanizması getirilmeli ve frame boş ise boş olmayana kadar beklenmeli
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        #resize = cv2.cv2.resize(frame, (self.ui.page_home.width()*2, self.ui.page_home.height()*2))
-        #image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
-        image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
-        pixmap = QPixmap.fromImage(image)
-       # logo_pixmap = cv2.cv2.imread('logo.png')
-       # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
+        try:
+            rval, frame = self.ui.page_home.vc.read()
+            #TODO: Buraya bir kontrol mekanizması getirilmeli ve frame boş ise boş olmayana kadar beklenmeli
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            #resize = cv2.cv2.resize(frame, (self.ui.page_home.width()*2, self.ui.page_home.height()*2))
+            #image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
+            image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
+            pixmap = QPixmap.fromImage(image)
+            self.ui.page_home.label.setPixmap(pixmap)
+        # logo_pixmap = cv2.cv2.imread('logo.png')
+        # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
+        except:
+            print("b")
 
-        self.ui.page_home.label.setPixmap(pixmap)
+        
 
     ###################################################
     ## END -> DYNAMIC MENUS - FUNCTIONS

@@ -28,11 +28,6 @@ from app_modules import *
 ## LINK TEMPLATE FOR THE "FOLLOW US" PAGE
 linkTemplate = '<a href={0}>{1}</a>'
 
-## MODE
-mode = False
-
-## print(QtGui.QImageWriter.supportedImageFormats())
-
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -45,6 +40,7 @@ class MainWindow(QMainWindow):
         # self.num_photos = 0 # this will be used to count the num of photos
         self.dir = "" # this will be used to store paths
 
+        ## CONNECT TO THE DATABASE
         self.database = sqlite3.connect("settings.db")
         self.cursor = self.database.cursor()
         self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_path (path TEXT)")
@@ -75,7 +71,6 @@ class MainWindow(QMainWindow):
         print(self.ui.comboBox.currentText())
         self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(self.ui.comboBox.currentText()[-1]))
         print(self.ui.comboBox.currentText())
-        # TODO: Uygulamanın kapanmaması sağlanmalı.
 
         ###################################################
         ## WINDOW ATTRIBUTES
@@ -114,8 +109,11 @@ class MainWindow(QMainWindow):
         ## CONNECT SNAPSHOT BUTTON
         self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self))
 
+        ## CONNECT RECORDING BUTTON
+        self.ui.video_button.clicked.connect(lambda: UIFunctions.shot_video(self))
+
         ## CONNECT TOGGLE BUTTON
-        self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self, mode))
+        self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self))
 
         ## CONNECT LINK BUTTONS
         self.ui.instaLinkButton.clicked.connect(lambda: UIFunctions.open_link("https://www.instagram.com/antalya.isas/"))
@@ -171,7 +169,7 @@ class MainWindow(QMainWindow):
 
         # PAGE INFO
         if btnWidget.objectName() == "btn_info":
-            self.ui.stackedWidget.setCurrentWidget(self.ui.page_info) #TODO: burası self.ui.page_info yapılacak
+            self.ui.stackedWidget.setCurrentWidget(self.ui.page_info) 
             UIFunctions.resetStyle(self, "btn_new_user")
             UIFunctions.labelPage(self, "INFO PAGE")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
@@ -213,7 +211,7 @@ class MainWindow(QMainWindow):
         # logo_pixmap = cv2.cv2.imread('logo.png')
         # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
         except:
-            print("b")
+            self.ui.page_home.label.setText("Could not open %s"%self.ui.comboBox.currentText())
 
         
 

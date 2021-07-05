@@ -522,6 +522,62 @@ class Ui_MainWindow(object):
 
         self.layout_menu_bottom.addWidget(self.photo_button, 0, Qt.AlignHCenter)
 
+        # VIDEO BUTTON
+
+        self.video_button = QPushButton(self.frame_extra_menus)
+        self.video_button.setObjectName(u"VIDEO")
+        self.video_button.setToolTip("Record a video!")
+        #icon3 = QIcon()
+        #icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
+        #self.video_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
+        self.video_button.setText("REC")
+        self.video_button.setStyleSheet(u"QPushButton {	\n"
+"	border: 5px solid rgb(180, 0, 0);\n"
+"	background-color: rgb(58, 8, 8);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
+"       padding:5px;\n"
+"	border-radius"
+                        ": 25px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(95, 15, 15);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 5px solid rgb(220, 220, 220);\n"
+"	background-color: rgb(180, 0, 0);\n"
+"}")
+
+        self.layout_menu_bottom.addWidget(self.video_button, 0, Qt.AlignHCenter)
+
+        # VIDEO STOP BUTTON
+
+        self.stop_button = QPushButton(self.frame_extra_menus)
+        self.stop_button.setObjectName(u"VIDEOSTOP")
+        self.stop_button.setToolTip("Stop the video!")
+        #icon3 = QIcon()
+        #icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
+        #self.stop_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
+        self.stop_button.setText("STOP")
+        self.stop_button.setStyleSheet(u"QPushButton {	\n"
+"	border: 5px solid rgb(180, 0, 0);\n"
+"	background-color: rgb(58, 8, 8);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
+"       padding:5px;\n"
+"	border-radius"
+                        ": 25px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(95, 15, 15);\n"
+"}\n"
+"QPushButton:pressed {	\n"
+"	border: 5px solid rgb(220, 220, 220);\n"
+"	background-color: rgb(180, 0, 0);\n"
+"}")
+
+        self.layout_menu_bottom.addWidget(self.stop_button, 0, Qt.AlignHCenter)
+
 
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)
 

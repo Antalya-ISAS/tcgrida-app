@@ -52,7 +52,7 @@ class UIFunctions(MainWindow):
         self.database.commit()
 
     # CHANGE APPEARANCE
-    def change_mode(self, mode):
+    def change_mode(self):
 
         if self.ui.toggle.isChecked():
             self.ui.frame.setStyleSheet("background : rgb(255,255,255)")
@@ -67,38 +67,31 @@ class UIFunctions(MainWindow):
             self.ui.frame_top_info.setStyleSheet("background : rgb(27, 29, 35)")
             #self.ui.setStyleSheet(Style.style_bg_standard.replace("BG_REPLACE", "rgba(230, 230, 230, 160)"))
 
+    # VIDEO FUNC
+    def shot_video(self):
+        rval, frame = self.ui.page_home.vc.read()
+        if self.dir == "":
+            UIFunctions.message_box(self, "Please choose a directory to save the video.")
+        file_name =("tcGridaVid_" + dt + "(" + str(self.num_videos) + ")" + ".mp4")
+        #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
+        self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), cv2.VideoWriter_fourcc(*'H264'), 20, (self.ui.page_home.width(),self.ui.page_home.height()))
+        self.out.write(frame)
+
+    def stop_video(self):
+        self.out.release()
+        self.num_videos += 1
 
     # TAKE SNAPSHOT
     def take_photo(self):
         today = datetime.datetime.now()
         date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
         
-        
         file_name = (f"tcGrida_{date_time}.jpg")
         # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
         print("The photo will be saved as " + file_name)
         rval, frame = self.ui.page_home.vc.read()
         if self.dir == "":
-            message = QMessageBox(self)
-            message.setIcon(QMessageBox.Warning)
-            message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-            message.setWindowTitle("Choose a directory")
-            message.setText("Please choose a directory from the Settings menu to save your snapshots.")
-            message.setDefaultButton(QMessageBox.Ok)
-            message_state = message.exec()
-            #TODO: Burada openDirWindow'u çalıştırması gerek ama uygulama kapanıyor.
-            if(message_state == 1024):
-                self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
-                self.ui.lineEditSettings.setText(str(self.dir))
-
-                self.cursor.execute("SELECT * FROM settings_path")
-                liste = self.cursor.fetchall()
-
-                for item in liste:
-                    for i in item:
-                        old_path=i
-                self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
-                self.database.commit()
+            UIFunctions.message_box(self, "Please choose a directory to save your snapshots.")
 
         else:
             # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
@@ -107,7 +100,26 @@ class UIFunctions(MainWindow):
             print(out)
             # self.num_photos+=1
 
+    def message_box(self, msg):
+        message = QMessageBox(self)
+        message.setIcon(QMessageBox.Warning)
+        message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        message.setWindowTitle("Choose a directory")
+        message.setText(msg)
+        message.setDefaultButton(QMessageBox.Ok)
+        message_state = message.exec()
+        if(message_state == 1024):
+            self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+            self.ui.lineEditSettings.setText(str(self.dir))
+                
+            self.cursor.execute("SELECT * FROM settings_path")
+            liste = self.cursor.fetchall()
 
+            for item in liste:
+                for i in item:
+                    old_path=i
+            self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
+            self.database.commit()
 
 
     ########################################################################

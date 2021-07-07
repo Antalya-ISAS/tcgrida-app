@@ -54,155 +54,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setContentsMargins(10, 10, 10, 10)
         self.frame_main = QFrame(self.centralwidget)
         self.frame_main.setObjectName(u"frame_main")
-        self.frame_main.setStyleSheet(u"/* LINE EDIT */\n"
-"QLineEdit {\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid rgb(27, 29, 35);\n"
-"	padding-left: 10px;\n"
-"}\n"
-"QLineEdit:hover {\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"	border: 2px solid rgb(91, 101, 124);\n"
-"}\n"
-"\n"
-"/* CHECKBOX */\n"
-"QCheckBox::indicator {\n"
-"    border: 3px solid rgb(52, 59, 72);\n"
-"	width: 15px;\n"
-"	height: 15px;\n"
-"	border-radius: 10px;\n"
-"    background: rgb(44, 49, 60);\n"
-"}\n"
-"QCheckBox::indicator:hover {\n"
-"    border: 3px solid rgb(58, 66, 81);\n"
-"}\n"
-"QCheckBox::indicator:checked {\n"
-"    background: 3px solid rgb(52, 59, 72);\n"
-"	border: 3px solid rgb(52, 59, 72);	\n"
-"	background-image: url(:/16x16/icons/16x16/cil-check-alt.png);\n"
-"}\n"
-"/* COMMAND LINK BUTTON */\n"
-"QCommandLinkButton {	\n"
-"	color: rgb(85, 170, 255);\n"
-"	border-radius: 5px;\n"
-"	padding: 5px;\n"
-"}\n"
-"QCommandLinkButton:hover {	\n"
-"	color: rgb(210, 210, 210);\n"
-"	background-color: rgb(44, 49, 60);\n"
-"}\n"
-"QCommandLinkButton:pressed {	\n"
-"	color: rgb(210, 210, 210);\n"
-"	background-color: rgb(52, 58, 71);\n"
-"}"
-"/* RADIO BUTTON */\n"
-"QRadioButton::indicator {\n"
-"    border: 5px solid rgb(84, 22, 22);\n"
-"	width: 30px;\n"
-"	height: 30px;\n"
-"	border-radius"
-                        ": 20px;\n"
-"    background: rgb(188, 3, 3);\n"
-"}\n"
-"QRadioButton::indicator:hover {\n"
-"    border: 5px solid rgb(84, 22, 22);\n"
-"    background: rgb(137, 0, 0);\n"
-"}\n"
-"QRadioButton::indicator:checked {\n"
-"    background: rgb(137, 10, 10);\n"
-"    border: 5px solid rgb(100, 0, 0);\n"
-"	width: 30px;\n"
-"	height: 30px;\n"
-"	border-radius"
-                        ": 20px;\n"
-"}\n"
-"\n"
-"/* COMBOBOX */\n"
-"QComboBox{\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid rgb(27, 29, 35);\n"
-"	padding: 5px;\n"
-"	padding-left: 10px;\n"
-"}\n"
-"QComboBox:hover{\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QComboBox::drop-down {\n"
-"	subcontrol-origin: padding;\n"
-"	subcontrol-position: top right;\n"
-"	width: 25px; \n"
-"	border-left-width: 3px;\n"
-"	border-left-color: rgba(39, 44, 54, 150);\n"
-"	border-left-style: solid;\n"
-"	border-top-right-radius: 3px;\n"
-"	border-bottom-right-radius: 3px;	\n"
-"	background-image: url(:/16x16/icons/16x16/cil-arrow-bottom.png);\n"
-"	background-position: center;\n"
-"	background-repeat: no-reperat;\n"
-" }\n"
-"QComboBox QAbstractItemView {\n"
-"	color: rgb("
-                        "85, 170, 255);	\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
-"}\n"
-"\n"
-"/* SLIDERS */\n"
-"QSlider::groove:horizontal {\n"
-"    border-radius: 9px;\n"
-"    height: 18px;\n"
-"	margin: 0px;\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
-"QSlider::groove:horizontal:hover {\n"
-"	background-color: rgb(55, 62, 76);\n"
-"}\n"
-"QSlider::handle:horizontal {\n"
-"    background-color: rgb(85, 170, 255);\n"
-"    border: none;\n"
-"    height: 18px;\n"
-"    width: 18px;\n"
-"    margin: 0px;\n"
-"	border-radius: 9px;\n"
-"}\n"
-"QSlider::handle:horizontal:hover {\n"
-"    background-color: rgb(105, 180, 255);\n"
-"}\n"
-"QSlider::handle:horizontal:pressed {\n"
-"    background-color: rgb(65, 130, 195);\n"
-"}\n"
-"\n"
-"QSlider::groove:vertical {\n"
-"    border-radius: 9px;\n"
-"    width: 18px;\n"
-"    margin: 0px;\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
-"QSlider::groove:vertical:hover {\n"
-"	background-color: rgb(55, 62, 76);\n"
-"}\n"
-"QSlider::handle:verti"
-                        "cal {\n"
-"    background-color: rgb(85, 170, 255);\n"
-"	border: none;\n"
-"    height: 18px;\n"
-"    width: 18px;\n"
-"    margin: 0px;\n"
-"	border-radius: 9px;\n"
-"}\n"
-"QSlider::handle:vertical:hover {\n"
-"    background-color: rgb(105, 180, 255);\n"
-"}\n"
-"QSlider::handle:vertical:pressed {\n"
-"    background-color: rgb(65, 130, 195);\n"
-"}\n"
-"\n"
-"")
+        self.frame_main.setStyleSheet(Style.style_frame_main)
         self.frame_main.setFrameShape(QFrame.NoFrame)
         self.frame_main.setFrameShadow(QFrame.Raised)
         self.verticalLayout = QVBoxLayout(self.frame_main)
@@ -237,19 +89,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.btn_toggle_menu.sizePolicy().hasHeightForWidth())
         self.btn_toggle_menu.setSizePolicy(sizePolicy)
-        self.btn_toggle_menu.setStyleSheet(u"QPushButton {\n"
-"	background-image: url(:/24x24/icons/24x24/cil-menu.png);\n"
-"	background-position: center;\n"
-"	background-repeat: no-reperat;\n"
-"	border: none;\n"
-"	background-color: rgb(27, 29, 35);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(33, 37, 43);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	background-color: rgb(85, 170, 255);\n"
-"}")
+        self.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
 
         self.verticalLayout_3.addWidget(self.btn_toggle_menu)
 
@@ -503,22 +343,7 @@ class Ui_MainWindow(object):
         icon3 = QIcon()
         icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
         self.photo_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
-        self.photo_button.setStyleSheet(u"QPushButton {	\n"
-"	border: 5px solid rgb(61, 180, 255);\n"
-"	background-color: rgb(22, 25, 28);\n"
-"	width: 30px;\n"
-"	height: 30px;\n"
-"       padding:5px;\n"
-"	border-radius"
-                        ": 25px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	border: 5px solid rgb(220, 220, 220);\n"
-"	background-color: rgb(85, 170, 255);\n"
-"}")
+        self.photo_button.setStyleSheet(Style.style_circ_btn)
 
         self.layout_menu_bottom.addWidget(self.photo_button, 0, Qt.AlignHCenter)
 
@@ -531,22 +356,7 @@ class Ui_MainWindow(object):
         #icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
         #self.video_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
         self.video_button.setText("REC")
-        self.video_button.setStyleSheet(u"QPushButton {	\n"
-"	border: 5px solid rgb(180, 0, 0);\n"
-"	background-color: rgb(58, 8, 8);\n"
-"	width: 30px;\n"
-"	height: 30px;\n"
-"       padding:5px;\n"
-"	border-radius"
-                        ": 25px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(95, 15, 15);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	border: 5px solid rgb(220, 220, 220);\n"
-"	background-color: rgb(180, 0, 0);\n"
-"}")
+        self.video_button.setStyleSheet(Style.style_circ_btn2)
 
         self.layout_menu_bottom.addWidget(self.video_button, 0, Qt.AlignHCenter)
 
@@ -559,22 +369,7 @@ class Ui_MainWindow(object):
         #icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
         #self.stop_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
         self.stop_button.setText("STOP")
-        self.stop_button.setStyleSheet(u"QPushButton {	\n"
-"	border: 5px solid rgb(180, 0, 0);\n"
-"	background-color: rgb(58, 8, 8);\n"
-"	width: 30px;\n"
-"	height: 30px;\n"
-"       padding:5px;\n"
-"	border-radius"
-                        ": 25px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(95, 15, 15);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	border: 5px solid rgb(220, 220, 220);\n"
-"	background-color: rgb(180, 0, 0);\n"
-"}")
+        self.stop_button.setStyleSheet(Style.style_circ_btn2)
 
         self.layout_menu_bottom.addWidget(self.stop_button, 0, Qt.AlignHCenter)
 
@@ -643,14 +438,12 @@ class Ui_MainWindow(object):
         self.verticalLayoutInfo =QVBoxLayout(self.page_info)
         self.verticalLayoutInfo.setObjectName(u"verticalLayoutInfo")
         
-        
-
-
         self.label = QLabel()
         self.label.setObjectName(u"frame_label")
 
         font6 = QFont()
         font6.setFamily(u"Segoe UI")
+        font6.setBold(True)
         font6.setPointSize(15)
         self.label.setFont(font6)
 
@@ -691,10 +484,6 @@ class Ui_MainWindow(object):
 
         self.frame.label = QLabel()
         self.frame.label.setObjectName(u"frame_label")
-
-        font6 = QFont()
-        font6.setFamily(u"Segoe UI")
-        font6.setPointSize(15)
         self.frame.label.setFont(font6)
 
         self.frame.label.setText("Choose which directory your snapshots will be saved to:")
@@ -706,18 +495,7 @@ class Ui_MainWindow(object):
         self.lineEditSettings = QLineEdit(self.frame)
         self.lineEditSettings.setObjectName(u"lineEditSettings")
         self.lineEditSettings.setMinimumSize(QSize(0, 30))
-        self.lineEditSettings.setStyleSheet(u"QLineEdit {\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid rgb(27, 29, 35);\n"
-"	padding-left: 10px;\n"
-"}\n"
-"QLineEdit:hover {\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QLineEdit:focus {\n"
-"	border: 2px solid rgb(91, 101, 124);\n"
-"}")
+        self.lineEditSettings.setStyleSheet(Style.style_line)
 
         self.horizontalLayout_11.addWidget(self.lineEditSettings)
 
@@ -768,9 +546,6 @@ class Ui_MainWindow(object):
         self.frame_2.label = QLabel()
         self.frame_2.label.setObjectName(u"frame2_label")
 
-        font6 = QFont()
-        font6.setFamily(u"Segoe UI")
-        font6.setPointSize(15)
         self.frame_2.label.setFont(font6)
 
         self.frame_2.label.setText("Choose which camera will be captured:")
@@ -788,22 +563,7 @@ class Ui_MainWindow(object):
         self.comboBox.setObjectName(u"comboBox")
         self.comboBox.setFont(font8)
         self.comboBox.setAutoFillBackground(False)
-        self.comboBox.setStyleSheet(u"QComboBox{\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	border-radius: 5px;\n"
-"	border: 2px solid rgb(27, 29, 35);\n"
-"	padding: 5px;\n"
-"	padding-left: 10px;\n"
-"}\n"
-"QComboBox:hover{\n"
-"	border: 2px solid rgb(64, 71, 88);\n"
-"}\n"
-"QComboBox QAbstractItemView {\n"
-"	color: rgb(85, 170, 255);	\n"
-"	background-color: rgb(27, 29, 35);\n"
-"	padding: 10px;\n"
-"	selection-background-color: rgb(39, 44, 54);\n"
-"}")
+        self.comboBox.setStyleSheet(Style.style_combo)
         self.comboBox.setIconSize(QSize(16, 16))
         self.comboBox.setFrame(True)
         self.verticalLayout_11.addWidget(self.comboBox)
@@ -827,9 +587,6 @@ class Ui_MainWindow(object):
         self.frame_3.label = QLabel()
         self.frame_3.label.setObjectName(u"frame3_label")
 
-        font6 = QFont()
-        font6.setFamily(u"Segoe UI")
-        font6.setPointSize(15)
         self.frame_3.label.setFont(font6)
 
         self.frame_3.label.setText("Appearance: (Dark mode or light mode)")
@@ -891,9 +648,6 @@ class Ui_MainWindow(object):
         self.page_links.label = QLabel(self.frame_4)
         self.page_links.label.setObjectName(u"label")
 
-        font6 = QFont()
-        font6.setFamily(u"Segoe UI")
-        font6.setPointSize(15)
         self.page_links.label.setFont(font6)
         self.page_links.label.setText("KEEP UP WITH OUR LATEST UPDATES! ")
         self.page_links.label.setOpenExternalLinks(True)

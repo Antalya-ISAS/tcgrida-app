@@ -148,7 +148,9 @@ class UIFunctions(MainWindow):
         self.out.release()
 
     # TAKE SNAPSHOT
-    def take_photo(self):   
+    def take_photo(self):
+        today = datetime.datetime.now()
+        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
         file_name = (f"tcGrida_{date_time}.jpg")
         # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
         print("The photo will be saved as " + file_name)
@@ -174,7 +176,7 @@ class UIFunctions(MainWindow):
         if(message_state == 1024):
             self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
             self.ui.lineEditSettings.setText(str(self.dir))
-                
+
             self.cursor.execute("SELECT * FROM settings_path")
             liste = self.cursor.fetchall()
 

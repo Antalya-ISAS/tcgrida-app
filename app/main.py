@@ -46,6 +46,8 @@ class MainWindow(QMainWindow):
         self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_path (path TEXT)")
         self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_appearance(appearance INT)")
         self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_camera (camera INT)")
+
+        #SQL Path
         self.cursor.execute("SELECT * FROM settings_path")
         liste = self.cursor.fetchall()
 
@@ -58,7 +60,44 @@ class MainWindow(QMainWindow):
                 for item in column:
                     self.dir = str(item)
                     self.ui.lineEditSettings.setText(self.dir)
+        #SQL Appearance
+        self.cursor.execute("SELECT * FROM settings_appearance")
+        liste = self.cursor.fetchall()
+        if(len(liste)==0):
+            self.cursor.execute("INSERT INTO settings_appearance Values(?)",(0,))
+            self.database.commit()
 
+        
+        else:
+            for column in liste:
+                for item in column:
+                    if item == 1:
+                        self.ui.toggle.setChecked(True)
+                    elif item == 0:
+                        self.ui.toggle.setChecked(False)
+            UIFunctions.change_mode(self)
+
+        #SQL Camera
+        self.cursor.execute("SELECT * FROM settings_camera")
+        liste = self.cursor.fetchall() 
+        if(len(liste)==0):
+            self.cursor.execute("INSERT INTO settings_camera Values(?)",(0,))
+            self.camera_state=0
+            self.database.commit()
+
+        
+        else:
+            for column in liste:
+                for item in column:
+                    if item == 0:
+                        self.ui.comboBox.setCurrentIndex(0)
+                        self.camera_state=0
+                    elif item == 1:
+                        self.ui.comboBox.setCurrentIndex(1)
+                        self.camera_state=1
+                    elif item == 2:
+                        self.ui.comboBox.setCurrentIndex(2)
+                        self.camera_state=2
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()
         self.ui.page_home.timer.timeout.connect(self.nextFrameSlot)
@@ -67,9 +106,9 @@ class MainWindow(QMainWindow):
         self.timer = QTimer()
 
         ## START CAPTURING CAMERA VIEW
-        self.openCam(0)
+        self.openCam(self.camera_state)
         print(self.ui.comboBox.currentText())
-        self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(self.ui.comboBox.currentText()[-1]))
+        self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(self.camera_state))
         print(self.ui.comboBox.currentText())
 
         ###################################################
@@ -191,6 +230,14 @@ class MainWindow(QMainWindow):
 
     # OPEN CAMERA
     def openCam(self, cam):
+        self.cursor.execute("SELECT * FROM settings_camera")
+        liste = self.cursor.fetchall()
+
+        for item in liste:
+            for i in item:
+                old_camera=i
+        self.cursor.execute("UPDATE settings_camera set camera = ? where camera = ?",(self.ui.comboBox.currentIndex(),old_camera))
+        self.database.commit()        
         self.ui.page_home.vc = cv2.VideoCapture(cam)
         # vc.set(5, 30)  #set FPS
         self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width

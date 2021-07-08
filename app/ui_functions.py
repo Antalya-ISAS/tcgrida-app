@@ -57,7 +57,11 @@ class UIFunctions(MainWindow):
 
     # CHANGE APPEARANCE
     def change_mode(self):
-
+        self.cursor.execute("SELECT * FROM settings_appearance")
+        liste = self.cursor.fetchall()
+        for column in liste:
+            for item in column:
+                old_appearance = item
         if self.ui.toggle.isChecked():
             self.ui.frame.label.setStyleSheet("color: rgb(39, 44, 54)")
             self.ui.frame_2.label.setStyleSheet("color: rgb(39, 44, 54)")
@@ -83,8 +87,10 @@ class UIFunctions(MainWindow):
             self.ui.frame_content_right.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.label_credits.setStyleSheet(u"color: rgb(40, 40, 40);")
             self.ui.label_version.setStyleSheet(u"color: rgb(212, 175, 55);")
-
+            self.cursor.execute("UPDATE settings_appearance set appearance=? where appearance = ?",(1,old_appearance))
+            self.database.commit()
         else:
+
             self.ui.frame.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;\n"
 "padding: 10px;"
@@ -121,7 +127,8 @@ class UIFunctions(MainWindow):
             self.ui.video_button.setStyleSheet(Style.style_circ_btn2)
             self.ui.frame_content_right.setStyleSheet(u"background-color: rgb(44, 49, 60);")
             self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
-
+            self.cursor.execute("UPDATE settings_appearance set appearance=? where appearance = ?",(0,old_appearance))
+            self.database.commit()
     # VIDEO FUNC
     def shot_video(self):
         self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"

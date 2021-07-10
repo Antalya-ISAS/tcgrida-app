@@ -108,7 +108,7 @@ class MainWindow(QMainWindow):
         ## START CAPTURING CAMERA VIEW
         self.openCam(self.camera_state)
         print(self.ui.comboBox.currentText())
-        self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(self.camera_state))
+        self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(self.ui.comboBox.currentText()[-1]))
         print(self.ui.comboBox.currentText())
 
         ###################################################

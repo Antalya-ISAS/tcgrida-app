@@ -66,27 +66,25 @@ class UIFunctions(MainWindow):
             self.ui.frame.label.setStyleSheet("color: rgb(39, 44, 54)")
             self.ui.frame_2.label.setStyleSheet("color: rgb(39, 44, 54)")
             self.ui.frame_3.label.setStyleSheet("color: rgb(39, 44, 54)")
-            self.ui.lineEditSettings.setStyleSheet("background-color: rgb(212, 175, 55)")
-            self.ui.comboBox.setStyleSheet("background-color: rgb(212, 175, 55)")
-            self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle.replace("background-color: rgb(0, 40, 120);", ""))
+            self.ui.lineEditSettings.setStyleSheet("background-color: rgb(240, 240, 240); color: rgb(39, 44, 54);")
+            self.ui.comboBox.setStyleSheet("background-color: rgb(240, 240, 240); color: rgb(39, 44, 54); selection-background-color: rgb(240, 240, 240);") #rgb(61, 180, 255)
             self.ui.frame.setStyleSheet("background-color : rgb(255, 255, 255);")
             self.ui.frame_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.frame_3.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-            self.ui.frame_4.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-            self.ui.frame_5.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-            self.ui.frame_grip.setStyleSheet(u"background-color: rgb(61, 180, 255);")
-            self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+            self.ui.frame_4.setStyleSheet(u"background-color: rgb(240, 240, 240); border-radius: 5px; padding: 10px;")
+            self.ui.page_links.label.setStyleSheet("color: rgb(39, 44, 54)")
+            self.ui.frame_5.setStyleSheet(u"background-color: rgba(61, 180, 255, 150); border-radius: 5px;")
+            #self.ui.frame_grip.setStyleSheet(u"background-color: rgb(173, 130, 0);")
+            #self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.frame_toggle.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-            self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle.replace("background-color : rgb(255, 255, 255);", ""))
-            self.ui.frame_top_btns.setStyleSheet(u"background-color: rgba(0, 40, 120, 200)")
+            self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle.replace("background-color: rgb(27, 29, 35);", "background-color : rgb(61, 180, 255);"))
+            self.ui.frame_top_btns.setStyleSheet(u"background-color: rgb(61, 180, 255)") #rgba(0, 73, 174, 200)
             self.ui.frame_top_info.setStyleSheet(u"background-color: rgb(200, 200, 200);")
             self.ui.frame_center.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-            self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(0, 40, 120);")
-            self.ui.photo_button.setStyleSheet(Style.style_circ_btn.replace("background-color : rgb(0,0,200);", ""))
-            self.ui.video_button.setStyleSheet(Style.style_circ_btn2.replace("background-color : rgb(0,0,150);", ""))
+            #self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(0, 40, 120);")
             self.ui.frame_content_right.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.label_credits.setStyleSheet(u"color: rgb(40, 40, 40);")
-            self.ui.label_version.setStyleSheet(u"color: rgb(212, 175, 55);")
+            #self.ui.label_version.setStyleSheet(u"color: rgb(212, 175, 55);")
             self.cursor.execute("UPDATE settings_appearance set appearance=? where appearance = ?",(1,old_appearance))
             self.database.commit()
         else:
@@ -108,27 +106,28 @@ class UIFunctions(MainWindow):
             self.ui.frame_5.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;")
 
+            self.ui.page_links.label.setStyleSheet(u"")
             self.ui.frame.label.setStyleSheet(u"")
             self.ui.frame_2.label.setStyleSheet(u"")
             self.ui.frame_3.label.setStyleSheet(u"")
             self.ui.comboBox.setStyleSheet(Style.style_combo)
             self.ui.lineEditSettings.setStyleSheet(Style.style_line)
             self.ui.label_credits.setStyleSheet(u"color: rgb(98, 103, 111);")
-            self.ui.label_version.setStyleSheet(u"color: rgb(98, 103, 111);")
+            #self.ui.label_version.setStyleSheet(u"color: rgb(98, 103, 111);")
             self.ui.frame_grip.setStyleSheet(u"background-color: rgb(33, 37, 43);")
-            self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(27, 29, 35);")
+            #self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(27, 29, 35);")
             self.ui.frame_toggle.setStyleSheet(u"background-color: rgb(27, 29, 35);")
             self.ui.frame_top_btns.setStyleSheet(u"background-color: rgba(27, 29, 35, 200)")
-            self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
+            #self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
             self.ui.frame_top_info.setStyleSheet(u"background-color: rgb(39, 44, 54);")
             self.ui.frame_center.setStyleSheet(u"background-color: rgb(40, 44, 52);")
-            self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(27, 29, 35);")
-            self.ui.photo_button.setStyleSheet(Style.style_circ_btn)
-            self.ui.video_button.setStyleSheet(Style.style_circ_btn2)
+            #self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(27, 29, 35);")
             self.ui.frame_content_right.setStyleSheet(u"background-color: rgb(44, 49, 60);")
             self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
+
             self.cursor.execute("UPDATE settings_appearance set appearance=? where appearance = ?",(0,old_appearance))
             self.database.commit()
+
     # VIDEO FUNC
     def shot_video(self):
         self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
@@ -143,6 +142,8 @@ class UIFunctions(MainWindow):
         self.out.write(frame)
 
     def stop_video(self):
+        if self.out is None:
+            pass
         self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
 "	background-color: rgb(58, 8, 8);")
         self.out.release()
@@ -285,8 +286,8 @@ class UIFunctions(MainWindow):
         button.setSizePolicy(sizePolicy3)
         button.setMinimumSize(QSize(0, 70))
         button.setLayoutDirection(Qt.LeftToRight)
+        button.setStyleSheet(Style.style_bt_standard.replace("ICON_REPLACE", icon))
         button.setFont(font)
-        button.setStyleSheet(Style.style_bt_standard.replace('ICON_REPLACE', icon))
         button.setText(name)
         button.setToolTip(name)
         button.clicked.connect(self.Button)
@@ -299,6 +300,7 @@ class UIFunctions(MainWindow):
     ## ==> SELECT/DESELECT MENU
     ########################################################################
     ## ==> SELECT
+    
     def selectMenu(getStyle):
         select = getStyle + ("QPushButton { border-right: 7px solid rgb(61, 180, 255); }") #(44, 49, 60)
         return select
@@ -324,11 +326,6 @@ class UIFunctions(MainWindow):
     def labelPage(self, text):
         newText = '| ' + text.upper()
         self.ui.label_top_info_2.setText(newText)
-
-    ## ==> RECORDING BUTTON
-    ########################################################################
-
-
 
     ########################################################################
     ## END - GUI FUNCTIONS

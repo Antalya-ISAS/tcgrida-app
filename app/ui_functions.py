@@ -27,10 +27,6 @@ GLOBAL_TITLE_BAR = True
 ## ==> COUT INITIAL MENU
 count = 1
 
-## DATE
-today = datetime.datetime.now()
-date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
-
 class UIFunctions(MainWindow):
 
     ## ==> GLOBALS
@@ -54,6 +50,67 @@ class UIFunctions(MainWindow):
                 old_path=i
         self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
         self.database.commit()
+
+    # VIDEO FUNC
+    def shot_video(self):
+        today = datetime.datetime.now()
+        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
+        self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
+"	background-color: rgb(180, 0, 0);")
+
+        rval, frame = self.ui.page_home.vc.read()
+        if self.dir == "":
+            UIFunctions.message_box(self, "Please choose a directory to save the video.")
+        file_name =(f"tcGridaVid_{date_time}.mp4")
+        #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
+        self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), cv2.VideoWriter_fourcc(*'H264'), 20, (self.ui.page_home.width(),self.ui.page_home.height()))
+        self.out.write(frame)
+
+    def stop_video(self):
+        if self.out is None:
+            pass
+        self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
+"	background-color: rgb(58, 8, 8);")
+        self.out.release()
+
+    # TAKE SNAPSHOT
+    def take_photo(self):
+        today = datetime.datetime.now()
+        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
+        file_name = (f"tcGrida_{date_time}.jpg")
+        # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
+        print("The photo will be saved as " + file_name)
+        rval, frame = self.ui.page_home.vc.read()
+        if self.dir == "":
+            UIFunctions.message_box(self, "Please choose a directory to save your snapshots.")
+
+        else:
+            # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
+            out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
+            print("Photo saved to %s"%self.dir)
+            print(out)
+            # self.num_photos+=1
+
+    def message_box(self, msg):
+        message = QMessageBox(self)
+        message.setIcon(QMessageBox.Warning)
+        message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        message.setWindowTitle("Choose a directory")
+        message.setText(msg)
+        message.setDefaultButton(QMessageBox.Ok)
+        message_state = message.exec()
+        if(message_state == 1024):
+            self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+            self.ui.lineEditSettings.setText(str(self.dir))
+
+            self.cursor.execute("SELECT * FROM settings_path")
+            liste = self.cursor.fetchall()
+
+            for item in liste:
+                for i in item:
+                    old_path=i
+            self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
+            self.database.commit()
 
     # CHANGE APPEARANCE
     def change_mode(self):
@@ -127,66 +184,6 @@ class UIFunctions(MainWindow):
 
             self.cursor.execute("UPDATE settings_appearance set appearance=? where appearance = ?",(0,old_appearance))
             self.database.commit()
-
-    # VIDEO FUNC
-    def shot_video(self):
-        self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
-"	background-color: rgb(180, 0, 0);")
-
-        rval, frame = self.ui.page_home.vc.read()
-        if self.dir == "":
-            UIFunctions.message_box(self, "Please choose a directory to save the video.")
-        file_name =(f"tcGridaVid_{date_time}.mp4")
-        #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
-        self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), cv2.VideoWriter_fourcc(*'H264'), 20, (self.ui.page_home.width(),self.ui.page_home.height()))
-        self.out.write(frame)
-
-    def stop_video(self):
-        if self.out is None:
-            pass
-        self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
-"	background-color: rgb(58, 8, 8);")
-        self.out.release()
-
-    # TAKE SNAPSHOT
-    def take_photo(self):
-        today = datetime.datetime.now()
-        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
-        file_name = (f"tcGrida_{date_time}.jpg")
-        # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
-        print("The photo will be saved as " + file_name)
-        rval, frame = self.ui.page_home.vc.read()
-        if self.dir == "":
-            UIFunctions.message_box(self, "Please choose a directory to save your snapshots.")
-
-        else:
-            # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
-            out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
-            print("Photo saved to %s"%self.dir)
-            print(out)
-            # self.num_photos+=1
-
-    def message_box(self, msg):
-        message = QMessageBox(self)
-        message.setIcon(QMessageBox.Warning)
-        message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        message.setWindowTitle("Choose a directory")
-        message.setText(msg)
-        message.setDefaultButton(QMessageBox.Ok)
-        message_state = message.exec()
-        if(message_state == 1024):
-            self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
-            self.ui.lineEditSettings.setText(str(self.dir))
-
-            self.cursor.execute("SELECT * FROM settings_path")
-            liste = self.cursor.fetchall()
-
-            for item in liste:
-                for i in item:
-                    old_path=i
-            self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
-            self.database.commit()
-
 
     ########################################################################
     ## START - GUI FUNCTIONS

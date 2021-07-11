@@ -2,6 +2,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,pycharm,intellij,sublimetext
 
 
+# Database Files
+*.db
+
 # Python Cache Files
 */__pycache__/*
 

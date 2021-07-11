@@ -62,8 +62,9 @@ class UIFunctions(MainWindow):
         if self.dir == "":
             UIFunctions.message_box(self, "Please choose a directory to save the video.")
         file_name =(f"tcGridaVid_{date_time}.mp4")
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
-        self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), cv2.VideoWriter_fourcc(*'avc1'), 20, (self.ui.page_home.width(),self.ui.page_home.height()))
+        self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), fourcc, 20.0, (640, 480))
         self.out.write(frame)
 
     def stop_video(self):

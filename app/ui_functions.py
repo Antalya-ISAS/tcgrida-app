@@ -72,7 +72,7 @@ class UIFunctions(MainWindow):
                 file_name =(f"tcGridaVid_{date_time}.mp4")
 
                 # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
-                output_params = {"-vcodec":"libxvid", "-crf": 0, "-preset": "fast"}
+                output_params = {"-vcodec": "libxvid", "-crf": 0, "-preset": "fast", "-tune": "zerolatency", "-input_framerate": 30}
 
                 # Open suitable video stream, such as webcam on first index(i.e. 0)
                 self.stream = self.ui.page_home.vc

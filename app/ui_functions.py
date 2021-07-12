@@ -21,7 +21,6 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
 from main import *
-import os
 
 ## ==> GLOBALS
 GLOBAL_STATE = 0
@@ -31,7 +30,7 @@ GLOBAL_TITLE_BAR = True
 count = 1
 
 class UIFunctions(MainWindow):
-    
+
     ## ==> GLOBALS
     GLOBAL_STATE = 0
     GLOBAL_TITLE_BAR = True
@@ -42,7 +41,7 @@ class UIFunctions(MainWindow):
 
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
-        self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:',MainWindow.environment+"/Videos", QFileDialog.ShowDirsOnly)
+        self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
         if(self.dir!=""):
             self.ui.lineEditSettings.setText(str(self.dir))
 
@@ -57,64 +56,63 @@ class UIFunctions(MainWindow):
 
     # VIDEO FUNC
     def shot_video(self):
-        if(self.deger==0):
-            
-            if self.dir == "":
-                UIFunctions.message_box(self, "Please choose a directory to save the video.")
-                return
-            self.deger=1
-            self.ui.video_button.setText("STOP")
-            today = datetime.datetime.now()
-            date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
+        if self.dir == "":
+            UIFunctions.message_box(self, "Please choose a directory to save the video.")
+            return
+        today = datetime.datetime.now()
+        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
 
-            file_name =(f"tcGridaVid_{date_time}.mp4")
+        self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
+"	background-color: rgb(180, 0, 0);")
 
-            # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
-            output_params = {"-vcodec":"libxvid", "-crf": 0, "-preset": "fast"}
+        file_name =(f"tcGridaVid_{date_time}.mp4")
 
-            # Open suitable video stream, such as webcam on first index(i.e. 0)
-            self.stream = self.ui.page_home.vc
+        # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
+        output_params = {"-vcodec":"libxvid", "-crf": 0, "-preset": "fast"}
 
-            # Define writer with defined parameters and suitable output filename for e.g. `Output.mp4`
-            self.writer = WriteGear(output_filename = f'{self.dir}/{file_name}', logging = True, **output_params)
+        # Open suitable video stream, such as webcam on first index(i.e. 0)
+        self.stream = self.ui.page_home.vc
 
-            # loop over
-            while True:
+        # Define writer with defined parameters and suitable output filename for e.g. `Output.mp4`
+        self.writer = WriteGear(output_filename = f'{self.dir}/{file_name}', logging = True, **output_params)
 
-                # read frames from stream
-                (grabbed, frame) = self.stream.read()
+        # loop over
+        while True:
 
-                # check for frame if not grabbed
-                if not grabbed:
-                    break
+            # read frames from stream
+            (grabbed, frame) = self.stream.read()
 
-                # {do something with the frame here}
-                # lets convert frame to gray for this example
-                #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            # check for frame if not grabbed
+            if not grabbed:
+                break
 
-                # write gray frame to writer
-                self.writer.write(frame)
+            # {do something with the frame here}
+            # lets convert frame to gray for this example
+            #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-                # Show output window
-                #cv2.imshow("Output Frame", frame)
+            # write gray frame to writer
+            self.writer.write(frame)
 
-                # check for 'q' key if pressed
-                key = cv2.waitKey(1) & 0xFF
-                if key == ord("q"):
-                    break
-        elif(self.deger==1):
-            if(self.dir!=""):
-                self.deger=0
-                self.ui.video_button.setText("REC")
-                if self.stream is None:
-                    pass
+            # Show output window
+            #cv2.imshow("Output Frame", frame)
 
-                cv2.destroyAllWindows()
-                # safely close video stream
-                #self.stream.release()
-                # safely close writer
-                self.writer.close()
+            # check for 'q' key if pressed
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord("q"):
+                break
 
+    def stop_video(self):
+        if(self.dir!=""):
+            if self.stream is None:
+                pass
+            self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
+    "	background-color: rgb(58, 8, 8);")
+
+            cv2.destroyAllWindows()
+            # safely close video stream
+            #self.stream.release()
+            # safely close writer
+            self.writer.close()
 
     # TAKE SNAPSHOT
     def take_photo(self):

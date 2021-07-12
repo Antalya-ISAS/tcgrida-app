@@ -20,7 +20,7 @@ from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
     QRect, QSize, QUrl, Qt)
 from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QImage, QImageReader, QImageWriter, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient)
+    QRadialGradient, QCursor)
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from qtwidgets import AnimatedToggle
@@ -663,6 +663,7 @@ class Ui_MainWindow(object):
         self.instaLinkButton.setText("Our Instagram Page!")
         self.instaLinkButton.setObjectName(u"instaLinkButton")
         self.instaLinkButton.setStyleSheet(u"")
+        self.instaLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
         self.instaLinkButton.setIcon(icon4)
@@ -677,6 +678,7 @@ class Ui_MainWindow(object):
         self.gitLinkButton.setText("Our Github Page!")
         self.gitLinkButton.setObjectName(u"gitLinkButton")
         self.gitLinkButton.setStyleSheet(u"")
+        self.gitLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
         self.gitLinkButton.setIcon(icon4)
@@ -691,6 +693,7 @@ class Ui_MainWindow(object):
         self.webLinkButton.setText("Our Website!")
         self.webLinkButton.setObjectName(u"webLinkButton")
         self.webLinkButton.setStyleSheet(u"")
+        self.webLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
         self.webLinkButton.setIcon(icon4)
@@ -704,6 +707,7 @@ class Ui_MainWindow(object):
         self.youtubeLinkButton.setText("Our Youtube Channel!")
         self.youtubeLinkButton.setObjectName(u"youtubeLinkButton")
         self.youtubeLinkButton.setStyleSheet(u"")
+        self.youtubeLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
         self.youtubeLinkButton.setIcon(icon4)
@@ -718,6 +722,7 @@ class Ui_MainWindow(object):
         self.formLinkButton.setText("Feedback Form!")
         self.formLinkButton.setObjectName(u"formLinkButton")
         self.formLinkButton.setStyleSheet(u"")
+        self.formLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
         self.formLinkButton.setIcon(icon4)

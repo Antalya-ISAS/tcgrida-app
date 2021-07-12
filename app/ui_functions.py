@@ -16,6 +16,7 @@
 
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
 from main import *
@@ -63,7 +64,15 @@ class UIFunctions(MainWindow):
 "	background-color: rgb(180, 0, 0);")
 
         rval, frame = self.ui.page_home.vc.read()
-        
+        if not rval:
+            message = QMessageBox(self)
+            message.setIcon(QMessageBox.Warning)
+            message.setStandardButtons(QMessageBox.Ok)
+            message.setWindowTitle("Can not record")
+            message.setText("Can not read data from the camera.")
+            message.exec()
+            
+
         file_name =(f"tcGridaVid_{date_time}.mp4")
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.

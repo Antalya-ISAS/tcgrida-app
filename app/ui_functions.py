@@ -40,16 +40,17 @@ class UIFunctions(MainWindow):
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
         self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
-        self.ui.lineEditSettings.setText(str(self.dir))
+        if(self.dir!=""):
+            self.ui.lineEditSettings.setText(str(self.dir))
 
-        self.cursor.execute("SELECT * FROM settings_path")
-        liste = self.cursor.fetchall()
+            self.cursor.execute("SELECT * FROM settings_path")
+            liste = self.cursor.fetchall()
 
-        for item in liste:
-            for i in item:
-                old_path=i
-        self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
-        self.database.commit()
+            for item in liste:
+                for i in item:
+                    old_path=i
+            self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
+            self.database.commit()
 
     # VIDEO FUNC
     def shot_video(self):

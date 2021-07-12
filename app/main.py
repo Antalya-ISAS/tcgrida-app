@@ -29,11 +29,13 @@ from app_modules import *
 linkTemplate = '<a href={0}>{1}</a>'
 
 class MainWindow(QMainWindow):
+    
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
+        self.environment = os.environ["HOMEPATH"]
+        self.deger=0
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
 
@@ -150,7 +152,7 @@ class MainWindow(QMainWindow):
 
         ## CONNECT RECORDING BUTTON
         self.ui.video_button.clicked.connect(lambda: UIFunctions.shot_video(self))
-        self.ui.stop_button.clicked.connect(lambda: UIFunctions.stop_video(self))
+       
 
         ## CONNECT TOGGLE BUTTON
         self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self))

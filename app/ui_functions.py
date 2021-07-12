@@ -133,11 +133,13 @@ class UIFunctions(MainWindow):
             for item in column:
                 old_appearance = item
         if self.ui.toggle.isChecked():
+            self.ui.page_home.label.setStyleSheet(u"color: rgb(39,44,54);")
+            self.ui.label.setStyleSheet(u"color: rgb(39,44,54);")
             self.ui.frame.label.setStyleSheet("color: rgb(39, 44, 54)")
             self.ui.frame_2.label.setStyleSheet("color: rgb(39, 44, 54)")
             self.ui.frame_3.label.setStyleSheet("color: rgb(39, 44, 54)")
             self.ui.lineEditSettings.setStyleSheet("background-color: rgb(240, 240, 240); color: rgb(39, 44, 54);")
-            self.ui.comboBox.setStyleSheet("background-color: rgb(240, 240, 240); color: rgb(39, 44, 54); selection-background-color: rgb(240, 240, 240);") #rgb(61, 180, 255)
+            self.ui.comboBox.setStyleSheet("background-color: rgb(240, 240, 240); color: rgb(39, 44, 54); selection-background-color: rgb(39, 44, 54);") #rgb(61, 180, 255)
             self.ui.frame.setStyleSheet("background-color : rgb(255, 255, 255);")
             self.ui.frame_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.frame_3.setStyleSheet(u"background-color: rgb(255, 255, 255);")
@@ -154,6 +156,7 @@ class UIFunctions(MainWindow):
             #self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(0, 40, 120);")
             self.ui.frame_content_right.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.label_credits.setStyleSheet(u"color: rgb(40, 40, 40);")
+            
             #self.ui.label_version.setStyleSheet(u"color: rgb(212, 175, 55);")
             self.cursor.execute("UPDATE settings_appearance set appearance=? where appearance = ?",(1,old_appearance))
             self.database.commit()
@@ -175,7 +178,8 @@ class UIFunctions(MainWindow):
 "border-radius: 5px;")
             self.ui.frame_5.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;")
-
+            self.ui.page_home.label.setStyleSheet(u"")
+            self.ui.label.setStyleSheet(u"")
             self.ui.page_links.label.setStyleSheet(u"")
             self.ui.frame.label.setStyleSheet(u"")
             self.ui.frame_2.label.setStyleSheet(u"")

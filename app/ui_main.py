@@ -35,8 +35,9 @@ class Ui_MainWindow(object):
         # Aşırı alakasız toggle kodu. 
         self.toggle = AnimatedToggle(
                 checked_color="#007fff",
-                pulse_checked_color="#003366"
+               
         )
+        
 
         self.toggle.setObjectName(u"toggle")
 
@@ -662,7 +663,9 @@ class Ui_MainWindow(object):
         self.instaLinkButton = QCommandLinkButton(self.frame_4)
         self.instaLinkButton.setText("Our Instagram Page!")
         self.instaLinkButton.setObjectName(u"instaLinkButton")
-        self.instaLinkButton.setStyleSheet(u"")
+        self.instaLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
+"	background-color: rgb(30,35,40);	\n"
+"}")
         self.instaLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -677,7 +680,9 @@ class Ui_MainWindow(object):
         self.gitLinkButton = QCommandLinkButton(self.frame_4)
         self.gitLinkButton.setText("Our Github Page!")
         self.gitLinkButton.setObjectName(u"gitLinkButton")
-        self.gitLinkButton.setStyleSheet(u"")
+        self.gitLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
+"	background-color: rgb(30,35,40);	\n"
+"}")
         self.gitLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -692,7 +697,9 @@ class Ui_MainWindow(object):
         self.webLinkButton=QCommandLinkButton(self.frame_4)
         self.webLinkButton.setText("Our Website!")
         self.webLinkButton.setObjectName(u"webLinkButton")
-        self.webLinkButton.setStyleSheet(u"")
+        self.webLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
+"	background-color: rgb(30,35,40);	\n"
+"}")
         self.webLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -706,7 +713,9 @@ class Ui_MainWindow(object):
         self.youtubeLinkButton=QCommandLinkButton(self.frame_4)
         self.youtubeLinkButton.setText("Our Youtube Channel!")
         self.youtubeLinkButton.setObjectName(u"youtubeLinkButton")
-        self.youtubeLinkButton.setStyleSheet(u"")
+        self.youtubeLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
+"	background-color: rgb(30,35,40);	\n"
+"}")
         self.youtubeLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -721,7 +730,9 @@ class Ui_MainWindow(object):
         self.formLinkButton = QCommandLinkButton(self.frame_4)
         self.formLinkButton.setText("Feedback Form!")
         self.formLinkButton.setObjectName(u"formLinkButton")
-        self.formLinkButton.setStyleSheet(u"")
+        self.formLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
+"	background-color: rgb(30,35,40);	\n"
+"}")
         self.formLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
         icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)

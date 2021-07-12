@@ -54,14 +54,16 @@ class UIFunctions(MainWindow):
 
     # VIDEO FUNC
     def shot_video(self):
+        if self.dir == "":
+            UIFunctions.message_box(self, "Please choose a directory to save the video.")
+            return
         today = datetime.datetime.now()
         date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
         self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
 "	background-color: rgb(180, 0, 0);")
 
         rval, frame = self.ui.page_home.vc.read()
-        if self.dir == "":
-            UIFunctions.message_box(self, "Please choose a directory to save the video.")
+        
         file_name =(f"tcGridaVid_{date_time}.mp4")
         fourcc = cv2.VideoWriter_fourcc(*'mp4v')
         #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
@@ -69,11 +71,12 @@ class UIFunctions(MainWindow):
         self.out.write(frame)
 
     def stop_video(self):
-        if self.out is None:
-            pass
-        self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
-"	background-color: rgb(58, 8, 8);")
-        self.out.release()
+        if(self.dir!=""):
+            if self.out is None:
+                pass
+            self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
+    "	background-color: rgb(58, 8, 8);")
+            self.out.release()
 
     # TAKE SNAPSHOT
     def take_photo(self):

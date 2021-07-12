@@ -361,18 +361,7 @@ class Ui_MainWindow(object):
 
         self.layout_menu_bottom.addWidget(self.video_button, 0, Qt.AlignHCenter)
 
-        # VIDEO STOP BUTTON
 
-        self.stop_button = QPushButton(self.frame_extra_menus)
-        self.stop_button.setObjectName(u"VIDEOSTOP")
-        self.stop_button.setToolTip("Stop the video!")
-        #icon3 = QIcon()
-        #icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
-        #self.stop_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
-        self.stop_button.setText("STOP")
-        self.stop_button.setStyleSheet(Style.style_circ_btn2)
-
-        self.layout_menu_bottom.addWidget(self.stop_button, 0, Qt.AlignHCenter)
 
 
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)

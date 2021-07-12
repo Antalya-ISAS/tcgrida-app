@@ -20,6 +20,7 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
 from main import *
+import os
 
 ## ==> GLOBALS
 GLOBAL_STATE = 0
@@ -29,7 +30,7 @@ GLOBAL_TITLE_BAR = True
 count = 1
 
 class UIFunctions(MainWindow):
-
+    
     ## ==> GLOBALS
     GLOBAL_STATE = 0
     GLOBAL_TITLE_BAR = True
@@ -40,7 +41,7 @@ class UIFunctions(MainWindow):
 
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
-        self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+        self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:',MainWindow.environment+"/Videos", QFileDialog.ShowDirsOnly)
         if(self.dir!=""):
             self.ui.lineEditSettings.setText(str(self.dir))
 
@@ -55,37 +56,46 @@ class UIFunctions(MainWindow):
 
     # VIDEO FUNC
     def shot_video(self):
-        if self.dir == "":
-            UIFunctions.message_box(self, "Please choose a directory to save the video.")
-            return
-        today = datetime.datetime.now()
-        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
-        self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
-"	background-color: rgb(180, 0, 0);")
-
-        rval, frame = self.ui.page_home.vc.read()
-        if not rval:
-            message = QMessageBox(self)
-            message.setIcon(QMessageBox.Warning)
-            message.setStandardButtons(QMessageBox.Ok)
-            message.setWindowTitle("Can not record")
-            message.setText("Can not read data from the camera.")
-            message.exec()
+        if(self.deger==0):
+            
+            if self.dir == "":
+                UIFunctions.message_box(self, "Please choose a directory to save the video.")
+                return
+            self.deger=1
+            self.ui.video_button.setText("STOP")
+            today = datetime.datetime.now()
+            date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
             
 
-        file_name =(f"tcGridaVid_{date_time}.mp4")
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-        #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
-        self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), fourcc, 20.0, (640, 480))
-        self.out.write(frame)
+            rval, frame = self.ui.page_home.vc.read()
+            if not rval:
+                message = QMessageBox(self)
+                message.setIcon(QMessageBox.Warning)
+                message.setStandardButtons(QMessageBox.Ok)
+                message.setWindowTitle("Can not record")
+                message.setText("Can not read data from the camera.")
+                message.exec()
+            
+            
 
-    def stop_video(self):
-        if(self.dir!=""):
-            if self.out is None:
-                pass
-            self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
-    "	background-color: rgb(58, 8, 8);")
-            self.out.release()
+            file_name =(f"tcGridaVid_{date_time}.mp4")
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+            #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
+            self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), fourcc, 20.0, (640, 480))
+            self.out.write(frame)
+            
+            
+        elif(self.deger==1):
+            if(self.dir!=""):
+                self.deger=0
+                self.ui.video_button.setText("REC")
+                if self.out is None:
+                    pass
+               
+                self.out.release()
+                
+                
+
 
     # TAKE SNAPSHOT
     def take_photo(self):

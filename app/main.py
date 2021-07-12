@@ -108,7 +108,7 @@ class MainWindow(QMainWindow):
         ## START CAPTURING CAMERA VIEW
         self.openCam(self.camera_state)
         print(self.ui.comboBox.currentText())
-        self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(self.ui.comboBox.currentText()[-1]))
+        self.ui.comboBox.currentIndexChanged.connect(lambda: self.openCam(int(self.ui.comboBox.currentText()[-1])))
         print(self.ui.comboBox.currentText())
 
         ###################################################
@@ -238,7 +238,7 @@ class MainWindow(QMainWindow):
                 old_camera=i
         self.cursor.execute("UPDATE settings_camera set camera = ? where camera = ?",(self.ui.comboBox.currentIndex(),old_camera))
         self.database.commit()        
-        self.ui.page_home.vc = cv2.VideoCapture(cam)
+        self.ui.page_home.vc = cv2.VideoCapture(cam,cv2.CAP_DSHOW)
         # vc.set(5, 30)  #set FPS
         self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
         self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height

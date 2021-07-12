@@ -16,6 +16,7 @@
 
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime
+from vidgear.gears import WriteGear
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
@@ -56,46 +57,129 @@ class UIFunctions(MainWindow):
 
     # VIDEO FUNC
     def shot_video(self):
+<<<<<<< HEAD
         if(self.deger==0):
             
             if self.dir == "":
                 UIFunctions.message_box(self, "Please choose a directory to save the video.")
                 return
-            self.deger=1
-            self.ui.video_button.setText("STOP")
             today = datetime.datetime.now()
             date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
-            
 
-            rval, frame = self.ui.page_home.vc.read()
-            if not rval:
-                message = QMessageBox(self)
-                message.setIcon(QMessageBox.Warning)
-                message.setStandardButtons(QMessageBox.Ok)
-                message.setWindowTitle("Can not record")
-                message.setText("Can not read data from the camera.")
-                message.exec()
-            
-            
+            self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
+    "	background-color: rgb(180, 0, 0);")
 
             file_name =(f"tcGridaVid_{date_time}.mp4")
-            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-            #TODO: H264 halihazırda bulunan bir kütüphane olmasına rağmen sorun çıkmasının sebebi anlaşılmalı.
-            self.out = cv2.VideoWriter(os.path.join(self.dir, file_name), fourcc, 20.0, (640, 480))
-            self.out.write(frame)
+
+            # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
+            output_params = {"-vcodec":"libxvid", "-crf": 0, "-preset": "fast"}
+
+            # Open suitable video stream, such as webcam on first index(i.e. 0)
+            self.stream = self.ui.page_home.vc
+
+            # Define writer with defined parameters and suitable output filename for e.g. `Output.mp4`
+            self.writer = WriteGear(output_filename = f'{self.dir}/{file_name}', logging = True, **output_params)
+
+            # loop over
+            while True:
+
+                # read frames from stream
+                (grabbed, frame) = self.stream.read()
+
+                # check for frame if not grabbed
+                if not grabbed:
+                    break
+
+                # {do something with the frame here}
+                # lets convert frame to gray for this example
+                #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+                # write gray frame to writer
+                self.writer.write(frame)
+
+                # Show output window
+                #cv2.imshow("Output Frame", frame)
+
+                # check for 'q' key if pressed
+                key = cv2.waitKey(1) & 0xFF
+                if key == ord("q"):
+                    break
             
             
         elif(self.deger==1):
             if(self.dir!=""):
-                self.deger=0
-                self.ui.video_button.setText("REC")
-                if self.out is None:
+                if self.stream is None:
                     pass
-               
-                self.out.release()
+                self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
+        "	background-color: rgb(58, 8, 8);")
+
+                cv2.destroyAllWindows()
+                # safely close video stream
+                #self.stream.release()
+                # safely close writer
+                self.writer.close()
                 
                 
 
+=======
+        if self.dir == "":
+            UIFunctions.message_box(self, "Please choose a directory to save the video.")
+            return
+        today = datetime.datetime.now()
+        date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
+
+        self.ui.video_button.setStyleSheet(u"border: 5px solid  rgb(220, 220, 220);\n"
+"	background-color: rgb(180, 0, 0);")
+
+        file_name =(f"tcGridaVid_{date_time}.mp4")
+
+        # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
+        output_params = {"-vcodec":"libxvid", "-crf": 0, "-preset": "fast"}
+
+        # Open suitable video stream, such as webcam on first index(i.e. 0)
+        self.stream = self.ui.page_home.vc
+
+        # Define writer with defined parameters and suitable output filename for e.g. `Output.mp4`
+        self.writer = WriteGear(output_filename = f'{self.dir}/{file_name}', logging = True, **output_params)
+
+        # loop over
+        while True:
+
+            # read frames from stream
+            (grabbed, frame) = self.stream.read()
+
+            # check for frame if not grabbed
+            if not grabbed:
+                break
+
+            # {do something with the frame here}
+            # lets convert frame to gray for this example
+            #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+            # write gray frame to writer
+            self.writer.write(frame)
+
+            # Show output window
+            #cv2.imshow("Output Frame", frame)
+
+            # check for 'q' key if pressed
+            key = cv2.waitKey(1) & 0xFF
+            if key == ord("q"):
+                break
+
+    def stop_video(self):
+        if(self.dir!=""):
+            if self.stream is None:
+                pass
+            self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
+    "	background-color: rgb(58, 8, 8);")
+
+            cv2.destroyAllWindows()
+            # safely close video stream
+            #self.stream.release()
+            # safely close writer
+            self.writer.close()
+>>>>>>> 34627cfc81fad93739689d218172fe8e6d29a0ec
 
     # TAKE SNAPSHOT
     def take_photo(self):

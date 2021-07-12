@@ -58,7 +58,7 @@ class UIFunctions(MainWindow):
     def shot_video(self):
         try:
             if(self.deger==0):
-                
+                print("Açık")
                 if self.dir == "":
                     UIFunctions.message_box(self, "Please choose a directory to save the video.")
                     return
@@ -105,9 +105,10 @@ class UIFunctions(MainWindow):
                     if key == ord("q"):
                         break
             elif(self.deger==1):
+                print("Kapalı")
                 
                 if(self.dir!=""):
-                    self.deger=1
+                    self.deger=0
                     self.ui.video_button.setText("REC")
                     if self.stream is None:
                         pass
@@ -118,7 +119,7 @@ class UIFunctions(MainWindow):
                     # safely close writer
                     self.writer.close()
         except AttributeError:
-            pass
+            print("Hata")
 
 
     # TAKE SNAPSHOT

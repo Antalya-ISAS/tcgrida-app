@@ -57,17 +57,22 @@ class UIFunctions(MainWindow):
     # VIDEO FUNC
     def shot_video(self):
         try:
-            if(self.deger==0):
+            if(self.vid_value == 0):
                 print("Açık")
                 if self.dir == "":
                     UIFunctions.message_box(self, "Please choose a directory to save the video.")
                     return
-                self.deger=1
+                self.vid_value = 1
                 self.ui.video_button.setText("STOP")
+                self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(220, 220, 220);\n"
+"	background-color: rgb(180, 0, 0);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
+"   padding:5px;\n"
+"	border-radius: 25px;")
+
                 today = datetime.datetime.now()
                 date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
-
-                
 
                 file_name =(f"tcGridaVid_{date_time}.mp4")
 
@@ -100,24 +105,29 @@ class UIFunctions(MainWindow):
                     # Show output window
                     #cv2.imshow("Output Frame", frame)
 
-                    # check for 'q' key if pressed
+                    # check for 'ƾ' key if pressed
                     key = cv2.waitKey(1) & 0xFF
-                    if key == ord("q"):
+                    if key == ord("ƾ"): # weird latin letter that no one will press
                         break
-            elif(self.deger==1):
+
+            elif self.vid_value == 1:
                 print("Kapalı")
                 
-                if(self.dir!=""):
-                    self.deger=0
+                if self.dir != "":
+                    self.vid_value = 0
                     self.ui.video_button.setText("REC")
+                    self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
+"	background-color: rgb(58, 8, 8);\n"
+"	width: 30px;\n"
+"	height: 30px;\n"
+"   padding:5px;\n"
+"	border-radius: 25px;")
                     if self.stream is None:
                         pass
 
                     cv2.destroyAllWindows()
-                    # safely close video stream
-                    #self.stream.release()
-                    # safely close writer
                     self.writer.close()
+
         except AttributeError:
             print("Hata")
 
@@ -193,7 +203,7 @@ class UIFunctions(MainWindow):
             self.ui.frame_3.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.frame_4.setStyleSheet(u"background-color: rgb(240, 240, 240); border-radius: 5px; padding: 10px;")
             self.ui.page_links.label.setStyleSheet("color: rgb(39, 44, 54)")
-            self.ui.frame_5.setStyleSheet(u"background-color: rgba(61, 180, 255, 150); border-radius: 5px;")
+            self.ui.frame_5.setStyleSheet(u"background-color: rgb(240, 240, 240); border-radius: 5px;")
             #self.ui.frame_grip.setStyleSheet(u"background-color: rgb(173, 130, 0);")
             #self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(255, 255, 255);")
             self.ui.frame_toggle.setStyleSheet(u"background-color: rgb(255, 255, 255);")

@@ -405,10 +405,10 @@ class Ui_MainWindow(object):
 
         self.page_home.label = QLabel()
         self.page_home.label.setObjectName(u"label")
-        #font6 = QFont()
-        #font6.setFamily(u"Segoe UI")
-        #font6.setPointSize(14)
-        #self.label.setFont(font6)
+        #self. = QFont()
+        #self..setFamily(u"Segoe UI")
+        #self..setPointSize(14)
+        #self.label.setFont(self.)
         self.page_home.label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.page_home.label)
@@ -428,11 +428,10 @@ class Ui_MainWindow(object):
         self.label = QLabel()
         self.label.setObjectName(u"frame_label")
 
-        font6 = QFont()
-        font6.setFamily(u"Segoe UI")
-        font6.setBold(True)
-        font6.setPointSize(15)
-        self.label.setFont(font6)
+        self.font6 = QFont()
+        self.font6.setFamily(u"Segoe UI")
+        self.font6.setPointSize(14)
+        self.label.setFont(self.font6)
 
         self.label.setText("Coming Soon!")
 
@@ -472,7 +471,7 @@ class Ui_MainWindow(object):
 
         self.frame.label = QLabel()
         self.frame.label.setObjectName(u"frame_label")
-        self.frame.label.setFont(font6)
+        self.frame.label.setFont(self.font6)
 
         self.frame.label.setText("Choose which directory your snapshots will be saved to:")
         self.frame.label.setOpenExternalLinks(True)
@@ -534,7 +533,7 @@ class Ui_MainWindow(object):
         self.frame_2.label = QLabel()
         self.frame_2.label.setObjectName(u"frame2_label")
 
-        self.frame_2.label.setFont(font6)
+        self.frame_2.label.setFont(self.font6)
 
         self.frame_2.label.setText("Choose which camera will be captured:")
         self.frame_2.label.setOpenExternalLinks(True)
@@ -575,7 +574,7 @@ class Ui_MainWindow(object):
         self.frame_3.label = QLabel()
         self.frame_3.label.setObjectName(u"frame3_label")
 
-        self.frame_3.label.setFont(font6)
+        self.frame_3.label.setFont(self.font6)
 
         self.frame_3.label.setText("Appearance:")
         self.frame_3.label.setAlignment(Qt.AlignCenter)
@@ -653,7 +652,7 @@ class Ui_MainWindow(object):
         self.page_links.label = QLabel(self.frame_4)
         self.page_links.label.setObjectName(u"label")
 
-        self.page_links.label.setFont(font6)
+        self.page_links.label.setFont(self.font6)
         self.page_links.label.setText("KEEP UP WITH OUR LATEST UPDATES! ")
         self.page_links.label.setOpenExternalLinks(True)
         self.page_links.label.setAlignment(Qt.AlignCenter)

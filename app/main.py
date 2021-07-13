@@ -35,12 +35,11 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.environment = os.environ["HOMEPATH"]
-        self.deger=0
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
 
-        # self.num_photos = 0 # this will be used to count the num of photos
-        self.dir = "" # this will be used to store paths
+        self.dir = "" # used to store PATH
+        self.vid_value = 0 # used to check the recording
 
         ## CONNECT TO THE DATABASE
         self.database = sqlite3.connect("settings.db")

@@ -361,11 +361,6 @@ class Ui_MainWindow(object):
 
         self.layout_menu_bottom.addWidget(self.video_button, 0, Qt.AlignHCenter)
 
-        
-
-       
-
-
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)
 
 
@@ -447,6 +442,7 @@ class Ui_MainWindow(object):
         
 
         self.stackedWidget.addWidget(self.page_info)
+
         ###################################################
         ## SETTINGS PAGE
         ###################################################
@@ -572,7 +568,7 @@ class Ui_MainWindow(object):
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.frame_3)
-        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.horizontalLayout_12 = QHBoxLayout(self.frame_3)
 
         # TITLE
 
@@ -581,13 +577,30 @@ class Ui_MainWindow(object):
 
         self.frame_3.label.setFont(font6)
 
-        self.frame_3.label.setText("Appearance: (Dark mode or light mode)")
+        self.frame_3.label.setText("Appearance:")
         self.frame_3.label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_12.addWidget(self.frame_3.label)
-        
 
-        self.verticalLayout_12.addWidget(self.toggle)
+        self.frame_3.space = QLabel()
+        self.frame_3.space.setStyleSheet(u"	border-radius: 10px;	\n"
+"	background-color: rgb(39, 44, 54);")
+        #self.frame_3.space.setText("D̲A̲R̲K̲ ̲M̲O̲D̲E̲")
+        self.frame_3.space.setAlignment(Qt.AlignRight)
+        self.frame_3.space2 = QLabel()
+        self.frame_3.space2.setStyleSheet(u"	border-radius: 10px;	\n"
+"	background-color: rgb(39, 44, 54);")
+        #self.frame_3.space2.setText("L̲I̲G̲H̲T̲ ̲M̲O̲D̲E̲")
+        self.frame_3.space2.setAlignment(Qt.AlignLeft)
+
+        self.horizontalLayout_12.addWidget(self.frame_3.space)
+        self.horizontalLayout_12.addWidget(self.toggle)
+        self.horizontalLayout_12.addWidget(self.frame_3.space2)
+
+        self.verticalLayout_12.addLayout(self.horizontalLayout_12)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+
+
         self.verticalLayoutSettings.addWidget(self.frame_3)
 
         ###################################################

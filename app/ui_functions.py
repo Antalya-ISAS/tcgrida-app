@@ -177,6 +177,10 @@ class UIFunctions(MainWindow):
             for item in column:
                 old_appearance = item
         if self.ui.toggle.isChecked():
+            self.ui.frame_3.space.setStyleSheet(u"	border-radius: 10px;	\n"
+"	background-color: rgb(255, 255, 255);")
+            self.ui.frame_3.space2.setStyleSheet(u"	border-radius: 10px;	\n"
+"	background-color: rgb(255, 255, 255);")
             self.ui.page_home.label.setStyleSheet(u"color: rgb(39,44,54);")
             self.ui.label.setStyleSheet(u"color: rgb(39,44,54);")
             self.ui.frame.label.setStyleSheet("color: rgb(39, 44, 54)")
@@ -222,6 +226,11 @@ class UIFunctions(MainWindow):
 "border-radius: 5px;")
             self.ui.frame_5.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
 "border-radius: 5px;")
+
+            self.ui.frame_3.space.setStyleSheet(u"	border-radius: 10px;	\n"
+"	background-color: rgb(39, 44, 54);")
+            self.ui.frame_3.space2.setStyleSheet(u"	border-radius: 10px;	\n"
+"	background-color: rgb(39, 44, 54);")
             self.ui.page_home.label.setStyleSheet(u"")
             self.ui.label.setStyleSheet(u"")
             self.ui.page_links.label.setStyleSheet(u"")

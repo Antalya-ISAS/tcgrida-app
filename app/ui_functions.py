@@ -16,7 +16,7 @@
 
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime
-from vidgear.gears import WriteGear
+from vidgear_noperm.gears import WriteGear
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *

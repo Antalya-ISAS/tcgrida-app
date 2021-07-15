@@ -15,7 +15,7 @@
 ################################################################################
 
 ## ==> GUI FILE
-import webbrowser, os, cv2, datetime
+import webbrowser, os, cv2, datetime, screeninfo
 from vidgear_noperm.gears import WriteGear
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
@@ -39,6 +39,34 @@ class UIFunctions(MainWindow):
     def open_link(link):
         webbrowser.open_new_tab(link)
 
+    # OPEN CAMERA
+    def openCam(self, cam):
+        self.cursor.execute("SELECT * FROM settings_camera")
+        liste = self.cursor.fetchall()
+
+        for item in liste:
+            for i in item:
+                old_camera=i
+        self.cursor.execute("UPDATE settings_camera set camera = ? where camera = ?",(self.ui.comboBox.currentIndex(),old_camera))
+        self.database.commit()        
+        self.ui.page_home.vc = cv2.VideoCapture(cam, cv2.CAP_DSHOW)
+        # vc.set(5, 30)  #set FPS
+        self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
+        self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height
+        self.ui.page_home.timer.start(round(1000. / 24))
+
+    # Capture frames
+    def nextFrameSlot(self):
+        try:
+            rval, frame = self.ui.page_home.vc.read()
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
+            pixmap = QPixmap.fromImage(image)
+            self.ui.page_home.label.setPixmap(pixmap)
+        except:
+            self.ui.page_home.label.setText("Could not open %s"%self.ui.comboBox.currentText())
+        
+
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
         self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', self.environment+"/Videos", QFileDialog.ShowDirsOnly)
@@ -53,6 +81,28 @@ class UIFunctions(MainWindow):
                     old_path=i
             self.cursor.execute("UPDATE settings_path set path=? where path = ?",(self.dir,old_path))
             self.database.commit()
+
+    # OPEN NEW WINDOW (FULL SCREEN)
+    def full_screen(self):
+        screen_id = 0
+
+        # get the size of the screen
+        screen = screeninfo.get_monitors()[screen_id]
+
+        while True:
+            rval, frame = self.ui.page_home.vc.read()
+
+            window_name = 'AntalyaISAS App - Full Screen View'
+            cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+            cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
+            cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN,
+                                cv2.WINDOW_FULLSCREEN)
+            cv2.imshow(window_name, frame)
+            key = cv2.waitKey(1) & 0xFF
+            if key == 27: # ESC key code
+                break
+
+        cv2.destroyAllWindows()
 
     # VIDEO FUNC
     def shot_video(self):

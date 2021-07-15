@@ -364,6 +364,15 @@ class Ui_MainWindow(object):
 
         self.layout_menu_bottom.addWidget(self.video_button, 0, Qt.AlignHCenter)
 
+        # FULL SCREEN BUTTON
+
+        self.btn_fullscreen = QPushButton(self.frame_extra_menus)
+        self.btn_fullscreen.setObjectName(u"FULL")
+        self.btn_fullscreen.setToolTip("Full screen view")
+        self.btn_fullscreen.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_fullscreen.setText("FULL SCREEN")
+        self.layout_menu_bottom.addWidget(self.btn_fullscreen, 0, Qt.AlignHCenter)
+
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)
 
 

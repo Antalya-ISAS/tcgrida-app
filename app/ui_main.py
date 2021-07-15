@@ -90,6 +90,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.btn_toggle_menu.sizePolicy().hasHeightForWidth())
         self.btn_toggle_menu.setSizePolicy(sizePolicy)
+        self.btn_toggle_menu.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
 
         self.verticalLayout_3.addWidget(self.btn_toggle_menu)
@@ -341,6 +342,7 @@ class Ui_MainWindow(object):
         self.photo_button = QPushButton(self.frame_extra_menus)
         self.photo_button.setObjectName(u"PHOTO")
         self.photo_button.setToolTip("Take a snapshot!")
+        self.photo_button.setCursor(QCursor(Qt.PointingHandCursor))
         icon3 = QIcon()
         icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
         self.photo_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
@@ -353,6 +355,7 @@ class Ui_MainWindow(object):
         self.video_button = QPushButton(self.frame_extra_menus)
         self.video_button.setObjectName(u"VIDEO")
         self.video_button.setToolTip("Record a video!")
+        self.video_button.setCursor(QCursor(Qt.PointingHandCursor))
         #icon3 = QIcon()
         #icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
         #self.video_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)

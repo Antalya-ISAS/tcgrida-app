@@ -64,12 +64,17 @@ class UIFunctions(MainWindow):
                     return
                 self.vid_value = 1
                 self.ui.video_button.setText("STOP")
-                self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(220, 220, 220);\n"
+                self.ui.video_button.setStyleSheet(u"QPushButton {	\n"
+"	border: 5px solid rgb(220, 220, 220);\n"
 "	background-color: rgb(180, 0, 0);\n"
 "	width: 30px;\n"
 "	height: 30px;\n"
-"   padding:5px;\n"
-"	border-radius: 25px;")
+"       padding:5px;\n"
+"	border-radius: 25px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(220, 0, 0);\n"
+"}")
 
                 today = datetime.datetime.now()
                 date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
@@ -116,12 +121,17 @@ class UIFunctions(MainWindow):
                 if self.dir != "":
                     self.vid_value = 0
                     self.ui.video_button.setText("REC")
-                    self.ui.video_button.setStyleSheet(u"	border: 5px solid rgb(180, 0, 0);\n"
+                    self.ui.video_button.setStyleSheet(u"QPushButton {	\n"
+"	border: 5px solid rgb(180, 0, 0);\n"
 "	background-color: rgb(58, 8, 8);\n"
 "	width: 30px;\n"
 "	height: 30px;\n"
-"   padding:5px;\n"
-"	border-radius: 25px;")
+"       padding:5px;\n"
+"	border-radius: 25px;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color: rgb(95, 15, 15);\n"
+"}")
                     if self.stream is None:
                         pass
 
@@ -367,6 +377,7 @@ class UIFunctions(MainWindow):
         button.setFont(font)
         button.setText(name)
         button.setToolTip(name)
+        button.setCursor(QCursor(Qt.PointingHandCursor))
         button.clicked.connect(self.Button)
 
         if isTopMenu:

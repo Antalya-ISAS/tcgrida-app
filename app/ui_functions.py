@@ -16,7 +16,7 @@
 
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime, screeninfo
-from vidgear_noperm.gears import WriteGear
+from vidgear_noperm.gears import WriteGear, CamGear
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
@@ -49,16 +49,19 @@ class UIFunctions(MainWindow):
                 old_camera=i
         self.cursor.execute("UPDATE settings_camera set camera = ? where camera = ?",(self.ui.comboBox.currentIndex(),old_camera))
         self.database.commit()        
-        self.ui.page_home.vc = cv2.VideoCapture(cam, cv2.CAP_DSHOW)
-        # vc.set(5, 30)  #set FPS
-        self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
-        self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height
+
+        options = {
+    "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width()*2,
+    "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height()*2,
+    "CAP_PROP_FPS": 30,
+}
+        self.ui.page_home.vc = CamGear(source=0, logging=True, **options).start()
         self.ui.page_home.timer.start(round(1000. / 24))
 
     # Capture frames
     def nextFrameSlot(self):
         try:
-            rval, frame = self.ui.page_home.vc.read()
+            frame = self.ui.page_home.vc.read()
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
             pixmap = QPixmap.fromImage(image)
@@ -90,7 +93,7 @@ class UIFunctions(MainWindow):
         screen = screeninfo.get_monitors()[screen_id]
 
         while True:
-            rval, frame = self.ui.page_home.vc.read()
+            frame = self.ui.page_home.vc.read()
 
             window_name = 'AntalyaISAS App - Full Screen View'
             cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
@@ -98,6 +101,7 @@ class UIFunctions(MainWindow):
             cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN,
                                 cv2.WINDOW_FULLSCREEN)
             cv2.imshow(window_name, frame)
+
             key = cv2.waitKey(1) & 0xFF
             if key == 27: # ESC key code
                 break
@@ -105,14 +109,14 @@ class UIFunctions(MainWindow):
         cv2.destroyAllWindows()
 
     # VIDEO FUNC
-    def shot_video(self):
+    def record_video(self):
         try:
             if(self.vid_value == 0):
                 print("Açık")
+                self.vid_value = 1
                 if self.dir == "":
                     UIFunctions.message_box(self, "Please choose a directory to save the video.")
                     return
-                self.vid_value = 1
                 self.ui.video_button.setText("STOP")
                 self.ui.video_button.setStyleSheet(u"QPushButton {	\n"
 "	border: 5px solid rgb(220, 220, 220);\n"
@@ -131,36 +135,24 @@ class UIFunctions(MainWindow):
 
                 file_name =(f"tcGridaVid_{date_time}.mp4")
 
-                # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
-                output_params = {"-vcodec": "libxvid", "-crf": 0, "-preset": "fast", "-tune": "zerolatency", "-input_framerate": 30}
-
-                # Open suitable video stream, such as webcam on first index(i.e. 0)
                 self.stream = self.ui.page_home.vc
+
+                # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
+                output_params = {"-input_framerate": (int(self.stream.framerate)*0.8)}
 
                 # Define writer with defined parameters and suitable output filename for e.g. `Output.mp4`
                 self.writer = WriteGear(output_filename = f'{self.dir}/{file_name}', logging = True, **output_params)
 
                 # loop over
                 while True:
+                    frame = self.stream.read()
 
-                    # read frames from stream
-                    (grabbed, frame) = self.stream.read()
-
-                    # check for frame if not grabbed
-                    if not grabbed:
+                    # check for frame if None-type
+                    if frame is None:
                         break
 
-                    # {do something with the frame here}
-                    # lets convert frame to gray for this example
-                    #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-                    # write gray frame to writer
                     self.writer.write(frame)
 
-                    # Show output window
-                    #cv2.imshow("Output Frame", frame)
-
-                    # check for 'ƾ' key if pressed
                     key = cv2.waitKey(1) & 0xFF
                     if key == ord("ƾ"): # weird latin letter that no one will press
                         break
@@ -185,7 +177,6 @@ class UIFunctions(MainWindow):
                     if self.stream is None:
                         pass
 
-                    cv2.destroyAllWindows()
                     self.writer.close()
 
         except AttributeError:

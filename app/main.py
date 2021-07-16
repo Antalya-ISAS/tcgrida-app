@@ -99,6 +99,7 @@ class MainWindow(QMainWindow):
                     elif item == 2:
                         self.ui.comboBox.setCurrentIndex(2)
                         self.camera_state=2
+                        
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()
         self.ui.page_home.timer.timeout.connect(lambda: UIFunctions.nextFrameSlot(self))
@@ -150,7 +151,7 @@ class MainWindow(QMainWindow):
         self.ui.photo_button.clicked.connect(lambda: UIFunctions.take_photo(self))
 
         ## CONNECT RECORDING BUTTON
-        self.ui.video_button.clicked.connect(lambda: UIFunctions.shot_video(self))
+        self.ui.video_button.clicked.connect(lambda: UIFunctions.record_video(self))
        
         ## CONNECT FULL SCREN BUTTON
         self.ui.btn_fullscreen.clicked.connect(lambda: UIFunctions.full_screen(self))

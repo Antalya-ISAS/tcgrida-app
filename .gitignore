@@ -1,6 +1,30 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,pycharm,intellij,sublimetext
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,pycharm,intellij,sublimetext
 
+# Build, Dist and Test Folders; Spec Files 
+*/build/*
+*/dist/*
+*/test/*
+*.spec
+
+# Video Files
+*.webm
+*.mpg
+*.mp2
+*.mpeg
+*.mpe
+*.mpv
+*.ogg
+*.mp4
+*.m4p
+*.m4v
+*.avı
+*.wmv
+*.mov
+*.qt
+*.flv
+*.swf
+*.avchd
 
 # Database Files
 *.db

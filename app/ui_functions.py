@@ -53,7 +53,6 @@ class UIFunctions(MainWindow):
         options = {
     "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width()*2,
     "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height()*2,
-    "CAP_PROP_FPS": 30,
 }
         self.ui.page_home.vc = CamGear(source=0, logging=True, **options).start()
         self.ui.page_home.timer.start(round(1000. / 24))
@@ -138,7 +137,7 @@ class UIFunctions(MainWindow):
                 self.stream = self.ui.page_home.vc
 
                 # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
-                output_params = {"-input_framerate": (int(self.stream.framerate)*0.8)}
+                output_params = {"-input_framerate": (int(self.stream.framerate)), "-preset": "veryfast"}
 
                 # Define writer with defined parameters and suitable output filename for e.g. `Output.mp4`
                 self.writer = WriteGear(output_filename = f'{self.dir}/{file_name}', logging = True, **output_params)

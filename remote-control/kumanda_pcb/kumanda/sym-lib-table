@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name kumanda-rescue)(type Legacy)(uri ${KIPRJMOD}/kumanda-rescue.lib)(options "")(descr ""))
-)

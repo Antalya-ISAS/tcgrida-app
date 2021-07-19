@@ -1,9 +1,9 @@
 # Antalya ISAS
 
-## tcGrida's app and remote control, vehicle codes. 
+## tcGrida's app codes. 
 
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.txt)
- [![CodeFactor](https://www.codefactor.io/repository/github/antalya-isas/tcgrida/badge)](https://www.codefactor.io/repository/github/antalya-isas/tcgrida) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/eea002b87cec40e28f3f13d75b06b0c4)](https://www.codacy.com/gh/Antalya-ISAS/tcgrida/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Antalya-ISAS/tcgrida&amp;utm_campaign=Badge_Grade) [![Build status](https://ci.appveyor.com/api/projects/status/36a2x86gxkrr83ho?svg=true)](https://ci.appveyor.com/project/egeakman/tcgrida)
+  [![CodeFactor](https://www.codefactor.io/repository/github/antalya-isas/tcgrida-app/badge)](https://www.codefactor.io/repository/github/antalya-isas/tcgrida-app)  [![Codacy Badge](https://app.codacy.com/project/badge/Grade/eea002b87cec40e28f3f13d75b06b0c4)](https://www.codacy.com/gh/Antalya-ISAS/tcgrida-app/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Antalya-ISAS/tcgrida-app&amp;utm_campaign=Badge_Grade) [![Build status](https://ci.appveyor.com/api/projects/status/36a2x86gxkrr83ho?svg=true)](https://ci.appveyor.com/project/egeakman/tcgrida-app)
 
 ### What is tcGrida?
 tcGrida is an explorer ROV that is capable of long duration and long-distance dives, autonomous emergency easy-surface*, live video feed, 4K@60 video recording, high-pressure durable and waterproof design with a wired, trustable and stable connection.
@@ -14,6 +14,8 @@ tcGrida is an explorer ROV that is capable of long duration and long-distance di
 
  Instagram: https://instagram.com/antalya.isas
 
+ LinkedIn: https://linkedin.com/company/antalya-isas
+
  YouTube: https://www.youtube.com/channel/UCWZvgA6EhvlmvoRbStbpwaQ
 
  Website: https://antalyaisas.com
@@ -23,5 +25,7 @@ tcGrida is an explorer ROV that is capable of long duration and long-distance di
 ## Contact
 
 E-mail: info@antalyaisas.com
+
+Contact Form: https://antalyaisas.com/iletisim.html
 
 Address: [Molla Yusuf Mah. Hürriyet Cad. No: 25 Konyaaltı/Antalya, Türkiye](https://goo.gl/maps/5YjF16fynHth8VVB9)

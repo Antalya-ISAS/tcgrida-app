@@ -51,8 +51,8 @@ class UIFunctions(MainWindow):
         self.database.commit()        
 
         options = {
-    "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width()*2,
-    "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height()*2,
+    "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width(),
+    "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height(),
 }
         self.ui.page_home.vc = CamGear(source=0, logging=True, **options).start()
         self.ui.page_home.timer.start(round(1000. / 24))

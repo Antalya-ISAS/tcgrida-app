@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 # Resource object code (Python 3)
 # Created by: object code
 # Created by: The Resource Compiler for Qt version 5.14.2

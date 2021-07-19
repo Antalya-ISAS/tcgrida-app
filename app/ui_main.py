@@ -16,11 +16,10 @@
 ################################################################################
 
 import cv2
-from PyQt5.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
-    QRect, QSize, QUrl, Qt)
-from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
-    QFontDatabase, QIcon, QImage, QImageReader, QImageWriter, QLinearGradient, QPalette, QPainter, QPixmap,
-    QRadialGradient, QCursor)
+from PyQt5.QtCore import (QCoreApplication, QMetaObject, QSize, QUrl, Qt)
+from PyQt5.QtGui import (QColor,QCursor, QFont,
+    QIcon, QImage,QPixmap,
+    QCursor)
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from qtwidgets import AnimatedToggle

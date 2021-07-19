@@ -190,7 +190,7 @@ class UIFunctions(MainWindow):
             file_name = (f"tcGrida_{date_time}.jpg")
             # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
             print("The photo will be saved as " + file_name)
-            rval, frame = self.ui.page_home.vc.read()
+            frame = self.ui.page_home.vc.read()
             if self.dir == "":
                 UIFunctions.message_box(self, "Please choose a directory to save your snapshots.")
 

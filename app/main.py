@@ -14,12 +14,11 @@
 ##
 ################################################################################
 import sqlite3
-import sys, time, os
+import sys, os
 import platform
-from PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia
-from PyQt5.QtCore import (QCoreApplication, QFile, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect,
-                          QSize, QTextStream, QTime, QUrl, Qt, QEvent, QTimer)
-from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtCore import (QPropertyAnimation, QMetaObject,
+                          QSize, Qt, QTimer)
 from PyQt5.QtWidgets import *
 
 # GUI FILE

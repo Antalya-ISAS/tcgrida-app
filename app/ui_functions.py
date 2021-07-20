@@ -198,7 +198,7 @@ class UIFunctions(MainWindow):
         message.setDefaultButton(QMessageBox.Ok)
         message_state = message.exec()
         if(message_state == 1024):
-            self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', MainWindow.environment+"/Videos", QFileDialog.ShowDirsOnly)
+            self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', self.environment+"/Videos", QFileDialog.ShowDirsOnly)
             self.ui.lineEditSettings.setText(str(self.dir))
 
             self.cursor.execute("SELECT * FROM settings_path")

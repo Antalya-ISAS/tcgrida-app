@@ -1,21 +1,5 @@
 # -*- coding: UTF-8 -*-
 
-################################################################################
-##
-## BY: WANDERSON M.PIMENTA
-## PROJECT MADE WITH: Qt Designer and PySide2
-## V: 1.0.0
-##
-## This project can be used freely for all uses, as long as they maintain the
-## respective credits only in the Python scripts, any information in the visual
-## interface (GUI) can be modified without any implication.
-##
-## There are limitations on Qt licenses if you want to use your products
-## commercially, I recommend reading them on the official website:
-## https://doc.qt.io/qtforpython/licenses.html
-##
-################################################################################
-
 import cv2
 from PyQt5.QtCore import (QCoreApplication, QMetaObject, QSize, QUrl, Qt)
 from PyQt5.QtGui import (QColor,QCursor, QFont,
@@ -31,8 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-
-        # Aşırı alakasız toggle kodu. 
+ 
         self.toggle = AnimatedToggle(
                 checked_color="#007fff",
                
@@ -403,12 +386,14 @@ class Ui_MainWindow(object):
         ## HOME PAGE
         ###################################################
 
-        ## NOT: Arduino ile kablosuz bağlantı kurarsak basınç vs. değerleri sayısal olarak home'daki görüntünün üstünde
-        ## göstermek için cv2.putText(frame, dt,
+        ## NOTE: To show values such as pressure, simultaneously on the video
+        ## in the home page: cv2.putText(frame, datetime,
         ##                    (10, 100),
         ##                    font, 1,
         ##                    (210, 155, 155), 
-        ##                    4, cv2.LINE_8) şeklinde yazabiliriz. dt = datetime
+        ##                    4, cv2.LINE_8)
+        ##
+        ## (If we connect Arduino wirelessly...)
 
         self.page_home = QWidget()
         self.page_home.setObjectName(u"page_home")
@@ -757,12 +742,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_links.addWidget(self.formLinkButton, alignment = Qt.AlignCenter)
 
-        # TODO: Bu yol ile embed oluyor ama app üzerinde kötü gözüküyor.
+        # YOUTUBE VIDEO
+
+        """
         self.webview=QWebEngineView()
         self.webview.settings().setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
         self.webview.page().fullScreenRequested.connect(lambda request: request.accept())
         self.webview.setUrl(QUrl("https://www.youtube.com/embed/01ofdSy_Puo"))
         self.verticalLayout_13.addWidget(self.webview)
+        """
 
         self.stackedWidget.addWidget(self.page_settings)
 

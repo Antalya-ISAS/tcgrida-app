@@ -1,21 +1,5 @@
 # -*- coding: UTF-8 -*-
 
-################################################################################
-##
-## BY: WANDERSON M.PIMENTA
-## PROJECT MADE WITH: Qt Designer and PySide2
-## V: 1.0.0
-##
-## This project can be used freely for all uses, as long as they maintain the
-## respective credits only in the Python scripts, any information in the visual
-## interface (GUI) can be modified without any implication.
-##
-## There are limitations on Qt licenses if you want to use your products
-## commercially, I recommend reading them on the official website:
-## https://doc.qt.io/qtforpython/licenses.html
-##
-################################################################################
-
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime, screeninfo
 from vidgear_noperm.gears import WriteGear, CamGear
@@ -59,7 +43,7 @@ class UIFunctions(MainWindow):
         self.ui.page_home.vc = CamGear(source=0, logging=True, **options).start()
         self.ui.page_home.timer.start(round(1000. / 24))
 
-    # Capture frames
+    # CAPTURE FRAMES
     def nextFrameSlot(self):
         try:
             frame = self.ui.page_home.vc.read()
@@ -90,7 +74,7 @@ class UIFunctions(MainWindow):
     def full_screen(self):
         screen_id = 0
 
-        # get the size of the screen
+        # GET THE SIZE OF THE SCREEN
         screen = screeninfo.get_monitors()[screen_id]
 
         while True:
@@ -109,11 +93,10 @@ class UIFunctions(MainWindow):
 
         cv2.destroyAllWindows()
 
-    # VIDEO FUNC
+    # VIDEO FUNCTION
     def record_video(self):
         try:
             if(self.vid_value == 0):
-                print("Açık")
                 self.vid_value = 1
                 if self.dir == "":
                     UIFunctions.message_box(self, "Please choose a directory to save the video.")
@@ -138,28 +121,27 @@ class UIFunctions(MainWindow):
 
                 self.stream = self.ui.page_home.vc
 
-                # define suitable (Codec,CRF,preset) FFmpeg parameters for writer
+                # DEFINE SUITABLE FFMPEG PARAMETERS FOR WRITER
                 output_params = {"-input_framerate": (int(self.stream.framerate)), "-preset": "veryfast"}
 
-                # Define writer with defined parameters and suitable output filename for e.g. `Output.mp4`
+                # DEFINE WRITER WITH DEFINED PARAMETERS AND SUITABLE OUTPUT FILENAME FOR E.G. `OUTPUT.MP4`
                 self.writer = WriteGear(output_filename = f'{self.dir}/{file_name}', logging = True, **output_params)
 
-                # loop over
+                # LOOP OVER
                 while True:
                     frame = self.stream.read()
 
-                    # check for frame if None-type
+                    # CHECK FOR FRAME IF NONE-TYPE
                     if frame is None:
                         break
 
                     self.writer.write(frame)
 
                     key = cv2.waitKey(1) & 0xFF
-                    if key == ord("ƾ"): # weird latin letter that no one will press
+                    if key == ord("ƾ"): # Weird Latin letter that no one will press
                         break
 
             elif self.vid_value == 1:
-                print("Kapalı")
                 
                 if self.dir != "":
                     self.vid_value = 0
@@ -181,7 +163,7 @@ class UIFunctions(MainWindow):
                     self.writer.close()
 
         except AttributeError:
-            print("Hata")
+            pass
 
 
     # TAKE SNAPSHOT
@@ -190,18 +172,15 @@ class UIFunctions(MainWindow):
             today = datetime.datetime.now()
             date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
             file_name = (f"tcGrida_{date_time}.jpg")
-            # file_name = ("tcGrida_" + dt + str(self.num_photos) + ".jpg")
             print("The photo will be saved as " + file_name)
             frame = self.ui.page_home.vc.read()
             if self.dir == "":
                 UIFunctions.message_box(self, "Please choose a directory to save your snapshots.")
 
             else:
-                # TODO: Sanırım app hata vermese bile ve kaydedilecek klasör seçilse de fotoğraflar kaydedilmiyor?? Bunun düzelmesi lazım
                 out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
                 print("Photo saved to %s"%self.dir)
                 print(out)
-                # self.num_photos+=1
         except cv2.error:
             message = QMessageBox(self)
             message.setIcon(QMessageBox.Warning)
@@ -219,7 +198,7 @@ class UIFunctions(MainWindow):
         message.setDefaultButton(QMessageBox.Ok)
         message_state = message.exec()
         if(message_state == 1024):
-            self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', 'F:\\', QFileDialog.ShowDirsOnly)
+            self.dir = QFileDialog.getExistingDirectory(None, 'Select project folder:', MainWindow.environment+"/Videos", QFileDialog.ShowDirsOnly)
             self.ui.lineEditSettings.setText(str(self.dir))
 
             self.cursor.execute("SELECT * FROM settings_path")

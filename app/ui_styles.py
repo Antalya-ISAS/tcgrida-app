@@ -1,23 +1,7 @@
 # -*- coding: UTF-8 -*-
 
-################################################################################
-##
-## BY: WANDERSON M.PIMENTA
-## PROJECT MADE WITH: Qt Designer and PySide2
-## V: 1.0.0
-##
-## This project can be used freely for all uses, as long as they maintain the
-## respective credits only in the Python scripts, any information in the visual
-## interface (GUI) can be modified without any implication.
-##
-## There are limitations on Qt licenses if you want to use your products
-## commercially, I recommend reading them on the official website:
-## https://doc.qt.io/qtforpython/licenses.html
-##
-################################################################################
-
 class Style():
-    #rgba(27, 29, 35, 160) background dark, rgba(230, 230, 230, 160) bg light
+    ## rgba(27, 29, 35, 160) for dark background, rgba(230, 230, 230, 160) for light background
 
     style_line = (u"QLineEdit {\n"
 "	background-color: rgb(27, 29, 35);\n"

@@ -3,6 +3,7 @@
 import sqlite3
 import sys, os
 import platform
+import keyboard
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import (QPropertyAnimation, QMetaObject,
                           QSize, Qt, QTimer)
@@ -139,8 +140,11 @@ class MainWindow(QMainWindow):
         ## CONNECT RECORDING BUTTON
         self.ui.video_button.clicked.connect(lambda: UIFunctions.record_video(self))
        
-        ## CONNECT FULL SCREN BUTTON
+        ## CONNECT FULL SCREeN BUTTON
         self.ui.btn_fullscreen.clicked.connect(lambda: UIFunctions.full_screen(self))
+        self.shortcut = QShortcut("F", self)
+        self.shortcut.activated.connect(lambda: UIFunctions.full_screen(self))
+
         ## CONNECT TOGGLE BUTTON
         self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self))
 

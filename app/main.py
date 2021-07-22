@@ -139,7 +139,7 @@ class MainWindow(QMainWindow):
         ## CONNECT RECORDING BUTTON
         self.ui.video_button.clicked.connect(lambda: UIFunctions.record_video(self))
        
-        ## CONNECT FULL SCREeN BUTTON
+        ## CONNECT FULL SCREEN BUTTON
         self.ui.btn_fullscreen.clicked.connect(lambda: UIFunctions.full_screen(self))
         self.shortcut = QShortcut("F", self)
         self.shortcut.activated.connect(lambda: UIFunctions.full_screen(self))

@@ -3,7 +3,6 @@
 import sqlite3
 import sys, os
 import platform
-import keyboard
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import (QPropertyAnimation, QMetaObject,
                           QSize, Qt, QTimer)

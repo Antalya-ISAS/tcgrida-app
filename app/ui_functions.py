@@ -88,7 +88,7 @@ class UIFunctions(MainWindow):
             cv2.imshow(window_name, frame)
 
             key = cv2.waitKey(1) & 0xFF
-            if key == 27: # ESC key code
+            if key == 27 or key == 102 or key == 113 or key == 70 or key == 81: # Key codes to exit full screen
                 break
 
         cv2.destroyAllWindows()

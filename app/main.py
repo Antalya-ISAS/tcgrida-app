@@ -23,7 +23,11 @@ class MainWindow(QMainWindow):
         self.environment = os.environ["HOMEPATH"]
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
-
+        self.desktop = QApplication.desktop()
+        self.screenRect = self.desktop.screenGeometry()
+        self.screen_h = self.screenRect.height()
+        self.screen_w = self.screenRect.width()
+        
         self.dir = "" # Used to store PATH
         self.vid_value = 0 # Used to check the recording
 
@@ -168,6 +172,9 @@ class MainWindow(QMainWindow):
                 
                 self.move(self.pos() + event.globalPos() - self.dragPos)
                 self.dragPos = event.globalPos()
+                if(self.dragPos.y() == 0 or self.dragPos.x() == 0 or self.dragPos.y()==self.screen_h-1 or self.dragPos.x()==self.screen_w-1):
+                    UIFunctions.maximize_restore(self)
+                    
                 event.accept()
                 
 

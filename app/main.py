@@ -165,12 +165,11 @@ class MainWindow(QMainWindow):
 
             # MOVE WINDOW
             if event.buttons() == Qt.LeftButton:
-                try:
-                    self.move(self.pos() + event.globalPos() - self.dragPos)
-                    self.dragPos = event.globalPos()
-                    event.accept()
-                except:
-                    pass
+                
+                self.move(self.pos() + event.globalPos() - self.dragPos)
+                self.dragPos = event.globalPos()
+                event.accept()
+                
 
         ## WIDGET TO MOVE
         self.ui.frame_label_top_btns.mouseMoveEvent = moveWindow
@@ -220,7 +219,9 @@ class MainWindow(QMainWindow):
             UIFunctions.labelPage(self, "FOLLOW US!")
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
-        
+          
+    def mousePressEvent(self, event):
+        self.dragPos = event.globalPos()  
 
     ###################################################
     ## END -> DYNAMIC MENUS - FUNCTIONS

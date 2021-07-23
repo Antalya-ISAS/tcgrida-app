@@ -33,3 +33,4 @@ urllib3
 vidgear-noperm
 websocket-client
 youtube-dl
+black

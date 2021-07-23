@@ -60,6 +60,19 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
+    <td align="center"><a href="https://antalyaisas.com/"><img src="https://avatars.githubusercontent.com/u/75242929?v=4?s=250" width="250px;" alt=""/><br /><sub><b>Ege Akman</b></sub></a><br /><a href="https://github.com/antalya-isas/tcgrida-app/commits?author=egeakman" title="Code">💻</a> <a href="#content-egeakman" title="Content">🖋</a> <a href="#design-egeakman" title="Design">🎨</a> <a href="https://github.com/antalya-isas/tcgrida-app/commits?author=egeakman" title="Documentation">📖</a> <a href="#ideas-egeakman" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-egeakman" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-egeakman" title="Maintenance">🚧</a> <a href="#mentoring-egeakman" title="Mentoring">🧑‍🏫</a> <a href="#platform-egeakman" title="Packaging/porting to new platform">📦</a> <a href="#plugin-egeakman" title="Plugin/utility libraries">🔌</a> <a href="#projectManagement-egeakman" title="Project Management">📆</a> <a href="#research-egeakman" title="Research">🔬</a> <a href="https://github.com/antalya-isas/tcgrida-app/pulls?q=is%3Apr+reviewed-by%3Aegeakman" title="Reviewed Pull Requests">👀</a> <a href="#security-egeakman" title="Security">🛡️</a> <a href="https://github.com/antalya-isas/tcgrida-app/commits?author=egeakman" title="Tests">⚠️</a> <a href="#tool-egeakman" title="Tools">🔧</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
     <td align="center"><a href="https://antalyaisas.com/"><img src="https://avatars.githubusercontent.com/u/75242929?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ege Akman</b></sub></a><br /><a href="https://github.com/egeakman/tcgrida-app/issues?q=author%3Aegeakman" title="Bug reports">🐛</a> <a href="https://github.com/egeakman/tcgrida-app/commits?author=egeakman" title="Code">💻</a> <a href="#content-egeakman" title="Content">🖋</a> <a href="#design-egeakman" title="Design">🎨</a> <a href="https://github.com/egeakman/tcgrida-app/commits?author=egeakman" title="Documentation">📖</a> <a href="#example-egeakman" title="Examples">💡</a> <a href="#ideas-egeakman" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-egeakman" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-egeakman" title="Maintenance">🚧</a> <a href="#mentoring-egeakman" title="Mentoring">🧑‍🏫</a> <a href="#platform-egeakman" title="Packaging/porting to new platform">📦</a> <a href="#plugin-egeakman" title="Plugin/utility libraries">🔌</a> <a href="#projectManagement-egeakman" title="Project Management">📆</a> <a href="#research-egeakman" title="Research">🔬</a> <a href="https://github.com/egeakman/tcgrida-app/pulls?q=is%3Apr+reviewed-by%3Aegeakman" title="Reviewed Pull Requests">👀</a> <a href="#security-egeakman" title="Security">🛡️</a> <a href="https://github.com/egeakman/tcgrida-app/commits?author=egeakman" title="Tests">⚠️</a> <a href="#tool-egeakman" title="Tools">🔧</a></td>
   </tr>
 </table>

@@ -1,26 +1,25 @@
 # -*- coding: UTF-8 -*-
 
+################################
+
 import cv2
-from PyQt5.QtCore import (QCoreApplication, QMetaObject, QSize, QUrl, Qt)
-from PyQt5.QtGui import (QColor,QCursor, QFont,
-    QIcon, QImage,QPixmap,
-    QCursor)
+from PyQt5.QtCore import QCoreApplication, QMetaObject, QSize, QUrl, Qt
+from PyQt5.QtGui import QColor, QCursor, QFont, QIcon, QImage, QPixmap, QCursor
 from PyQt5.QtWidgets import *
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineSettings
 from qtwidgets import AnimatedToggle
 from ui_styles import Style
 import files_rc
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
- 
+
         self.toggle = AnimatedToggle(
-                checked_color="#007fff",
-               
+            checked_color="#007fff",
         )
-        
 
         self.toggle.setObjectName(u"toggle")
 
@@ -30,8 +29,9 @@ class Ui_MainWindow(object):
 
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
-        self.centralwidget.setStyleSheet(u"background: transparent;\n"
-"color: rgb(210, 210, 210);")
+        self.centralwidget.setStyleSheet(
+            u"background: transparent;\n" "color: rgb(210, 210, 210);"
+        )
         self.horizontalLayout = QHBoxLayout(self.centralwidget)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -71,7 +71,9 @@ class Ui_MainWindow(object):
         sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.btn_toggle_menu.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.btn_toggle_menu.sizePolicy().hasHeightForWidth()
+        )
         self.btn_toggle_menu.setSizePolicy(sizePolicy)
         self.btn_toggle_menu.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
@@ -104,7 +106,9 @@ class Ui_MainWindow(object):
         sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frame_label_top_btns.sizePolicy().hasHeightForWidth())
+        sizePolicy1.setHeightForWidth(
+            self.frame_label_top_btns.sizePolicy().hasHeightForWidth()
+        )
         self.frame_label_top_btns.setSizePolicy(sizePolicy1)
         self.frame_label_top_btns.setFrameShape(QFrame.NoFrame)
         self.frame_label_top_btns.setFrameShadow(QFrame.Raised)
@@ -115,11 +119,13 @@ class Ui_MainWindow(object):
         self.frame_icon_top_bar = QFrame(self.frame_label_top_btns)
         self.frame_icon_top_bar.setObjectName(u"frame_icon_top_bar")
         self.frame_icon_top_bar.setMaximumSize(QSize(30, 30))
-        self.frame_icon_top_bar.setStyleSheet(u"background: transparent;\n"
-"background-image: url(:/16x16/icons/16x16/cil-drop.png);\n"
-"background-position: center;\n"
-"background-repeat: no-repeat;\n"
-"")
+        self.frame_icon_top_bar.setStyleSheet(
+            u"background: transparent;\n"
+            "background-image: url(:/16x16/icons/16x16/cil-drop.png);\n"
+            "background-position: center;\n"
+            "background-repeat: no-repeat;\n"
+            ""
+        )
 
         self.frame_icon_top_bar.setFrameShape(QFrame.StyledPanel)
         self.frame_icon_top_bar.setFrameShadow(QFrame.Raised)
@@ -134,17 +140,17 @@ class Ui_MainWindow(object):
         font1.setBold(True)
         font1.setWeight(75)
         self.label_title_bar_top.setFont(font1)
-        self.label_title_bar_top.setStyleSheet(u"background: transparent;\n"
-"")
+        self.label_title_bar_top.setStyleSheet(u"background: transparent;\n" "")
 
         self.horizontalLayout_10.addWidget(self.label_title_bar_top)
-
 
         self.horizontalLayout_4.addWidget(self.frame_label_top_btns)
 
         self.frame_btns_right = QFrame(self.frame_top_btns)
         self.frame_btns_right.setObjectName(u"frame_btns_right")
-        sizePolicy1.setHeightForWidth(self.frame_btns_right.sizePolicy().hasHeightForWidth())
+        sizePolicy1.setHeightForWidth(
+            self.frame_btns_right.sizePolicy().hasHeightForWidth()
+        )
         self.frame_btns_right.setSizePolicy(sizePolicy1)
         self.frame_btns_right.setMaximumSize(QSize(120, 16777215))
         self.frame_btns_right.setFrameShape(QFrame.NoFrame)
@@ -158,44 +164,62 @@ class Ui_MainWindow(object):
         sizePolicy2 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.btn_minimize.sizePolicy().hasHeightForWidth())
+        sizePolicy2.setHeightForWidth(
+            self.btn_minimize.sizePolicy().hasHeightForWidth()
+        )
         self.btn_minimize.setSizePolicy(sizePolicy2)
         self.btn_minimize.setMinimumSize(QSize(40, 0))
         self.btn_minimize.setMaximumSize(QSize(40, 16777215))
-        self.btn_minimize.setStyleSheet(u"QPushButton {	\n"
-"	border: none;\n"
-"	background-color: transparent;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	background-color: rgb(85, 170, 255);\n"
-"}")
+        self.btn_minimize.setStyleSheet(
+            u"QPushButton {	\n"
+            "	border: none;\n"
+            "	background-color: transparent;\n"
+            "}\n"
+            "QPushButton:hover {\n"
+            "	background-color: rgb(52, 59, 72);\n"
+            "}\n"
+            "QPushButton:pressed {	\n"
+            "	background-color: rgb(85, 170, 255);\n"
+            "}"
+        )
         icon = QIcon()
-        icon.addFile(u":/16x16/icons/16x16/cil-window-minimize.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(
+            u":/16x16/icons/16x16/cil-window-minimize.png",
+            QSize(),
+            QIcon.Normal,
+            QIcon.Off,
+        )
         self.btn_minimize.setIcon(icon)
 
         self.horizontalLayout_5.addWidget(self.btn_minimize)
 
         self.btn_maximize_restore = QPushButton(self.frame_btns_right)
         self.btn_maximize_restore.setObjectName(u"btn_maximize_restore")
-        sizePolicy2.setHeightForWidth(self.btn_maximize_restore.sizePolicy().hasHeightForWidth())
+        sizePolicy2.setHeightForWidth(
+            self.btn_maximize_restore.sizePolicy().hasHeightForWidth()
+        )
         self.btn_maximize_restore.setSizePolicy(sizePolicy2)
         self.btn_maximize_restore.setMinimumSize(QSize(40, 0))
         self.btn_maximize_restore.setMaximumSize(QSize(40, 16777215))
-        self.btn_maximize_restore.setStyleSheet(u"QPushButton {	\n"
-"	border: none;\n"
-"	background-color: transparent;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	background-color: rgb(85, 170, 255);\n"
-"}")
+        self.btn_maximize_restore.setStyleSheet(
+            u"QPushButton {	\n"
+            "	border: none;\n"
+            "	background-color: transparent;\n"
+            "}\n"
+            "QPushButton:hover {\n"
+            "	background-color: rgb(52, 59, 72);\n"
+            "}\n"
+            "QPushButton:pressed {	\n"
+            "	background-color: rgb(85, 170, 255);\n"
+            "}"
+        )
         icon1 = QIcon()
-        icon1.addFile(u":/16x16/icons/16x16/cil-window-maximize.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(
+            u":/16x16/icons/16x16/cil-window-maximize.png",
+            QSize(),
+            QIcon.Normal,
+            QIcon.Off,
+        )
         self.btn_maximize_restore.setIcon(icon1)
 
         self.horizontalLayout_5.addWidget(self.btn_maximize_restore)
@@ -206,25 +230,27 @@ class Ui_MainWindow(object):
         self.btn_close.setSizePolicy(sizePolicy2)
         self.btn_close.setMinimumSize(QSize(40, 0))
         self.btn_close.setMaximumSize(QSize(40, 16777215))
-        self.btn_close.setStyleSheet(u"QPushButton {	\n"
-"	border: none;\n"
-"	background-color: transparent;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(52, 59, 72);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	background-color: rgb(85, 170, 255);\n"
-"}")
+        self.btn_close.setStyleSheet(
+            u"QPushButton {	\n"
+            "	border: none;\n"
+            "	background-color: transparent;\n"
+            "}\n"
+            "QPushButton:hover {\n"
+            "	background-color: rgb(52, 59, 72);\n"
+            "}\n"
+            "QPushButton:pressed {	\n"
+            "	background-color: rgb(85, 170, 255);\n"
+            "}"
+        )
         icon2 = QIcon()
-        icon2.addFile(u":/16x16/icons/16x16/cil-x.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(
+            u":/16x16/icons/16x16/cil-x.png", QSize(), QIcon.Normal, QIcon.Off
+        )
         self.btn_close.setIcon(icon2)
 
         self.horizontalLayout_5.addWidget(self.btn_close)
 
-
         self.horizontalLayout_4.addWidget(self.frame_btns_right, 0, Qt.AlignRight)
-
 
         self.verticalLayout_2.addWidget(self.frame_top_btns)
 
@@ -258,16 +284,15 @@ class Ui_MainWindow(object):
         font3.setWeight(75)
         self.label_top_info_2.setFont(font3)
         self.label_top_info_2.setStyleSheet(u"color: rgb(98, 103, 111);")
-        self.label_top_info_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_top_info_2.setAlignment(
+            Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter
+        )
 
         self.horizontalLayout_8.addWidget(self.label_top_info_2)
 
-
         self.verticalLayout_2.addWidget(self.frame_top_info)
 
-
         self.horizontalLayout_3.addWidget(self.frame_top_right)
-
 
         self.verticalLayout.addWidget(self.frame_top)
 
@@ -287,7 +312,9 @@ class Ui_MainWindow(object):
         sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.frame_left_menu.sizePolicy().hasHeightForWidth())
+        sizePolicy3.setHeightForWidth(
+            self.frame_left_menu.sizePolicy().hasHeightForWidth()
+        )
         self.frame_left_menu.setSizePolicy(sizePolicy3)
         self.frame_left_menu.setMinimumSize(QSize(70, 0))
         self.frame_left_menu.setMaximumSize(QSize(70, 16777215))
@@ -312,7 +339,9 @@ class Ui_MainWindow(object):
 
         self.frame_extra_menus = QFrame(self.frame_left_menu)
         self.frame_extra_menus.setObjectName(u"frame_extra_menus")
-        sizePolicy3.setHeightForWidth(self.frame_extra_menus.sizePolicy().hasHeightForWidth())
+        sizePolicy3.setHeightForWidth(
+            self.frame_extra_menus.sizePolicy().hasHeightForWidth()
+        )
         self.frame_extra_menus.setSizePolicy(sizePolicy3)
         self.frame_extra_menus.setFrameShape(QFrame.NoFrame)
         self.frame_extra_menus.setFrameShadow(QFrame.Raised)
@@ -327,8 +356,10 @@ class Ui_MainWindow(object):
         self.photo_button.setToolTip("Take a snapshot!")
         self.photo_button.setCursor(QCursor(Qt.PointingHandCursor))
         icon3 = QIcon()
-        icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.photo_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
+        icon3.addFile(
+            u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off
+        )
+        self.photo_button.setIcon(icon3)  # border: 5px solid rgb(15, 16, 20)
         self.photo_button.setStyleSheet(Style.style_circ_btn)
 
         self.layout_menu_bottom.addWidget(self.photo_button, 0, Qt.AlignHCenter)
@@ -339,9 +370,9 @@ class Ui_MainWindow(object):
         self.video_button.setObjectName(u"VIDEO")
         self.video_button.setToolTip("Record a video!")
         self.video_button.setCursor(QCursor(Qt.PointingHandCursor))
-        #icon3 = QIcon()
-        #icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
-        #self.video_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
+        # icon3 = QIcon()
+        # icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
+        # self.video_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
         self.video_button.setText("REC")
         self.video_button.setStyleSheet(Style.style_circ_btn2)
 
@@ -357,7 +388,6 @@ class Ui_MainWindow(object):
         self.layout_menu_bottom.addWidget(self.btn_fullscreen, 0, Qt.AlignHCenter)
 
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)
-
 
         self.horizontalLayout_2.addWidget(self.frame_left_menu)
 
@@ -390,7 +420,7 @@ class Ui_MainWindow(object):
         ## in the home page: cv2.putText(frame, datetime,
         ##                    (10, 100),
         ##                    font, 1,
-        ##                    (210, 155, 155), 
+        ##                    (210, 155, 155),
         ##                    4, cv2.LINE_8)
         ##
         ## (If we connect Arduino wirelessly...)
@@ -402,10 +432,10 @@ class Ui_MainWindow(object):
 
         self.page_home.label = QLabel()
         self.page_home.label.setObjectName(u"label")
-        #self. = QFont()
-        #self..setFamily(u"Segoe UI")
-        #self..setPointSize(14)
-        #self.label.setFont(self.)
+        # self. = QFont()
+        # self..setFamily(u"Segoe UI")
+        # self..setPointSize(14)
+        # self.label.setFont(self.)
         self.page_home.label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_10.addWidget(self.page_home.label)
@@ -416,12 +446,12 @@ class Ui_MainWindow(object):
         ## INFO PAGE
         ###################################################
 
-        #TODO: Add info page.
+        # TODO: Add info page.
         self.page_info = QWidget()
         self.page_info.setObjectName(u"page_info")
-        self.verticalLayoutInfo =QVBoxLayout(self.page_info)
+        self.verticalLayoutInfo = QVBoxLayout(self.page_info)
         self.verticalLayoutInfo.setObjectName(u"verticalLayoutInfo")
-        
+
         self.label = QLabel()
         self.label.setObjectName(u"frame_label")
 
@@ -435,7 +465,6 @@ class Ui_MainWindow(object):
         self.label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayoutInfo.addWidget(self.label)
-        
 
         self.stackedWidget.addWidget(self.page_info)
 
@@ -450,10 +479,11 @@ class Ui_MainWindow(object):
 
         self.frame = QFrame(self.page_settings)
         self.frame.setObjectName(u"frame")
-        self.frame.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
-"border-radius: 5px;\n"
-"padding: 10px;"
-)
+        self.frame.setStyleSheet(
+            u"background-color: rgb(39, 44, 54);\n"
+            "border-radius: 5px;\n"
+            "padding: 10px;"
+        )
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
 
@@ -470,7 +500,9 @@ class Ui_MainWindow(object):
         self.frame.label.setObjectName(u"frame_label")
         self.frame.label.setFont(self.font6)
 
-        self.frame.label.setText("Choose which directory your snapshots will be saved to:")
+        self.frame.label.setText(
+            "Choose which directory your snapshots will be saved to:"
+        )
         self.frame.label.setOpenExternalLinks(True)
         self.frame.label.setAlignment(Qt.AlignCenter)
 
@@ -490,22 +522,26 @@ class Ui_MainWindow(object):
         font8.setFamily(u"Segoe UI")
         font8.setPointSize(9)
         self.pushButtonSettings.setFont(font8)
-        self.pushButtonSettings.setStyleSheet(u"QPushButton {\n"
-"	border: 2px solid rgb(52, 59, 72);\n"
-"	border-radius: 5px;	\n"
-"	background-color: rgb(52, 59, 72);\n"
-"       margin-left: 20px;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(57, 65, 80);\n"
-"	border: 2px solid rgb(61, 70, 86);\n"
-"}\n"
-"QPushButton:pressed {	\n"
-"	background-color: rgb(35, 40, 49);\n"
-"	border: 2px solid rgb(43, 50, 61);\n"
-"}")
+        self.pushButtonSettings.setStyleSheet(
+            u"QPushButton {\n"
+            "	border: 2px solid rgb(52, 59, 72);\n"
+            "	border-radius: 5px;	\n"
+            "	background-color: rgb(52, 59, 72);\n"
+            "       margin-left: 20px;\n"
+            "}\n"
+            "QPushButton:hover {\n"
+            "	background-color: rgb(57, 65, 80);\n"
+            "	border: 2px solid rgb(61, 70, 86);\n"
+            "}\n"
+            "QPushButton:pressed {	\n"
+            "	background-color: rgb(35, 40, 49);\n"
+            "	border: 2px solid rgb(43, 50, 61);\n"
+            "}"
+        )
         icon3 = QIcon()
-        icon3.addFile(u":/16x16/icons/16x16/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(
+            u":/16x16/icons/16x16/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off
+        )
         self.pushButtonSettings.setIcon(icon3)
 
         self.horizontalLayout_11.addWidget(self.pushButtonSettings)
@@ -516,10 +552,11 @@ class Ui_MainWindow(object):
         self.frame_2 = QFrame(self.page_settings)
         self.frame_2.setObjectName(u"frame_2")
         self.frame_2.setMinimumSize(QSize(0, 150))
-        self.frame_2.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
-"border-radius: 5px;\n"
-"padding: 10px;"
-)
+        self.frame_2.setStyleSheet(
+            u"background-color: rgb(39, 44, 54);\n"
+            "border-radius: 5px;\n"
+            "padding: 10px;"
+        )
         self.frame_2.setFrameShape(QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.verticalLayout_11 = QVBoxLayout(self.frame_2)
@@ -557,10 +594,11 @@ class Ui_MainWindow(object):
         self.frame_3 = QFrame(self.page_settings)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setMinimumSize(QSize(0, 150))
-        self.frame_3.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
-"border-radius: 5px;\n"
-"padding: 10px;"
-)
+        self.frame_3.setStyleSheet(
+            u"background-color: rgb(39, 44, 54);\n"
+            "border-radius: 5px;\n"
+            "padding: 10px;"
+        )
         self.frame_3.setFrameShape(QFrame.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Raised)
         self.verticalLayout_12 = QVBoxLayout(self.frame_3)
@@ -579,14 +617,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.addWidget(self.frame_3.label)
 
         self.frame_3.space = QLabel()
-        self.frame_3.space.setStyleSheet(u"	border-radius: 10px;	\n"
-"	background-color: rgb(39, 44, 54);")
-        #self.frame_3.space.setText("D̲A̲R̲K̲ ̲M̲O̲D̲E̲")
+        self.frame_3.space.setStyleSheet(
+            u"	border-radius: 10px;	\n" "	background-color: rgb(39, 44, 54);"
+        )
+        # self.frame_3.space.setText("D̲A̲R̲K̲ ̲M̲O̲D̲E̲")
         self.frame_3.space.setAlignment(Qt.AlignRight)
         self.frame_3.space2 = QLabel()
-        self.frame_3.space2.setStyleSheet(u"	border-radius: 10px;	\n"
-"	background-color: rgb(39, 44, 54);")
-        #self.frame_3.space2.setText("L̲I̲G̲H̲T̲ ̲M̲O̲D̲E̲")
+        self.frame_3.space2.setStyleSheet(
+            u"	border-radius: 10px;	\n" "	background-color: rgb(39, 44, 54);"
+        )
+        # self.frame_3.space2.setText("L̲I̲G̲H̲T̲ ̲M̲O̲D̲E̲")
         self.frame_3.space2.setAlignment(Qt.AlignLeft)
 
         self.horizontalLayout_12.addWidget(self.frame_3.space)
@@ -596,7 +636,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.addLayout(self.horizontalLayout_12)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
 
-
         self.verticalLayoutSettings.addWidget(self.frame_3)
 
         ###################################################
@@ -605,18 +644,20 @@ class Ui_MainWindow(object):
 
         self.page_links = QWidget()
         self.page_links.setObjectName(u"page_links")
-        
+
         self.frame_4 = QFrame(self.page_links)
         self.frame_4.setObjectName(u"frame_4")
-        self.frame_4.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
-"border-radius: 5px;")
+        self.frame_4.setStyleSheet(
+            u"background-color: rgb(39, 44, 54);\n" "border-radius: 5px;"
+        )
         self.frame_4.setFrameShape(QFrame.StyledPanel)
         self.frame_4.setFrameShadow(QFrame.Raised)
 
         self.frame_5 = QFrame(self.page_links)
         self.frame_5.setObjectName(u"frame_5")
-        self.frame_5.setStyleSheet(u"background-color: rgb(39, 44, 54);\n"
-"border-radius: 5px;")
+        self.frame_5.setStyleSheet(
+            u"background-color: rgb(39, 44, 54);\n" "border-radius: 5px;"
+        )
         self.frame_5.setFrameShape(QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QFrame.Raised)
 
@@ -663,84 +704,104 @@ class Ui_MainWindow(object):
         self.instaLinkButton = QCommandLinkButton(self.frame_4)
         self.instaLinkButton.setText("Our Instagram Page!")
         self.instaLinkButton.setObjectName(u"instaLinkButton")
-        self.instaLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
-"	background-color: rgb(30,35,40);	\n"
-"}")
+        self.instaLinkButton.setStyleSheet(
+            u"QCommandLinkButton:hover {\n" "	background-color: rgb(30,35,40);	\n" "}"
+        )
         self.instaLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
-        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(
+            u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off
+        )
         self.instaLinkButton.setIcon(icon4)
 
         self.instaLinkButton.setDescription("Instagram")
 
-        self.verticalLayout_links.addWidget(self.instaLinkButton, alignment = Qt.AlignCenter)
+        self.verticalLayout_links.addWidget(
+            self.instaLinkButton, alignment=Qt.AlignCenter
+        )
 
         # LINK BUTTONS - GITHUB
 
         self.gitLinkButton = QCommandLinkButton(self.frame_4)
         self.gitLinkButton.setText("Our Github Page!")
         self.gitLinkButton.setObjectName(u"gitLinkButton")
-        self.gitLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
-"	background-color: rgb(30,35,40);	\n"
-"}")
+        self.gitLinkButton.setStyleSheet(
+            u"QCommandLinkButton:hover {\n" "	background-color: rgb(30,35,40);	\n" "}"
+        )
         self.gitLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
-        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(
+            u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off
+        )
         self.gitLinkButton.setIcon(icon4)
 
         self.gitLinkButton.setDescription("Github")
 
-        self.verticalLayout_links.addWidget(self.gitLinkButton, alignment = Qt.AlignCenter)
+        self.verticalLayout_links.addWidget(
+            self.gitLinkButton, alignment=Qt.AlignCenter
+        )
 
         # LINK BUTTONS - WEBSITE
-        
-        self.webLinkButton=QCommandLinkButton(self.frame_4)
+
+        self.webLinkButton = QCommandLinkButton(self.frame_4)
         self.webLinkButton.setText("Our Website!")
         self.webLinkButton.setObjectName(u"webLinkButton")
-        self.webLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
-"	background-color: rgb(30,35,40);	\n"
-"}")
+        self.webLinkButton.setStyleSheet(
+            u"QCommandLinkButton:hover {\n" "	background-color: rgb(30,35,40);	\n" "}"
+        )
         self.webLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
-        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(
+            u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off
+        )
         self.webLinkButton.setIcon(icon4)
 
         self.webLinkButton.setDescription("Website")
-        
-        self.verticalLayout_links.addWidget(self.webLinkButton, alignment = Qt.AlignCenter)
+
+        self.verticalLayout_links.addWidget(
+            self.webLinkButton, alignment=Qt.AlignCenter
+        )
 
         # LINK BUTTONS - YOUTUBE
-        self.youtubeLinkButton=QCommandLinkButton(self.frame_4)
+        self.youtubeLinkButton = QCommandLinkButton(self.frame_4)
         self.youtubeLinkButton.setText("Our Youtube Channel!")
         self.youtubeLinkButton.setObjectName(u"youtubeLinkButton")
-        self.youtubeLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
-"	background-color: rgb(30,35,40);	\n"
-"}")
+        self.youtubeLinkButton.setStyleSheet(
+            u"QCommandLinkButton:hover {\n" "	background-color: rgb(30,35,40);	\n" "}"
+        )
         self.youtubeLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
-        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(
+            u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off
+        )
         self.youtubeLinkButton.setIcon(icon4)
 
         self.youtubeLinkButton.setDescription("Youtube")
 
-        self.verticalLayout_links.addWidget(self.youtubeLinkButton, alignment=Qt.AlignCenter)
+        self.verticalLayout_links.addWidget(
+            self.youtubeLinkButton, alignment=Qt.AlignCenter
+        )
 
         # LINK BUTTONS - FORM
 
         self.formLinkButton = QCommandLinkButton(self.frame_4)
         self.formLinkButton.setText("Feedback Form!")
         self.formLinkButton.setObjectName(u"formLinkButton")
-        self.formLinkButton.setStyleSheet(u"QCommandLinkButton:hover {\n"
-"	background-color: rgb(30,35,40);	\n"
-"}")
+        self.formLinkButton.setStyleSheet(
+            u"QCommandLinkButton:hover {\n" "	background-color: rgb(30,35,40);	\n" "}"
+        )
         self.formLinkButton.setCursor(QCursor(Qt.PointingHandCursor))
         icon4 = QIcon()
-        icon4.addFile(u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(
+            u":/16x16/icons/16x16/cil-link.png", QSize(), QIcon.Normal, QIcon.Off
+        )
         self.formLinkButton.setIcon(icon4)
 
         self.formLinkButton.setDescription("Any Comments?")
 
-        self.verticalLayout_links.addWidget(self.formLinkButton, alignment = Qt.AlignCenter)
+        self.verticalLayout_links.addWidget(
+            self.formLinkButton, alignment=Qt.AlignCenter
+        )
 
         # YOUTUBE VIDEO
 
@@ -755,7 +816,6 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_settings)
 
         self.verticalLayout_9.addWidget(self.stackedWidget)
-
 
         self.verticalLayout_4.addWidget(self.frame_content)
 
@@ -790,35 +850,34 @@ class Ui_MainWindow(object):
         self.label_version.setMaximumSize(QSize(100, 16777215))
         self.label_version.setFont(font2)
         self.label_version.setStyleSheet(u"color: rgb(98, 103, 111);")
-        self.label_version.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_version.setAlignment(
+            Qt.AlignRight | Qt.AlignTrailing | Qt.AlignVCenter
+        )
 
         self.horizontalLayout_7.addWidget(self.label_version)
-
 
         self.horizontalLayout_6.addWidget(self.frame_label_bottom)
 
         self.frame_size_grip = QFrame(self.frame_grip)
         self.frame_size_grip.setObjectName(u"frame_size_grip")
         self.frame_size_grip.setMaximumSize(QSize(20, 20))
-        self.frame_size_grip.setStyleSheet(u"QSizeGrip {\n"
-"	background-image: url(:/16x16/icons/16x16/cil-size-grip.png);\n"
-"	background-position: center;\n"
-"	background-repeat: no-reperat;\n"
-"}")
+        self.frame_size_grip.setStyleSheet(
+            u"QSizeGrip {\n"
+            "	background-image: url(:/16x16/icons/16x16/cil-size-grip.png);\n"
+            "	background-position: center;\n"
+            "	background-repeat: no-reperat;\n"
+            "}"
+        )
         self.frame_size_grip.setFrameShape(QFrame.NoFrame)
         self.frame_size_grip.setFrameShadow(QFrame.Raised)
 
         self.horizontalLayout_6.addWidget(self.frame_size_grip)
 
-
         self.verticalLayout_4.addWidget(self.frame_grip)
-
 
         self.horizontalLayout_2.addWidget(self.frame_content_right)
 
-
         self.verticalLayout.addWidget(self.frame_center)
-
 
         self.horizontalLayout.addWidget(self.frame_main)
 
@@ -834,29 +893,49 @@ class Ui_MainWindow(object):
         self.stackedWidget.setCurrentIndex(1)
 
         QMetaObject.connectSlotsByName(MainWindow)
+
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(
+            QCoreApplication.translate("MainWindow", u"MainWindow", None)
+        )
         self.btn_toggle_menu.setText("")
-        self.label_title_bar_top.setText(QCoreApplication.translate("MainWindow", u"tcGrida App", None))
-#if QT_CONFIG(tooltip)
-        self.btn_minimize.setToolTip(QCoreApplication.translate("MainWindow", u"Minimize", None))
-#endif // QT_CONFIG(tooltip)
+        self.label_title_bar_top.setText(
+            QCoreApplication.translate("MainWindow", u"tcGrida App", None)
+        )
+        # if QT_CONFIG(tooltip)
+        self.btn_minimize.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Minimize", None)
+        )
+        # endif // QT_CONFIG(tooltip)
         self.btn_minimize.setText("")
-#if QT_CONFIG(tooltip)
-        self.btn_maximize_restore.setToolTip(QCoreApplication.translate("MainWindow", u"Maximize", None))
-#endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(tooltip)
+        self.btn_maximize_restore.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Maximize", None)
+        )
+        # endif // QT_CONFIG(tooltip)
         self.btn_maximize_restore.setText("")
-#if QT_CONFIG(tooltip)
-        self.btn_close.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
-#endif // QT_CONFIG(tooltip)
+        # if QT_CONFIG(tooltip)
+        self.btn_close.setToolTip(
+            QCoreApplication.translate("MainWindow", u"Close", None)
+        )
+        # endif // QT_CONFIG(tooltip)
         self.btn_close.setText("")
 
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"PC Camera 0", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"USB Camera 1", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"USB Camera 2", None))
+        self.comboBox.setItemText(
+            0, QCoreApplication.translate("MainWindow", u"PC Camera 0", None)
+        )
+        self.comboBox.setItemText(
+            1, QCoreApplication.translate("MainWindow", u"USB Camera 1", None)
+        )
+        self.comboBox.setItemText(
+            2, QCoreApplication.translate("MainWindow", u"USB Camera 2", None)
+        )
 
         self.label_credits.setText(QCoreApplication.translate("MainWindow", u"", None))
-        self.label_version.setText(QCoreApplication.translate("MainWindow", u"Antalya ISAS", None))
+        self.label_version.setText(
+            QCoreApplication.translate("MainWindow", u"Antalya ISAS", None)
+        )
+
     # retranslateUi

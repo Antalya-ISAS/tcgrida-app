@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 
+################################
+
 from PyQt5.QtCore import *
 
 qt_resource_data = b"\
@@ -56355,10 +56357,15 @@ qt_resource_struct = b"\
 \x00\x00\x01q\xd70\x01\xda\
 "
 
+
 def qInitResources():
     qRegisterResourceData(0x03, qt_resource_struct, qt_resource_name, qt_resource_data)
 
+
 def qCleanupResources():
-    qUnregisterResourceData(0x03, qt_resource_struct, qt_resource_name, qt_resource_data)
+    qUnregisterResourceData(
+        0x03, qt_resource_struct, qt_resource_name, qt_resource_data
+    )
+
 
 qInitResources()

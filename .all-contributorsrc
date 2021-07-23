@@ -1,0 +1,41 @@
+{
+  "projectName": "tcgrida-app",
+  "projectOwner": "egeakman",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "egeakman",
+      "name": "Ege Akman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/75242929?v=4",
+      "profile": "https://antalyaisas.com/",
+      "contributions": [
+        "bug",
+        "code",
+        "content",
+        "design",
+        "doc",
+        "example",
+        "ideas",
+        "infra",
+        "maintenance",
+        "mentoring",
+        "platform",
+        "plugin",
+        "projectManagement",
+        "research",
+        "review",
+        "security",
+        "test",
+        "tool"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

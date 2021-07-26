@@ -114,12 +114,13 @@ class UIFunctions(MainWindow):
     def record_video(self):
         try:
             if self.vid_value == 0:
-                self.vid_value = 1
+                
                 if self.dir == "":
                     UIFunctions.message_box(
                         self, "Please choose a directory to save the video."
                     )
                     return
+                self.vid_value = 1
                 self.ui.video_button.setText("STOP")
                 self.ui.video_button.setStyleSheet(
                     "QPushButton {	\n"

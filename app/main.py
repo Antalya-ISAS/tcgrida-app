@@ -211,13 +211,13 @@ class MainWindow(QMainWindow):
 
                 self.move(self.pos() + event.globalPos() - self.dragPos)
                 self.dragPos = event.globalPos()
-                if (
-                    self.dragPos.y() == 0
-                    or self.dragPos.x() == 0
-                    or self.dragPos.y() == self.screen_h - 1
-                    or self.dragPos.x() == self.screen_w - 1
-                ):
-                    UIFunctions.maximize_restore(self)
+                # if (
+                #     self.dragPos.y() == 0
+                #     or self.dragPos.x() == 0
+                #     or self.dragPos.y() == self.screen_h - 1
+                #     or self.dragPos.x() == self.screen_w - 1
+                # ):
+                #     UIFunctions.maximize_restore(self)
 
                 event.accept()
 

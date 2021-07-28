@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
 
         self.toggle.setObjectName(u"toggle")
 
-        # Toggle ends, main windows continues.
+        # Toggle ends, mainwindow continues.
         MainWindow.resize(1000, 720)
         MainWindow.setMinimumSize(QSize(1000, 720))
 

@@ -9,7 +9,6 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
 from main import *
-import sys
 
 ## ==> GLOBALS
 GLOBAL_STATE = 0

@@ -32,6 +32,9 @@
 # Python Cache Files
 */__pycache__/*
 
+# VS Code Settings Files
+*/.vscode/*
+
 # .idea Files
 */.idea/*
 

@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
 
         self.toggle.setObjectName(u"toggle")
 
-        # Toggle bitiyor, mainwindow buradan devam ediyor.
+        # Toggle ends, main windows continues.
         MainWindow.resize(1000, 720)
         MainWindow.setMinimumSize(QSize(1000, 720))
 
@@ -674,7 +674,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.verticalLayout_13.setAlignment(Qt.AlignCenter)
 
-        ## TODO: Bu logo neden görünmüyor?
+        ## TODO: Why is the logo not rendered?
         self.page_links.logo = QLabel(self.frame_4)
         self.page_links.logo.setObjectName(u"label_logo")
         self.page_links.logo.setAlignment(Qt.AlignCenter)

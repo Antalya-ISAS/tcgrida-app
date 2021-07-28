@@ -9,12 +9,13 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtGui import QImage, QPixmap
 from ui_main import *
 from main import *
+import sys
 
 ## ==> GLOBALS
 GLOBAL_STATE = 0
 GLOBAL_TITLE_BAR = True
 
-## ==> COUT INITIAL MENU
+## ==> COUNT INITIAL MENU
 count = 1
 
 
@@ -31,9 +32,9 @@ class UIFunctions(MainWindow):
     # OPEN CAMERA
     def openCam(self, cam):
         self.cursor.execute("SELECT * FROM settings_camera")
-        liste = self.cursor.fetchall()
+        list = self.cursor.fetchall()
 
-        for item in liste:
+        for item in list:
             for i in item:
                 old_camera = i
         self.cursor.execute(
@@ -74,9 +75,9 @@ class UIFunctions(MainWindow):
             self.ui.lineEditSettings.setText(str(self.dir))
 
             self.cursor.execute("SELECT * FROM settings_path")
-            liste = self.cursor.fetchall()
+            list = self.cursor.fetchall()
 
-            for item in liste:
+            for item in list:
                 for i in item:
                     old_path = i
             self.cursor.execute(
@@ -114,7 +115,7 @@ class UIFunctions(MainWindow):
     def record_video(self):
         try:
             if self.vid_value == 0:
-                
+
                 if self.dir == "":
                     UIFunctions.message_box(
                         self, "Please choose a directory to save the video."
@@ -145,7 +146,7 @@ class UIFunctions(MainWindow):
 
                 # DEFINE SUITABLE FFMPEG PARAMETERS FOR WRITER
                 output_params = {
-                    "-input_framerate": (int(self.stream.framerate)),
+                    "-input_framerate": self.stream.framerate,
                     "-preset": "veryfast",
                 }
 
@@ -239,9 +240,9 @@ class UIFunctions(MainWindow):
             self.ui.lineEditSettings.setText(str(self.dir))
 
             self.cursor.execute("SELECT * FROM settings_path")
-            liste = self.cursor.fetchall()
+            list = self.cursor.fetchall()
 
-            for item in liste:
+            for item in list:
                 for i in item:
                     old_path = i
             self.cursor.execute(
@@ -252,8 +253,8 @@ class UIFunctions(MainWindow):
     # CHANGE APPEARANCE
     def change_mode(self):
         self.cursor.execute("SELECT * FROM settings_appearance")
-        liste = self.cursor.fetchall()
-        for column in liste:
+        list = self.cursor.fetchall()
+        for column in list:
             for item in column:
                 old_appearance = item
         if self.ui.toggle.isChecked():
@@ -535,7 +536,7 @@ class UIFunctions(MainWindow):
     ## ==> UI DEFINITIONS
     ########################################################################
     def uiDefinitions(self):
-        def dobleClickMaximizeRestore(event):
+        def doubleClickMaximizeRestore(event):
             # IF DOUBLE CLICK CHANGE STATUS
             if event.type() == QtCore.QEvent.MouseButtonDblClick:
                 QtCore.QTimer.singleShot(
@@ -547,7 +548,7 @@ class UIFunctions(MainWindow):
             self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
             self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
             self.ui.frame_label_top_btns.mouseDoubleClickEvent = (
-                dobleClickMaximizeRestore
+                doubleClickMaximizeRestore
             )
         else:
             self.ui.horizontalLayout.setContentsMargins(0, 0, 0, 0)

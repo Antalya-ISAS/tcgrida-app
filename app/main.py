@@ -43,26 +43,26 @@ class MainWindow(QMainWindow):
 
         # SQL Path
         self.cursor.execute("SELECT * FROM settings_path")
-        liste = self.cursor.fetchall()
+        list = self.cursor.fetchall()
 
-        if len(liste) == 0:
+        if len(list) == 0:
             self.cursor.execute("INSERT INTO settings_path Values(?)", ("",))
             self.database.commit()
 
         else:
-            for column in liste:
+            for column in list:
                 for item in column:
                     self.dir = str(item)
                     self.ui.lineEditSettings.setText(self.dir)
         # SQL Appearance
         self.cursor.execute("SELECT * FROM settings_appearance")
-        liste = self.cursor.fetchall()
-        if len(liste) == 0:
+        list = self.cursor.fetchall()
+        if len(list) == 0:
             self.cursor.execute("INSERT INTO settings_appearance Values(?)", (0,))
             self.database.commit()
 
         else:
-            for column in liste:
+            for column in list:
                 for item in column:
                     if item == 1:
                         self.ui.toggle.setChecked(True)
@@ -72,14 +72,14 @@ class MainWindow(QMainWindow):
 
         # SQL Camera
         self.cursor.execute("SELECT * FROM settings_camera")
-        liste = self.cursor.fetchall()
-        if len(liste) == 0:
+        list = self.cursor.fetchall()
+        if len(list) == 0:
             self.cursor.execute("INSERT INTO settings_camera Values(?)", (0,))
             self.camera_state = 0
             self.database.commit()
 
         else:
-            for column in liste:
+            for column in list:
                 for item in column:
                     if item == 0:
                         self.ui.comboBox.setCurrentIndex(0)

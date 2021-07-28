@@ -203,7 +203,7 @@ class MainWindow(QMainWindow):
         ## WINDOWS ==> MOVE / MAXIMIZE / RESTORE
         def moveWindow(event):
             # IF MAXIMIZED CHANGE TO NORMAL
-            if UIFunctions.returStatus(self) == 1:
+            if UIFunctions.returnStatus(self) == 1:
                 UIFunctions.maximize_restore(self)
 
             # MOVE WINDOW

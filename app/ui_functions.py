@@ -407,7 +407,7 @@ class UIFunctions(MainWindow):
             self.ui.frame_size_grip.show()
 
     ## ==> RETURN STATUS
-    def returStatus(self):
+    def returnStatus(self):
         return GLOBAL_STATE
 
     ## ==> SET STATUS

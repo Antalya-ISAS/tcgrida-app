@@ -46,8 +46,11 @@ class UIFunctions(MainWindow):
             "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width(),
             "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height(),
         }
-        self.ui.page_home.vc = CamGear(source=0, logging=True, **options).start()
+        self.ui.page_home.vc = CamGear(source=cam, logging=True, **options).start() 
         self.ui.page_home.timer.start(round(1000.0 / 24))
+
+        self.screen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
+        self.factor = 1
 
     # CAPTURE FRAMES
     def nextFrameSlot(self):
@@ -90,6 +93,10 @@ class UIFunctions(MainWindow):
 
         # GET THE SIZE OF THE SCREEN
         screen = screeninfo.get_monitors()[screen_id]
+
+        self.fullscreen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
+
+        self.factor = self.screen_size / self.fullscreen_size # inverse proportion
 
         while True:
             frame = self.ui.page_home.vc.read()
@@ -145,7 +152,7 @@ class UIFunctions(MainWindow):
 
                 # DEFINE SUITABLE FFMPEG PARAMETERS FOR WRITER
                 output_params = {
-                    "-input_framerate": self.stream.framerate,
+                    "-input_framerate": self.stream.framerate * self.factor,
                     "-preset": "veryfast",
                 }
 

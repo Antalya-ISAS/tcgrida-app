@@ -41,33 +41,27 @@ class UIFunctions(MainWindow):
             (self.ui.comboBox.currentIndex(), old_camera),
         )
         self.database.commit()
-        self.cursor.execute("SELECT * FROM settings_camera")
-        liste = self.cursor.fetchall()
 
-        for item in liste:
-            for i in item:
-                old_camera=i
-        self.cursor.execute("UPDATE settings_camera set camera = ? where camera = ?",(self.ui.comboBox.currentIndex(),old_camera))
-        self.database.commit()        
+        options = {
+            "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width(),
+            "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height(),
+        }
         self.ui.page_home.vc = cv2.VideoCapture(cam,cv2.CAP_DSHOW)
-        # vc.set(5, 30)  #set FPS
         self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
         self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height
         self.ui.page_home.timer.start(round(1000. / 24))
-       
+
+        self.screen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
+        self.factor = 1
 
     # CAPTURE FRAMES
     def nextFrameSlot(self):
         try:
             rval, frame = self.ui.page_home.vc.read()
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            #resize = cv2.cv2.resize(frame, (self.ui.page_home.width()*2, self.ui.page_home.height()*2))
-            #image = QImage(resize, resize.shape[1], resize.shape[0], QImage.Format_RGB888)
             image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
             pixmap = QPixmap.fromImage(image)
             self.ui.page_home.label.setPixmap(pixmap)
-        # logo_pixmap = cv2.cv2.imread('logo.png')
-        # dst = cv2.addWeighted(frame,1.0,logo_pixmap,0.7,0) #bu satır düzeltilecek
         except:
             self.ui.page_home.label.setText("Could not open %s"%self.ui.comboBox.currentText())
 

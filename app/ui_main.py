@@ -512,6 +512,7 @@ class Ui_MainWindow(object):
         self.lineEditSettings.setObjectName(u"lineEditSettings")
         self.lineEditSettings.setMinimumSize(QSize(0, 30))
         self.lineEditSettings.setStyleSheet(Style.style_line)
+        self.lineEditSettings.setReadOnly(True)
 
         self.horizontalLayout_11.addWidget(self.lineEditSettings)
 

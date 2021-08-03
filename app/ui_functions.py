@@ -221,40 +221,38 @@ class UIFunctions(MainWindow):
                 print("Photo saved to %s" % self.dir)
                 print(out)
         except cv2.error:
-            message = QMessageBox(self)
-            message.setIcon(QMessageBox.Warning)
-            message.setStandardButtons(QMessageBox.Ok)
-            message.setWindowTitle("Photo is not saved")
-            message.setText("Photo could not be saved because of an unknown error.")
-            message.exec()
+            UIFunctions.message_box(self,"Photo could not be saved because of an unknown error.","Photo is not saved")
 
-    def message_box(self, msg):
+
+    def message_box(self, msg, title=None):
         message = QMessageBox(self)
         message.setIcon(QMessageBox.Warning)
         message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        message.setWindowTitle("Choose a directory")
+        message.setWindowTitle(title)
         message.setText(msg)
         message.setDefaultButton(QMessageBox.Ok)
         message_state = message.exec()
-        if message_state == 1024:
-            self.dir = QFileDialog.getExistingDirectory(
-                None,
-                "Select project folder:",
-                self.environment + "/Videos",
-                QFileDialog.ShowDirsOnly,
-            )
-            self.ui.lineEditSettings.setText(str(self.dir))
+        if title == None:
+            if message_state == 1024:
+                self.dir = QFileDialog.getExistingDirectory(
+                    None,
+                    "Select project folder:",
+                    self.environment + "/Videos",
+                    QFileDialog.ShowDirsOnly,
+                )
+                self.ui.lineEditSettings.setText(str(self.dir))
 
-            self.cursor.execute("SELECT * FROM settings_path")
-            list = self.cursor.fetchall()
+                self.cursor.execute("SELECT * FROM settings_path")
+                list = self.cursor.fetchall()
 
-            for item in list:
-                for i in item:
-                    old_path = i
-            self.cursor.execute(
-                "UPDATE settings_path set path=? where path = ?", (self.dir, old_path)
-            )
-            self.database.commit()
+                for item in list:
+                    for i in item:
+                        old_path = i
+                self.cursor.execute(
+                    "UPDATE settings_path set path=? where path = ?",
+                    (self.dir, old_path),
+                )
+                self.database.commit()
 
     # CHANGE APPEARANCE
     def change_mode(self):

@@ -279,7 +279,6 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setWindowIcon(QtGui.QIcon(str("logo.png")))
     QtGui.QFontDatabase.addApplicationFont("fonts/segoeui.ttf")
     QtGui.QFontDatabase.addApplicationFont("fonts/segoeuib.ttf")
 

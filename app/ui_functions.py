@@ -46,10 +46,10 @@ class UIFunctions(MainWindow):
             "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width(),
             "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height(),
         }
-        self.ui.page_home.vc = cv2.VideoCapture(cam,cv2.CAP_DSHOW)
-        self.ui.page_home.vc.set(3, self.ui.page_home.width()*2)  # set width
-        self.ui.page_home.vc.set(4, self.ui.page_home.height()*2)  # set height
-        self.ui.page_home.timer.start(round(1000. / 24))
+        self.ui.page_home.vc = cv2.VideoCapture(cam, cv2.CAP_DSHOW)
+        self.ui.page_home.vc.set(3, self.ui.page_home.width() * 2)  # set width
+        self.ui.page_home.vc.set(4, self.ui.page_home.height() * 2)  # set height
+        self.ui.page_home.timer.start(round(1000.0 / 24))
 
         self.screen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
         self.factor = 1
@@ -63,7 +63,9 @@ class UIFunctions(MainWindow):
             pixmap = QPixmap.fromImage(image)
             self.ui.page_home.label.setPixmap(pixmap)
         except:
-            self.ui.page_home.label.setText("Could not open %s"%self.ui.comboBox.currentText())
+            self.ui.page_home.label.setText(
+                "Could not open %s" % self.ui.comboBox.currentText()
+            )
 
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
@@ -96,25 +98,33 @@ class UIFunctions(MainWindow):
 
         self.fullscreen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
 
-        self.factor = self.screen_size / self.fullscreen_size # inverse proportion
+        self.factor = self.screen_size / self.fullscreen_size  # inverse proportion
 
         while True:
-            frame = self.ui.page_home.vc.read()
+            try:
+                frame = self.ui.page_home.vc.read()
 
-            window_name = "AntalyaISAS App - Full Screen View"
-            cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
-            cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
-            cv2.setWindowProperty(
-                window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN
-            )
-            cv2.imshow(window_name, frame)
+                window_name = "AntalyaISAS App - Full Screen View"
+                cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+                cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
+                cv2.setWindowProperty(
+                    window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN
+                )
+                cv2.imshow(window_name, frame[1])
 
-            key = cv2.waitKey(1) & 0xFF
-            if (
-                key == 27 or key == 102 or key == 113 or key == 70 or key == 81
-            ):  # Key codes to exit full screen
+                key = cv2.waitKey(1) & 0xFF
+                if (
+                    key == 27 or key == 102 or key == 113 or key == 70 or key == 81
+                ):  # Key codes to exit full screen
+                    break
+
+            except:
+                UIFunctions.message_box(
+                    self,
+                    "The camera you chose is not found. Please check it and try again.",
+                    "Camera is not found.",
+                )
                 break
-
         cv2.destroyAllWindows()
 
     # VIDEO FUNCTION
@@ -221,40 +231,41 @@ class UIFunctions(MainWindow):
                 print("Photo saved to %s" % self.dir)
                 print(out)
         except cv2.error:
-            message = QMessageBox(self)
-            message.setIcon(QMessageBox.Warning)
-            message.setStandardButtons(QMessageBox.Ok)
-            message.setWindowTitle("Photo is not saved")
-            message.setText("Photo could not be saved because of an unknown error.")
-            message.exec()
+            UIFunctions.message_box(
+                self,
+                "Photo could not be saved because of an unknown error.",
+                "Photo is not saved",
+            )
 
-    def message_box(self, msg):
+    def message_box(self, msg, title=None):
         message = QMessageBox(self)
         message.setIcon(QMessageBox.Warning)
         message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-        message.setWindowTitle("Choose a directory")
+        message.setWindowTitle(title)
         message.setText(msg)
         message.setDefaultButton(QMessageBox.Ok)
         message_state = message.exec()
-        if message_state == 1024:
-            self.dir = QFileDialog.getExistingDirectory(
-                None,
-                "Select project folder:",
-                self.environment + "/Videos",
-                QFileDialog.ShowDirsOnly,
-            )
-            self.ui.lineEditSettings.setText(str(self.dir))
+        if title == None:
+            if message_state == 1024:
+                self.dir = QFileDialog.getExistingDirectory(
+                    None,
+                    "Select project folder:",
+                    self.environment + "/Videos",
+                    QFileDialog.ShowDirsOnly,
+                )
+                self.ui.lineEditSettings.setText(str(self.dir))
 
-            self.cursor.execute("SELECT * FROM settings_path")
-            list = self.cursor.fetchall()
+                self.cursor.execute("SELECT * FROM settings_path")
+                list = self.cursor.fetchall()
 
-            for item in list:
-                for i in item:
-                    old_path = i
-            self.cursor.execute(
-                "UPDATE settings_path set path=? where path = ?", (self.dir, old_path)
-            )
-            self.database.commit()
+                for item in list:
+                    for i in item:
+                        old_path = i
+                self.cursor.execute(
+                    "UPDATE settings_path set path=? where path = ?",
+                    (self.dir, old_path),
+                )
+                self.database.commit()
 
     # CHANGE APPEARANCE
     def change_mode(self):

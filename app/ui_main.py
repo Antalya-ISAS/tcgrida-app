@@ -2,6 +2,8 @@
 
 ################################
 
+## Formatting.
+
 import cv2
 from PyQt5.QtCore import QCoreApplication, QMetaObject, QSize, QUrl, Qt
 from PyQt5.QtGui import QColor, QCursor, QFont, QIcon, QImage, QPixmap, QCursor

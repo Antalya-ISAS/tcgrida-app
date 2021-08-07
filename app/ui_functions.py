@@ -2,7 +2,7 @@
 
 ################################
 
-## Setting something important.
+## Formatting.
 
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime, screeninfo

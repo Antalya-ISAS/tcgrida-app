@@ -2,6 +2,8 @@
 
 ################################
 
+## Formatting.
+
 ## ==> GUI FILE
 from main import *
 from main import MainWindow

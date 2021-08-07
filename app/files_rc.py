@@ -2,6 +2,8 @@
 
 ################################
 
+## Formatting.
+
 from PyQt5.QtCore import *
 
 qt_resource_data = b"\

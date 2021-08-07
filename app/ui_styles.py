@@ -2,6 +2,8 @@
 
 ################################
 
+## Formatting.
+
 
 class Style:
     ## rgba(27, 29, 35, 160) for dark background, rgba(230, 230, 230, 160) for light background

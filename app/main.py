@@ -37,51 +37,38 @@ class MainWindow(QMainWindow):
         ## CONNECT TO THE DATABASE
         self.database = sqlite3.connect("settings.db")
         self.cursor = self.database.cursor()
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_path (path TEXT)")
         self.cursor.execute(
-            "CREATE TABLE IF NOT EXISTS settings_appearance(appearance INT)"
+            "CREATE TABLE IF NOT EXISTS settings (path TEXT, appearance INT, camera INT)"
         )
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS settings_camera (camera INT)")
 
         # SQL Path
-        self.cursor.execute("SELECT * FROM settings_path")
-        list = self.cursor.fetchall()
+        self.cursor.execute("SELECT path FROM settings")
+        path_list = self.cursor.fetchall()
+        self.cursor.execute("SELECT appearance FROM settings")
+        appearance_list = self.cursor.fetchall()
+        self.cursor.execute("SELECT camera FROM settings")
+        camera_list = self.cursor.fetchall()
 
-        if len(list) == 0:
-            self.cursor.execute("INSERT INTO settings_path Values(?)", ("",))
+        
+        if (len(path_list) == 0 or len(appearance_list)== 0 or len(camera_list) == 0):
+            self.cursor.execute("DELETE FROM settings")
+            self.cursor.execute("INSERT INTO settings (path, appearance, camera) Values(?,?,?)", ("",0,0))
+            self.camera_state = 0
             self.database.commit()
 
         else:
-            for column in list:
+            for column in path_list:
                 for item in column:
                     self.dir = str(item)
                     self.ui.lineEditSettings.setText(self.dir)
-        # SQL Appearance
-        self.cursor.execute("SELECT * FROM settings_appearance")
-        list = self.cursor.fetchall()
-        if len(list) == 0:
-            self.cursor.execute("INSERT INTO settings_appearance Values(?)", (0,))
-            self.database.commit()
-
-        else:
-            for column in list:
+            for column in appearance_list:
                 for item in column:
                     if item == 1:
                         self.ui.toggle.setChecked(True)
                     elif item == 0:
                         self.ui.toggle.setChecked(False)
             UIFunctions.change_mode(self)
-
-        # SQL Camera
-        self.cursor.execute("SELECT * FROM settings_camera")
-        list = self.cursor.fetchall()
-        if len(list) == 0:
-            self.cursor.execute("INSERT INTO settings_camera Values(?)", (0,))
-            self.camera_state = 0
-            self.database.commit()
-
-        else:
-            for column in list:
+            for column in camera_list:
                 for item in column:
                     if item == 0:
                         self.ui.comboBox.setCurrentIndex(0)
@@ -92,6 +79,8 @@ class MainWindow(QMainWindow):
                     elif item == 2:
                         self.ui.comboBox.setCurrentIndex(2)
                         self.camera_state = 2
+
+
 
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()

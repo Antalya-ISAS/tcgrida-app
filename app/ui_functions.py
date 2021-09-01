@@ -32,14 +32,14 @@ class UIFunctions(MainWindow):
 
     # OPEN CAMERA
     def openCam(self, cam):
-        self.cursor.execute("SELECT * FROM settings_camera")
+        self.cursor.execute("SELECT camera FROM settings")
         list = self.cursor.fetchall()
 
         for item in list:
             for i in item:
                 old_camera = i
         self.cursor.execute(
-            "UPDATE settings_camera set camera = ? where camera = ?",
+            "UPDATE settings set camera = ? where camera = ?",
             (self.ui.comboBox.currentIndex(), old_camera),
         )
         self.database.commit()
@@ -78,14 +78,14 @@ class UIFunctions(MainWindow):
         if self.dir != "":
             self.ui.lineEditSettings.setText(str(self.dir))
 
-            self.cursor.execute("SELECT * FROM settings_path")
+            self.cursor.execute("SELECT path FROM settings")
             list = self.cursor.fetchall()
 
             for item in list:
                 for i in item:
                     old_path = i
             self.cursor.execute(
-                "UPDATE settings_path set path=? where path = ?", (self.dir, old_path)
+                "UPDATE settings set path=? where path = ?", (self.dir, old_path)
             )
             self.database.commit()
 
@@ -247,21 +247,21 @@ class UIFunctions(MainWindow):
                 )
                 self.ui.lineEditSettings.setText(str(self.dir))
 
-                self.cursor.execute("SELECT * FROM settings_path")
+                self.cursor.execute("SELECT path FROM settings")
                 list = self.cursor.fetchall()
 
                 for item in list:
                     for i in item:
                         old_path = i
                 self.cursor.execute(
-                    "UPDATE settings_path set path=? where path = ?",
+                    "UPDATE settings set path=? where path = ?",
                     (self.dir, old_path),
                 )
                 self.database.commit()
 
     # CHANGE APPEARANCE
     def change_mode(self):
-        self.cursor.execute("SELECT * FROM settings_appearance")
+        self.cursor.execute("SELECT appearance FROM settings")
         list = self.cursor.fetchall()
         for column in list:
             for item in column:
@@ -318,7 +318,7 @@ class UIFunctions(MainWindow):
 
             # self.ui.label_version.setStyleSheet(u"color: rgb(212, 175, 55);")
             self.cursor.execute(
-                "UPDATE settings_appearance set appearance=? where appearance = ?",
+                "UPDATE settings set appearance=? where appearance = ?",
                 (1, old_appearance),
             )
             self.database.commit()
@@ -378,7 +378,7 @@ class UIFunctions(MainWindow):
             self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
 
             self.cursor.execute(
-                "UPDATE settings_appearance set appearance=? where appearance = ?",
+                "UPDATE settings set appearance=? where appearance = ?",
                 (0, old_appearance),
             )
             self.database.commit()

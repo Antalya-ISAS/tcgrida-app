@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import QPropertyAnimation, QMetaObject, QSize, Qt, QTimer
 from PyQt5.QtWidgets import *
 
-# Testing git (Remove later)
+# Testing git (Remove later) ADAMSIN
 
 # GUI FILE
 from app_modules import *
@@ -51,10 +51,12 @@ class MainWindow(QMainWindow):
         self.cursor.execute("SELECT camera FROM settings")
         camera_list = self.cursor.fetchall()
 
-        
-        if (len(path_list) == 0 or len(appearance_list)== 0 or len(camera_list) == 0):
+        if len(path_list) == 0 or len(appearance_list) == 0 or len(camera_list) == 0:
             self.cursor.execute("DELETE FROM settings")
-            self.cursor.execute("INSERT INTO settings (path, appearance, camera) Values(?,?,?)", ("",0,0))
+            self.cursor.execute(
+                "INSERT INTO settings (path, appearance, camera) Values(?,?,?)",
+                ("", 0, 0),
+            )
             self.camera_state = 0
             self.database.commit()
 
@@ -81,8 +83,6 @@ class MainWindow(QMainWindow):
                     elif item == 2:
                         self.ui.comboBox.setCurrentIndex(2)
                         self.camera_state = 2
-
-
 
         ## START TIMER (TO UPDATE FRAMES)
         self.ui.page_home.timer = QTimer()

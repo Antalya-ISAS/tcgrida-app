@@ -72,9 +72,10 @@ class UIFunctions(MainWindow):
         self.dir = QFileDialog.getExistingDirectory(
             None,
             "Select project folder:",
-            self.environment + "/Videos",
+            f"{self.environment}/Videos",
             QFileDialog.ShowDirsOnly,
         )
+
         if self.dir != "":
             self.ui.lineEditSettings.setText(str(self.dir))
 
@@ -100,10 +101,10 @@ class UIFunctions(MainWindow):
 
         self.factor = self.screen_size / self.fullscreen_size  # inverse proportion
 
+        window_name = "AntalyaISAS App - Full Screen View"
         while True:
             frame = self.ui.page_home.vc.read()
 
-            window_name = "AntalyaISAS App - Full Screen View"
             cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
             cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
             cv2.setWindowProperty(
@@ -112,9 +113,7 @@ class UIFunctions(MainWindow):
             cv2.imshow(window_name, frame)
 
             key = cv2.waitKey(1) & 0xFF
-            if (
-                key == 27 or key == 102 or key == 113 or key == 70 or key == 81
-            ):  # Key codes to exit full screen
+            if key in [27, 102, 113, 70, 81]:  # Key codes to exit full screen
                 break
 
         cv2.destroyAllWindows()
@@ -211,7 +210,7 @@ class UIFunctions(MainWindow):
             today = datetime.datetime.now()
             date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
             file_name = f"tcGrida_{date_time}.jpg"
-            print("The photo will be saved as " + file_name)
+            print(f"The photo will be saved as {file_name}")
             frame = self.ui.page_home.vc.read()
             if self.dir == "":
                 UIFunctions.message_box(
@@ -321,7 +320,6 @@ class UIFunctions(MainWindow):
                 "UPDATE settings set appearance=? where appearance = ?",
                 (1, old_appearance),
             )
-            self.database.commit()
         else:
 
             self.ui.frame.setStyleSheet(
@@ -381,7 +379,8 @@ class UIFunctions(MainWindow):
                 "UPDATE settings set appearance=? where appearance = ?",
                 (0, old_appearance),
             )
-            self.database.commit()
+
+        self.database.commit()
 
     ########################################################################
     ## START - GUI FUNCTIONS
@@ -436,27 +435,23 @@ class UIFunctions(MainWindow):
     ## ==> TOGGLE MENU
     ########################################################################
     def toggleMenu(self, maxWidth, enable):
-        if enable:
-            # GET WIDTH
-            width = self.ui.frame_left_menu.width()
-            maxExtend = maxWidth
-            standard = 70
+        if not enable:
+            return
 
-            # SET MAX WIDTH
-            if width == 70:
-                widthExtended = maxExtend
-            else:
-                widthExtended = standard
+        # GET WIDTH
+        width = self.ui.frame_left_menu.width()
+        maxExtend = maxWidth
+        standard = 70
 
-            # ANIMATION
-            self.animation = QPropertyAnimation(
-                self.ui.frame_left_menu, b"minimumWidth"
-            )
-            self.animation.setDuration(300)
-            self.animation.setStartValue(width)
-            self.animation.setEndValue(widthExtended)
-            self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
-            self.animation.start()
+        # SET MAX WIDTH
+        widthExtended = maxExtend if width == 70 else standard
+        # ANIMATION
+        self.animation = QPropertyAnimation(self.ui.frame_left_menu, b"minimumWidth")
+        self.animation.setDuration(300)
+        self.animation.setStartValue(width)
+        self.animation.setEndValue(widthExtended)
+        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+        self.animation.start()
 
     ## ==> SET TITLE BAR
     ########################################################################
@@ -505,17 +500,13 @@ class UIFunctions(MainWindow):
     ## ==> SELECT
 
     def selectMenu(getStyle):
-        select = getStyle + (
-            "QPushButton { border-right: 7px solid rgb(61, 180, 255); }"
-        )  # (44, 49, 60)
-        return select
+        return getStyle + ("QPushButton { border-right: 7px solid rgb(61, 180, 255); }")
 
     ## ==> DESELECT
     def deselectMenu(getStyle):
-        deselect = getStyle.replace(
+        return getStyle.replace(
             "QPushButton { border-right: 7px solid rgb(61, 180, 255); }", ""
         )
-        return deselect
 
     ## ==> START SELECTION
     def selectStandardMenu(self, widget):
@@ -531,7 +522,7 @@ class UIFunctions(MainWindow):
 
     ## ==> CHANGE PAGE LABEL TEXT
     def labelPage(self, text):
-        newText = "| " + text.upper()
+        newText = f"| {text.upper()}"
         self.ui.label_top_info_2.setText(newText)
 
     ########################################################################

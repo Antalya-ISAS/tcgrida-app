@@ -48,27 +48,31 @@ class UIFunctions(MainWindow):
             "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width(),
             "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height(),
         }
-        self.ui.page_home.vc = CamGear(source=cam, logging=True, **options).start()
-        self.ui.page_home.timer.start(round(1000.0 / 24))
 
-        self.screen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
-        self.factor = 1
+        try:        
+            self.ui.page_home.vc = CamGear(source=cam, logging=True, **options).start()
+            self.ui.page_home.timer.start(round(1000.0 / 24))
+
+            self.screen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
+            self.factor = 1
+        except RuntimeError:
+            self.ui.page_home.vc.stop()
+            self.ui.page_home.timer.stop()
+            self.ui.page_home.label.setText(
+                f"Could not open {self.ui.comboBox.currentText()}"
+            )
 
     # CAPTURE FRAMES
     def nextFrameSlot(self):
-        try:
-            frame = self.ui.page_home.vc.read()
-            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
-            pixmap = QPixmap.fromImage(image)
-            self.ui.page_home.label.setPixmap(pixmap)
-        except:
-            self.ui.page_home.label.setText(
-                "Could not open %s" % self.ui.comboBox.currentText()
-            )
+        frame = self.ui.page_home.vc.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
+        pixmap = QPixmap.fromImage(image)
+        self.ui.page_home.label.setPixmap(pixmap)
 
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
+        temporary_dir = self.ui.lineEditSettings.text()
         self.dir = QFileDialog.getExistingDirectory(
             None,
             "Select project folder:",
@@ -76,47 +80,57 @@ class UIFunctions(MainWindow):
             QFileDialog.ShowDirsOnly,
         )
 
-        if self.dir != "":
-            self.ui.lineEditSettings.setText(str(self.dir))
+        self.cursor.execute("SELECT path FROM settings")
+        list = self.cursor.fetchall()
 
-            self.cursor.execute("SELECT path FROM settings")
-            list = self.cursor.fetchall()
+        for item in list:
+            for i in item:
+                old_path = i
 
-            for item in list:
-                for i in item:
-                    old_path = i
+        if(self.dir == ""):
+            self.dir = old_path
+        else:
             self.cursor.execute(
-                "UPDATE settings set path=? where path = ?", (self.dir, old_path)
+            "UPDATE settings set path=? where path = ?", (self.dir, old_path)
             )
-            self.database.commit()
+            self.database.commit()      
+        self.ui.lineEditSettings.setText(str(self.dir))
+        
 
     # OPEN NEW WINDOW (FULL SCREEN)
     def full_screen(self):
-        screen_id = 0
+        try:
+        
+            screen_id = 0
 
         # GET THE SIZE OF THE SCREEN
-        screen = screeninfo.get_monitors()[screen_id]
+            screen = screeninfo.get_monitors()[screen_id]
 
-        self.fullscreen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
+            self.fullscreen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
+            
+            self.factor = self.screen_size / self.fullscreen_size  # inverse proportion
 
-        self.factor = self.screen_size / self.fullscreen_size  # inverse proportion
+            window_name = "AntalyaISAS App - Full Screen View"
+            while True:
+                frame = self.ui.page_home.vc.read()
 
-        window_name = "AntalyaISAS App - Full Screen View"
-        while True:
-            frame = self.ui.page_home.vc.read()
+                if frame is None:
+                    break
 
-            cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
-            cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
-            cv2.setWindowProperty(
-                window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN
-            )
-            cv2.imshow(window_name, frame)
+                
+                cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
+                cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
+                cv2.setWindowProperty(
+                    window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN
+                )
+                cv2.imshow(window_name, frame)
 
-            key = cv2.waitKey(1) & 0xFF
-            if key in [27, 102, 113, 70, 81]:  # Key codes to exit full screen
-                break
-
-        cv2.destroyAllWindows()
+                key = cv2.waitKey(1) & 0xFF
+                if key in [27, 102, 113, 70, 81]:  # Key codes to exit full screen
+                    break
+            cv2.destroyAllWindows()
+        except:
+            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.Ok, title="Warning!")
 
     # VIDEO FUNCTION
     def record_video(self):
@@ -124,9 +138,11 @@ class UIFunctions(MainWindow):
             if self.vid_value == 0:
 
                 if self.dir == "":
-                    UIFunctions.message_box(
-                        self, "Please choose a directory to save the video."
+                    message_state = UIFunctions.message_box(
+                        self, "Please choose a directory to save the video.", QMessageBox.Ok | QMessageBox.Cancel, title="Warning!"
                     )
+                    if message_state == 1024:
+                        UIFunctions.openDirWindow(self)
                     return
                 self.vid_value = 1
                 self.ui.video_button.setText("STOP")
@@ -213,10 +229,11 @@ class UIFunctions(MainWindow):
             print(f"The photo will be saved as {file_name}")
             frame = self.ui.page_home.vc.read()
             if self.dir == "":
-                UIFunctions.message_box(
-                    self, "Please choose a directory to save your snapshots."
+                message_state = UIFunctions.message_box(
+                    self, "Please choose a directory to save your snapshots.", QMessageBox.Ok | QMessageBox.Cancel,title="Warning!"
                 )
-
+                if message_state == 1024:
+                    UIFunctions.openDirWindow(self)
             else:
                 out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
                 print("Photo saved to %s" % self.dir)
@@ -225,38 +242,19 @@ class UIFunctions(MainWindow):
             UIFunctions.message_box(
                 self,
                 "Photo could not be saved because of an unknown error.",
-                "Photo is not saved",
+                QMessageBox.Ok,
+                title="Warning!",
             )
 
-    def message_box(self, msg, title=None):
+    def message_box(self, msg, buttons, title=None):
         message = QMessageBox(self)
         message.setIcon(QMessageBox.Warning)
-        message.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        message.setStandardButtons(buttons)
         message.setWindowTitle(title)
         message.setText(msg)
         message.setDefaultButton(QMessageBox.Ok)
-        message_state = message.exec()
-        if title == None:
-            if message_state == 1024:
-                self.dir = QFileDialog.getExistingDirectory(
-                    None,
-                    "Select project folder:",
-                    self.environment + "/Videos",
-                    QFileDialog.ShowDirsOnly,
-                )
-                self.ui.lineEditSettings.setText(str(self.dir))
-
-                self.cursor.execute("SELECT path FROM settings")
-                list = self.cursor.fetchall()
-
-                for item in list:
-                    for i in item:
-                        old_path = i
-                self.cursor.execute(
-                    "UPDATE settings set path=? where path = ?",
-                    (self.dir, old_path),
-                )
-                self.database.commit()
+        return message.exec()
+        
 
     # CHANGE APPEARANCE
     def change_mode(self):
@@ -321,7 +319,6 @@ class UIFunctions(MainWindow):
                 (1, old_appearance),
             )
         else:
-
             self.ui.frame.setStyleSheet(
                 "background-color: rgb(39, 44, 54);\n"
                 "border-radius: 5px;\n"

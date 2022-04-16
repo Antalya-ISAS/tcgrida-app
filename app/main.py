@@ -35,6 +35,9 @@ class MainWindow(QMainWindow):
         self.dir = ""  # Used to store PATH
         self.vid_value = 0  # Used to check the recording
 
+        ## INITIALIZE CAMGEAR
+        self.ui.page_home.vc = CamGear().start()
+
         ## CONNECT TO THE DATABASE
         self.database = sqlite3.connect("settings.db")
         self.cursor = self.database.cursor()

@@ -15,9 +15,6 @@ from PyQt5.QtWidgets import *
 # GUI FILE
 from app_modules import *
 
-## LINK TEMPLATE FOR THE "FOLLOW US" PAGE
-linkTemplate = "<a href={0}>{1}</a>"
-
 
 class MainWindow(QMainWindow):
     def __init__(self):

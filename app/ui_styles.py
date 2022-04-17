@@ -23,6 +23,22 @@ class Style:
         "}"
     )
 
+    style_line_light = (
+        u"QLineEdit {\n"
+        "	background-color: rgb(180, 180, 180);\n"
+        "	border-radius: 5px;\n"
+        "	border: 2px solid rgb(27, 29, 35);\n"
+        "	padding-left: 10px;\n"
+        "   color: rgb(39, 44, 54);\n"
+        "}\n"
+        "QLineEdit:hover {\n"
+        "	border: 2px solid rgb(64, 71, 88);\n"
+        "}\n"
+        "QLineEdit:focus {\n"
+        "	border: 2px solid rgb(91, 101, 124);\n"
+        "}"
+    )
+
     style_combo = (
         u"QComboBox{\n"
         "	background-color: rgb(27, 29, 35);\n"
@@ -41,6 +57,27 @@ class Style:
         "	selection-background-color: rgb(39, 44, 54);\n"
         "}"
     )
+
+    style_combo_light = (
+        u"QComboBox{\n"
+        "	background-color: rgb(180, 180, 180);\n"
+        "	border-radius: 5px;\n"
+        "	border: 2px solid rgb(27, 29, 35);\n"
+        "	padding: 5px;\n"
+        "	padding-left: 10px;\n"
+        "   color: rgb(39, 44, 54);\n"
+        "   selection-background-color: rgb(39, 44, 54);\n"
+        "}\n"
+        "QComboBox:hover{\n"
+        "	border: 2px solid rgb(64, 71, 88);\n"
+        "}\n"
+        "QComboBox QAbstractItemView {\n"
+        "	color: rgb(61, 180, 255);	\n"
+        "	background-color: rgb(27, 29, 35);\n"
+        "	padding: 10px;\n"
+        "	selection-background-color: rgb(39, 44, 54);\n"
+        "}"
+    ) 
 
     style_circ_btn = (
         u"QPushButton {	\n"
@@ -94,6 +131,14 @@ class Style:
         "	background-color: rgb(61, 180, 255);\n"
         "}"
     )
+
+    link_button = u"QCommandLinkButton:hover {\n" "	background-color: rgb(30,35,40);	\n" "}"
+
+    link_button_light = """
+            QCommandLinkButton{
+                color: rgb(0,0,0);
+            }
+            QCommandLinkButton:hover {\nbackground-color: rgb(180,180,180);\n}"""
 
     style_frame_main = (
         u"/* LINE EDIT */\n"

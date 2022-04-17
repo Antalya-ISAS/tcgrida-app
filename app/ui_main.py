@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
 
         self.toggle = AnimatedToggle(
-            checked_color="#007fff",
+            checked_color="#004693",
         )
 
         self.toggle.setObjectName(u"toggle")
@@ -386,7 +386,9 @@ class Ui_MainWindow(object):
         self.btn_fullscreen.setObjectName(u"FULL")
         self.btn_fullscreen.setToolTip("Full screen view")
         self.btn_fullscreen.setCursor(QCursor(Qt.PointingHandCursor))
-        self.btn_fullscreen.setText("FULL SCREEN")
+        icon5 = QIcon(QPixmap("icons/16x16/cil-fullscreen.png"))
+        self.btn_fullscreen.setIcon(icon5)
+        self.btn_fullscreen.setStyleSheet(Style.style_circ_btn)
         self.layout_menu_bottom.addWidget(self.btn_fullscreen, 0, Qt.AlignHCenter)
 
         self.verticalLayout_5.addWidget(self.frame_extra_menus, 0, Qt.AlignBottom)

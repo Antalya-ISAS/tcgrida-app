@@ -265,35 +265,48 @@ class UIFunctions(MainWindow):
                 old_appearance = item
         if self.ui.toggle.isChecked():
             self.ui.frame_3.space.setStyleSheet(
-                "	border-radius: 10px;	\n" "	background-color: rgb(255, 255, 255);"
+                "	border-radius: 10px;	\n" "	background-color: rgb(195, 195, 195);"
             )
             self.ui.frame_3.space2.setStyleSheet(
-                "	border-radius: 10px;	\n" "	background-color: rgb(255, 255, 255);"
+                "	border-radius: 10px;	\n" "	background-color: rgb(195, 195, 195);"
             )
             self.ui.page_home.label.setStyleSheet("color: rgb(39,44,54);")
             self.ui.label.setStyleSheet("color: rgb(39,44,54);")
-            self.ui.frame.label.setStyleSheet("color: rgb(39, 44, 54)")
-            self.ui.frame_2.label.setStyleSheet("color: rgb(39, 44, 54)")
-            self.ui.frame_3.label.setStyleSheet("color: rgb(39, 44, 54)")
-            self.ui.lineEditSettings.setStyleSheet(
-                "background-color: rgb(240, 240, 240); color: rgb(39, 44, 54);"
-            )
-            self.ui.comboBox.setStyleSheet(
-                "background-color: rgb(240, 240, 240); color: rgb(39, 44, 54); selection-background-color: rgb(39, 44, 54);"
-            )  # rgb(61, 180, 255)
-            self.ui.frame.setStyleSheet("background-color : rgb(255, 255, 255);")
-            self.ui.frame_2.setStyleSheet("background-color: rgb(255, 255, 255);")
-            self.ui.frame_3.setStyleSheet("background-color: rgb(255, 255, 255);")
+            self.ui.frame.label.setStyleSheet("color: rgb(39, 44, 54);")
+            self.ui.frame_2.label.setStyleSheet("color: rgb(39, 44, 54);")
+            self.ui.frame_3.label.setStyleSheet("color: rgb(39, 44, 54);")
+            self.ui.lineEditSettings.setStyleSheet(Style.style_line_light)
+            self.ui.comboBox.setStyleSheet(Style.style_combo_light)
+            self.ui.frame.setStyleSheet(                
+                "background-color: rgb(195, 195, 195);\n"
+                "border-radius: 5px;\n"
+                "padding: 10px;")
+            self.ui.frame_2.setStyleSheet(                
+                "background-color: rgb(195, 195, 195);\n"
+                "border-radius: 5px;\n"
+                "padding: 10px;")
+            self.ui.frame_3.setStyleSheet(                
+                "background-color: rgb(195, 195, 195);\n"
+                "border-radius: 5px;\n"
+                "padding: 10px;"
+                )
             self.ui.frame_4.setStyleSheet(
-                "background-color: rgb(240, 240, 240); border-radius: 5px; padding: 10px;"
+                "background-color: rgb(210, 210, 210); border-radius: 5px; padding: 10px;"
             )
+            self.ui.label_title_bar_top.setStyleSheet("color: rgb(0, 0, 0);")
+            self.ui.label_top_info_1.setStyleSheet("color: rgb(30, 30, 30);")
             self.ui.page_links.label.setStyleSheet("color: rgb(39, 44, 54)")
+            self.ui.instaLinkButton.setStyleSheet(Style.link_button_light)
+            self.ui.gitLinkButton.setStyleSheet(Style.link_button_light)
+            self.ui.formLinkButton.setStyleSheet(Style.link_button_light)
+            self.ui.webLinkButton.setStyleSheet(Style.link_button_light)
+            self.ui.youtubeLinkButton.setStyleSheet(Style.link_button_light)
             self.ui.frame_5.setStyleSheet(
-                "background-color: rgb(240, 240, 240); border-radius: 5px;"
+                "background-color: rgb(210, 210, 210); border-radius: 5px;"
             )
             # self.ui.frame_grip.setStyleSheet(u"background-color: rgb(173, 130, 0);")
             # self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-            self.ui.frame_toggle.setStyleSheet("background-color: rgb(255, 255, 255);")
+            self.ui.frame_toggle.setStyleSheet("background-color: rgb(210, 210, 210);")
             self.ui.btn_toggle_menu.setStyleSheet(
                 Style.style_btn_toggle.replace(
                     "background-color: rgb(27, 29, 35);",
@@ -304,12 +317,12 @@ class UIFunctions(MainWindow):
                 "background-color: rgb(61, 180, 255)"
             )  # rgba(0, 73, 174, 200)
             self.ui.frame_top_info.setStyleSheet(
-                "background-color: rgb(200, 200, 200);"
+                "background-color: rgb(210, 210, 210);"
             )
-            self.ui.frame_center.setStyleSheet("background-color: rgb(255, 255, 255);")
+            self.ui.frame_center.setStyleSheet("background-color: rgb(210, 210, 210);")
             # self.ui.frame_left_menu.setStyleSheet(u"background-color: rgb(0, 40, 120);")
             self.ui.frame_content_right.setStyleSheet(
-                "background-color: rgb(255, 255, 255);"
+                "background-color: rgb(210, 210, 210);"
             )
             self.ui.label_credits.setStyleSheet("color: rgb(40, 40, 40);")
 
@@ -363,6 +376,13 @@ class UIFunctions(MainWindow):
             self.ui.frame_top_btns.setStyleSheet(
                 "background-color: rgba(27, 29, 35, 200)"
             )
+            self.ui.instaLinkButton.setStyleSheet(Style.link_button)
+            self.ui.gitLinkButton.setStyleSheet(Style.link_button)
+            self.ui.formLinkButton.setStyleSheet(Style.link_button)
+            self.ui.webLinkButton.setStyleSheet(Style.link_button)
+            self.ui.youtubeLinkButton.setStyleSheet(Style.link_button)
+            self.ui.label_title_bar_top.setStyleSheet("background: transparent;")
+            self.ui.label_top_info_1.setStyleSheet("color: rgb(98, 103, 111);")
             # self.ui.btn_toggle_menu.setStyleSheet(Style.style_btn_toggle)
             self.ui.frame_top_info.setStyleSheet("background-color: rgb(39, 44, 54);")
             self.ui.frame_center.setStyleSheet("background-color: rgb(40, 44, 52);")
@@ -411,6 +431,7 @@ class UIFunctions(MainWindow):
                 "background-color: rgba(27, 29, 35, 200)"
             )
             self.ui.frame_size_grip.show()
+        UIFunctions.change_mode(self)
 
     ## ==> RETURN STATUS
     def returnStatus(self):

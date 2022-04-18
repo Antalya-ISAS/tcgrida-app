@@ -222,7 +222,9 @@ class Style:
         "	selection-background-color: rgb(39, 44, 54);\n"
         "}\n"
         "\n"
-        ""
+        "QToolTip{ \n"
+        "    color: rgba(27,29,35,210); \n"
+        "}\n"
     )
 
     style_bt_standard = """

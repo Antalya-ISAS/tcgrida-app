@@ -368,6 +368,9 @@ class Ui_MainWindow(object):
 
         # VIDEO BUTTON
 
+        self.rec_icon = QIcon(QPixmap("icons/16x16/cil-rec.png"))
+        self.stop_icon = QIcon(QPixmap("icons/16x16/cil-stop.png"))
+
         self.video_button = QPushButton(self.frame_extra_menus)
         self.video_button.setObjectName(u"VIDEO")
         self.video_button.setToolTip("Record a video!")
@@ -375,7 +378,7 @@ class Ui_MainWindow(object):
         # icon3 = QIcon()
         # icon3.addFile(u":/16x16/icons/16x16/cil-camera.png", QSize(), QIcon.Normal, QIcon.Off)
         # self.video_button.setIcon(icon3) #border: 5px solid rgb(15, 16, 20)
-        self.video_button.setText("REC")
+        self.video_button.setIcon(self.rec_icon)
         self.video_button.setStyleSheet(Style.style_circ_btn2)
 
         self.layout_menu_bottom.addWidget(self.video_button, 0, Qt.AlignHCenter)

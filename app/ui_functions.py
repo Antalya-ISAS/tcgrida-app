@@ -145,7 +145,7 @@ class UIFunctions(MainWindow):
                         UIFunctions.openDirWindow(self)
                     return
                 self.vid_value = 1
-                self.ui.video_button.setText("STOP")
+                self.ui.video_button.setIcon(self.ui.stop_icon)
                 self.ui.video_button.setStyleSheet(
                     "QPushButton {	\n"
                     "	border: 5px solid rgb(220, 220, 220);\n"
@@ -198,7 +198,7 @@ class UIFunctions(MainWindow):
 
                 if self.dir != "":
                     self.vid_value = 0
-                    self.ui.video_button.setText("REC")
+                    self.ui.video_button.setIcon(self.ui.rec_icon)
                     self.ui.video_button.setStyleSheet(
                         "QPushButton {	\n"
                         "	border: 5px solid rgb(180, 0, 0);\n"

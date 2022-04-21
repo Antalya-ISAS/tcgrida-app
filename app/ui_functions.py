@@ -72,7 +72,6 @@ class UIFunctions(MainWindow):
 
     # OPEN A NEW WINDOW TO SELECT PATH
     def openDirWindow(self):
-        temporary_dir = self.ui.lineEditSettings.text()
         self.dir = QFileDialog.getExistingDirectory(
             None,
             "Select project folder:",
@@ -130,7 +129,7 @@ class UIFunctions(MainWindow):
                     break
             cv2.destroyAllWindows()
         except:
-            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.Ok, title="Warning!")
+            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.Ok, icon=QMessageBox.Critical, title="Error!")
 
     # VIDEO FUNCTION
     def record_video(self):
@@ -217,8 +216,8 @@ class UIFunctions(MainWindow):
 
                     self.writer.close()
 
-        except AttributeError:
-            pass
+        except:
+            UIFunctions.message_box(self, "An error occured while recording the video.", QMessageBox.Ok, icon=QMessageBox.Critical, title="Error!")
 
     # TAKE SNAPSHOT
     def take_photo(self):
@@ -243,12 +242,13 @@ class UIFunctions(MainWindow):
                 self,
                 "Photo could not be saved because of an unknown error.",
                 QMessageBox.Ok,
-                title="Warning!",
+                icon=QMessageBox.Critical,
+                title="Error!",
             )
 
-    def message_box(self, msg, buttons, title=None):
+    def message_box(self, msg, buttons, icon = QMessageBox.Warning, title = None):
         message = QMessageBox(self)
-        message.setIcon(QMessageBox.Warning)
+        message.setIcon(icon)
         message.setStandardButtons(buttons)
         message.setWindowTitle(title)
         message.setText(msg)

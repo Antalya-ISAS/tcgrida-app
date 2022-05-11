@@ -234,9 +234,7 @@ class UIFunctions(MainWindow):
                 if message_state == 1024:
                     UIFunctions.openDirWindow(self)
             else:
-                out = cv2.imwrite(os.path.join(self.dir, file_name), frame)
-                print("Photo saved to %s" % self.dir)
-                print(out)
+                cv2.imwrite(os.path.join(self.dir, file_name), frame)
         except cv2.error:
             UIFunctions.message_box(
                 self,

@@ -47,11 +47,6 @@ class UIFunctions(MainWindow):
         )
         self.database.commit()
 
-        options = {
-            "CAP_PROP_FRAME_WIDTH": self.ui.page_home.width(),
-            "CAP_PROP_FRAME_HEIGHT": self.ui.page_home.height(),
-        }
-
         try:        
             self.ui.page_home.vc = cv2.VideoCapture(0)
             self.ui.page_home.timer.start(round(1000.0 / 24))
@@ -172,8 +167,8 @@ class UIFunctions(MainWindow):
 
                 # DEFINE WRITER WITH DEFINED PARAMETERS AND SUITABLE OUTPUT FILENAME FOR E.G. `OUTPUT.MP4`
                 self.writer = cv2.VideoWriter(f"{self.dir}/{file_name}", 
-                         cv2.VideoWriter_fourcc(*'MJPG'),
-                         10, size)
+                         cv2.VideoWriter_fourcc('m','p','4','v'),
+                         30, size)
 
                 # LOOP OVER
                 while True:
@@ -183,6 +178,7 @@ class UIFunctions(MainWindow):
                     if frame is None:
                         break
 
+                    #frame = cv2.resize(frame, size)
                     self.writer.write(frame)
 
                     key = cv2.waitKey(1) & 0xFF

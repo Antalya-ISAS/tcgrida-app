@@ -15,11 +15,11 @@ screeninfo
 pafy
 Pillow
 pycryptodome
-PyQt5
-PyQt5-Qt5
-PyQt5-sip
+PyQt6
+PyQt6-Qt6
+PyQt6-sip
 PyQtWebEngine
-PyQtWebEngine-Qt5
+PyQtWebEngine-Qt6
 pyscreenshot
 PySocks
 pyzmq

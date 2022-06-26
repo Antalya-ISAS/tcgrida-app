@@ -1,5 +1,4 @@
 # -*- coding: UTF-8 -*-
-
 ################################
 
 ## Formatting.
@@ -7,9 +6,11 @@
 import sqlite3
 import sys, os
 import platform
-from PyQt5 import QtCore, QtGui
-from PyQt5.QtCore import QPropertyAnimation, QMetaObject, QSize, Qt, QTimer
-from PyQt5.QtWidgets import *
+import cv2
+from PyQt6 import QtCore, QtGui
+from PyQt6.QtCore import QPropertyAnimation, QMetaObject, QSize, Qt, QTimer
+from PyQt6.QtWidgets import *
+#from PyQt6.QtWidgets import QShortcut
 
 
 # GUI FILE
@@ -21,11 +22,11 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.environment = os.environ["HOMEPATH"]
         print("System: " + platform.system())
         print("Version: " + platform.release())
-        self.desktop = QApplication.desktop()
-        self.screenRect = self.desktop.screenGeometry()
+        self.desktop = QtGui.QGuiApplication.primaryScreen()
+        #cp = QtGui.QGuiApplication.primaryScreen().availableGeometry().center()
+        self.screenRect = self.desktop.availableGeometry()
         self.screen_h = self.screenRect.height()
         self.screen_w = self.screenRect.width()
 
@@ -33,7 +34,7 @@ class MainWindow(QMainWindow):
         self.vid_value = 0  # Used to check the recording
 
         ## INITIALIZE CAMGEAR
-        self.ui.page_home.vc = CamGear().start()
+        self.ui.page_home.vc = cv2.VideoCapture(0)
 
         ## CONNECT TO THE DATABASE
         self.database = sqlite3.connect("settings.db")
@@ -162,8 +163,8 @@ class MainWindow(QMainWindow):
 
         ## CONNECT FULL SCREEN BUTTON
         self.ui.btn_fullscreen.clicked.connect(lambda: UIFunctions.full_screen(self))
-        self.shortcut = QShortcut("F", self)
-        self.shortcut.activated.connect(lambda: UIFunctions.full_screen(self))
+        #self.shortcut = QShortcut("F", self)
+        #self.shortcut.activated.connect(lambda: UIFunctions.full_screen(self))
 
         ## CONNECT TOGGLE BUTTON
         self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self))
@@ -262,7 +263,7 @@ class MainWindow(QMainWindow):
             btnWidget.setStyleSheet(UIFunctions.selectMenu(btnWidget.styleSheet()))
 
     def mousePressEvent(self, event):
-        self.dragPos = event.globalPos()
+        self.dragPos = event.position()
 
     ###################################################
     ## END -> DYNAMIC MENUS - FUNCTIONS
@@ -275,4 +276,4 @@ if __name__ == "__main__":
     QtGui.QFontDatabase.addApplicationFont("fonts/segoeuib.ttf")
 
     window = MainWindow()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

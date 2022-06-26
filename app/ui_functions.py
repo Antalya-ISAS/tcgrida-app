@@ -6,11 +6,13 @@
 
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime, screeninfo
-from vidgear_noperm.gears import WriteGear, CamGear
-from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtGui import QImage, QPixmap
+#from vidgear_noperm.gears import WriteGear, CamGear
+from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtGui import QImage, QPixmap
+from PyQt6.QtCore import QPropertyAnimation
 from ui_main import *
 from main import *
+from pathlib import Path
 
 ## ==> GLOBALS
 GLOBAL_STATE = 0
@@ -18,6 +20,7 @@ GLOBAL_TITLE_BAR = True
 
 ## ==> COUNT INITIAL MENU
 count = 1
+home = str(Path.home())
 
 
 class UIFunctions(MainWindow):
@@ -50,13 +53,13 @@ class UIFunctions(MainWindow):
         }
 
         try:        
-            self.ui.page_home.vc = CamGear(source=cam, logging=True, **options).start()
+            self.ui.page_home.vc = cv2.VideoCapture(0)
             self.ui.page_home.timer.start(round(1000.0 / 24))
 
             self.screen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
             self.factor = 1
         except RuntimeError:
-            self.ui.page_home.vc.stop()
+            self.ui.page_home.vc.release()
             self.ui.page_home.timer.stop()
             self.ui.page_home.label.setText(
                 f"Could not open {self.ui.comboBox.currentText()}"
@@ -64,9 +67,8 @@ class UIFunctions(MainWindow):
 
     # CAPTURE FRAMES
     def nextFrameSlot(self):
-        frame = self.ui.page_home.vc.read()
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format_RGB888)
+        _, frame = self.ui.page_home.vc.read()
+        image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format.Format_BGR888)
         pixmap = QPixmap.fromImage(image)
         self.ui.page_home.label.setPixmap(pixmap)
 
@@ -75,8 +77,8 @@ class UIFunctions(MainWindow):
         self.dir = QFileDialog.getExistingDirectory(
             None,
             "Select project folder:",
-            f"{self.environment}/Videos",
-            QFileDialog.ShowDirsOnly,
+            f"{home}/Videos",
+            QFileDialog.Option.ShowDirsOnly,
         )
 
         self.cursor.execute("SELECT path FROM settings")
@@ -105,13 +107,16 @@ class UIFunctions(MainWindow):
         # GET THE SIZE OF THE SCREEN
             screen = screeninfo.get_monitors()[screen_id]
 
-            self.fullscreen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
+            #frame_width = int(video.get(3))
+            #frame_height = int(video.get(4))
+
+            self.fullscreen_size = (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT)
             
             self.factor = self.screen_size / self.fullscreen_size  # inverse proportion
 
             window_name = "AntalyaISAS App - Full Screen View"
             while True:
-                frame = self.ui.page_home.vc.read()
+                ret, frame = self.ui.page_home.vc.read()
 
                 if frame is None:
                     break
@@ -129,7 +134,7 @@ class UIFunctions(MainWindow):
                     break
             cv2.destroyAllWindows()
         except:
-            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.Ok, icon=QMessageBox.Critical, title="Error!")
+            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.StandardButton.Ok, icon=QMessageBox.Critical, title="Error!")
 
     # VIDEO FUNCTION
     def record_video(self):
@@ -138,7 +143,7 @@ class UIFunctions(MainWindow):
 
                 if self.dir == "":
                     message_state = UIFunctions.message_box(
-                        self, "Please choose a directory to save the video.", QMessageBox.Ok | QMessageBox.Cancel, title="Warning!"
+                        self, "Please choose a directory to save the video.", QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel, title="Warning!"
                     )
                     if message_state == 1024:
                         UIFunctions.openDirWindow(self)
@@ -163,25 +168,16 @@ class UIFunctions(MainWindow):
                 date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
 
                 file_name = f"tcGridaVid_{date_time}.mp4"
-
-                self.stream = self.ui.page_home.vc
-
-                # DEFINE SUITABLE FFMPEG PARAMETERS FOR WRITER
-                output_params = {
-                    "-input_framerate": self.stream.framerate * self.factor,
-                    "-preset": "veryfast",
-                }
+                size = (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT)
 
                 # DEFINE WRITER WITH DEFINED PARAMETERS AND SUITABLE OUTPUT FILENAME FOR E.G. `OUTPUT.MP4`
-                self.writer = WriteGear(
-                    output_filename=f"{self.dir}/{file_name}",
-                    logging=True,
-                    **output_params,
-                )
+                self.writer = cv2.VideoWriter(f"{self.dir}/{file_name}", 
+                         cv2.VideoWriter_fourcc(*'MJPG'),
+                         10, size)
 
                 # LOOP OVER
                 while True:
-                    frame = self.stream.read()
+                    _, frame = self.ui.page_home.vc.read()
 
                     # CHECK FOR FRAME IF NONE-TYPE
                     if frame is None:
@@ -216,41 +212,42 @@ class UIFunctions(MainWindow):
 
                     self.writer.close()
 
-        except:
-            UIFunctions.message_box(self, "An error occured while recording the video.", QMessageBox.Ok, icon=QMessageBox.Critical, title="Error!")
+        except cv2.error as e:
+            print(e),
+            UIFunctions.message_box(self, "An error occured while recording the video.", QMessageBox.StandardButton.Ok, icon=QMessageBox.Icon.Critical, title="Error!")
 
     # TAKE SNAPSHOT
     def take_photo(self):
         try:
             today = datetime.datetime.now()
             date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
-            file_name = f"tcGrida_{date_time}.jpg"
+            file_name = f"tcGrida_{date_time}.png"
             print(f"The photo will be saved as {file_name}")
-            frame = self.ui.page_home.vc.read()
+            _, frame = self.ui.page_home.vc.read()
             if self.dir == "":
                 message_state = UIFunctions.message_box(
-                    self, "Please choose a directory to save your snapshots.", QMessageBox.Ok | QMessageBox.Cancel,title="Warning!"
-                )
+                    self, "Please choose a directory to save your snapshots.", QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel,title="Warning!")
                 if message_state == 1024:
                     UIFunctions.openDirWindow(self)
             else:
+                print("saving it to the existing choice")
                 cv2.imwrite(os.path.join(self.dir, file_name), frame)
-        except cv2.error:
+        except cv2.error as e:
             UIFunctions.message_box(
-                self,
+                print(e),
                 "Photo could not be saved because of an unknown error.",
-                QMessageBox.Ok,
-                icon=QMessageBox.Critical,
+                QMessageBox.StandardButton.Ok,
+                icon = QMessageBox.Icon.Critical,
                 title="Error!",
             )
 
-    def message_box(self, msg, buttons, icon = QMessageBox.Warning, title = None):
+    def message_box(self, msg, buttons, icon = QMessageBox.Icon.Warning, title = None):
         message = QMessageBox(self)
         message.setIcon(icon)
         message.setStandardButtons(buttons)
         message.setWindowTitle(title)
         message.setText(msg)
-        message.setDefaultButton(QMessageBox.Ok)
+        message.setDefaultButton(QMessageBox.StandardButton.Ok)
         return message.exec()
         
 
@@ -412,7 +409,7 @@ class UIFunctions(MainWindow):
             self.ui.horizontalLayout.setContentsMargins(0, 0, 0, 0)
             self.ui.btn_maximize_restore.setToolTip("Restore")
             self.ui.btn_maximize_restore.setIcon(
-                QtGui.QIcon(":/16x16/icons/16x16/cil-window-restore.png")
+                QIcon(":/16x16/icons/16x16/cil-window-restore.png")
             )
             self.ui.frame_top_btns.setStyleSheet("background-color: rgb(27, 29, 35)")
             self.ui.frame_size_grip.hide()
@@ -466,7 +463,7 @@ class UIFunctions(MainWindow):
         self.animation.setDuration(300)
         self.animation.setStartValue(width)
         self.animation.setEndValue(widthExtended)
-        self.animation.setEasingCurve(QtCore.QEasingCurve.InOutQuart)
+        self.animation.setEasingCurve(QtCore.QEasingCurve.Type.InOutQuart)
         self.animation.start()
 
     ## ==> SET TITLE BAR
@@ -492,18 +489,18 @@ class UIFunctions(MainWindow):
         font.setFamily("Segoe UI")
         button = QPushButton(str(count), self)
         button.setObjectName(objName)
-        sizePolicy3 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(button.sizePolicy().hasHeightForWidth())
         button.setSizePolicy(sizePolicy3)
         button.setMinimumSize(QSize(0, 70))
-        button.setLayoutDirection(Qt.LeftToRight)
+        button.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         button.setStyleSheet(Style.style_bt_standard.replace("ICON_REPLACE", icon))
         button.setFont(font)
         button.setText(name)
         button.setToolTip(name)
-        button.setCursor(QCursor(Qt.PointingHandCursor))
+        button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         button.clicked.connect(self.Button)
 
         if isTopMenu:
@@ -554,15 +551,15 @@ class UIFunctions(MainWindow):
     def uiDefinitions(self):
         def doubleClickMaximizeRestore(event):
             # IF DOUBLE CLICK CHANGE STATUS
-            if event.type() == QtCore.QEvent.MouseButtonDblClick:
+            if event.type() == QtCore.QEvent.Type.MouseButtonDblClick:
                 QtCore.QTimer.singleShot(
                     250, lambda: UIFunctions.maximize_restore(self)
                 )
 
         ## REMOVE ==> STANDARD TITLE BAR
         if GLOBAL_TITLE_BAR:
-            self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-            self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
+            self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
+            self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
             self.ui.frame_label_top_btns.mouseDoubleClickEvent = (
                 doubleClickMaximizeRestore
             )

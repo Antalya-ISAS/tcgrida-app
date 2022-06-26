@@ -1,0 +1,5 @@
+{
+    "python.defaultInterpreterPath": "~/miniconda3/envs/tcgrida/python.exe",
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true
+}

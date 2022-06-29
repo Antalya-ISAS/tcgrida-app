@@ -13,7 +13,6 @@ from animated_toggle import AnimatedToggle
 from ui_styles import Style
 import files_rc
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if MainWindow.objectName():
@@ -474,6 +473,8 @@ class Ui_MainWindow(object):
         self.verticalLayoutInfo.addWidget(self.label)
 
         self.stackedWidget.addWidget(self.page_info)
+
+
 
         ###################################################
         ## SETTINGS PAGE

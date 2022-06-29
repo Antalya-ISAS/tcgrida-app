@@ -21,7 +21,10 @@ GLOBAL_TITLE_BAR = True
 ## ==> COUNT INITIAL MENU
 count = 1
 home = str(Path.home())
-
+vc = cv2.VideoCapture(0)
+frame_width = int(vc.get(3))
+frame_height = int(vc.get(4))
+size = (frame_width, frame_height)
 
 class UIFunctions(MainWindow):
 
@@ -48,13 +51,10 @@ class UIFunctions(MainWindow):
         self.database.commit()
 
         try:        
-            self.ui.page_home.vc = cv2.VideoCapture(0)
             self.ui.page_home.timer.start(round(1000.0 / 24))
-
-            self.screen_size = cv2.CAP_PROP_FRAME_WIDTH * cv2.CAP_PROP_FRAME_HEIGHT
             self.factor = 1
         except RuntimeError:
-            self.ui.page_home.vc.release()
+            vc.release()
             self.ui.page_home.timer.stop()
             self.ui.page_home.label.setText(
                 f"Could not open {self.ui.comboBox.currentText()}"
@@ -62,7 +62,7 @@ class UIFunctions(MainWindow):
 
     # CAPTURE FRAMES
     def nextFrameSlot(self):
-        _, frame = self.ui.page_home.vc.read()
+        _, frame = vc.read()
         image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format.Format_BGR888)
         pixmap = QPixmap.fromImage(image)
         self.ui.page_home.label.setPixmap(pixmap)
@@ -107,11 +107,11 @@ class UIFunctions(MainWindow):
 
             self.fullscreen_size = (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT)
             
-            self.factor = self.screen_size / self.fullscreen_size  # inverse proportion
+            self.factor = size / self.fullscreen_size  # inverse proportion
 
             window_name = "AntalyaISAS App - Full Screen View"
             while True:
-                ret, frame = self.ui.page_home.vc.read()
+                ret, frame = vc.read()
 
                 if frame is None:
                     break
@@ -129,7 +129,7 @@ class UIFunctions(MainWindow):
                     break
             cv2.destroyAllWindows()
         except:
-            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.StandardButton.Ok, icon=QMessageBox.Critical, title="Error!")
+            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.StandardButton.Ok, QMessageBox.Icon.Critical, title="Error!")
 
     # VIDEO FUNCTION
     def record_video(self):
@@ -163,7 +163,6 @@ class UIFunctions(MainWindow):
                 date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
 
                 file_name = f"tcGridaVid_{date_time}.mp4"
-                size = (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT)
 
                 # DEFINE WRITER WITH DEFINED PARAMETERS AND SUITABLE OUTPUT FILENAME FOR E.G. `OUTPUT.MP4`
                 self.writer = cv2.VideoWriter(f"{self.dir}/{file_name}", 
@@ -172,7 +171,7 @@ class UIFunctions(MainWindow):
 
                 # LOOP OVER
                 while True:
-                    _, frame = self.ui.page_home.vc.read()
+                    _, frame = vc.read()
 
                     # CHECK FOR FRAME IF NONE-TYPE
                     if frame is None:
@@ -207,10 +206,11 @@ class UIFunctions(MainWindow):
                         pass
 
                     self.writer.close()
+                    self.writer.release()
 
         except cv2.error as e:
             print(e),
-            UIFunctions.message_box(self, "An error occured while recording the video.", QMessageBox.StandardButton.Ok, icon=QMessageBox.Icon.Critical, title="Error!")
+            UIFunctions.message_box(self, "An error occured while recording the video.", QMessageBox.StandardButton.Ok, QMessageBox.Icon.Critical, title="Error!")
 
     # TAKE SNAPSHOT
     def take_photo(self):
@@ -219,7 +219,7 @@ class UIFunctions(MainWindow):
             date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
             file_name = f"tcGrida_{date_time}.png"
             print(f"The photo will be saved as {file_name}")
-            _, frame = self.ui.page_home.vc.read()
+            _, frame = vc.read()
             if self.dir == "":
                 message_state = UIFunctions.message_box(
                     self, "Please choose a directory to save your snapshots.", QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel,title="Warning!")
@@ -237,13 +237,12 @@ class UIFunctions(MainWindow):
                 title="Error!",
             )
 
-    def message_box(self, msg, buttons, icon = QMessageBox.Icon.Warning, title = None):
+    def message_box(self, msg, buttons, icon, title = None):
         message = QMessageBox(self)
         message.setIcon(icon)
         message.setStandardButtons(buttons)
         message.setWindowTitle(title)
         message.setText(msg)
-        message.setDefaultButton(QMessageBox.StandardButton.Ok)
         return message.exec()
         
 

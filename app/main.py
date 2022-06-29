@@ -10,7 +10,8 @@ import cv2
 from PyQt6 import QtCore, QtGui
 from PyQt6.QtCore import QPropertyAnimation, QMetaObject, QSize, Qt, QTimer
 from PyQt6.QtWidgets import *
-#from PyQt6.QtWidgets import QShortcut
+
+# from PyQt6.QtWidgets import QShortcut
 
 
 # GUI FILE
@@ -25,7 +26,7 @@ class MainWindow(QMainWindow):
         print("System: " + platform.system())
         print("Version: " + platform.release())
         self.desktop = QtGui.QGuiApplication.primaryScreen()
-        #cp = QtGui.QGuiApplication.primaryScreen().availableGeometry().center()
+        # cp = QtGui.QGuiApplication.primaryScreen().availableGeometry().center()
         self.screenRect = self.desktop.availableGeometry()
         self.screen_h = self.screenRect.height()
         self.screen_w = self.screenRect.width()
@@ -163,8 +164,8 @@ class MainWindow(QMainWindow):
 
         ## CONNECT FULL SCREEN BUTTON
         self.ui.btn_fullscreen.clicked.connect(lambda: UIFunctions.full_screen(self))
-        #self.shortcut = QShortcut("F", self)
-        #self.shortcut.activated.connect(lambda: UIFunctions.full_screen(self))
+        # self.shortcut = QShortcut("F", self)
+        # self.shortcut.activated.connect(lambda: UIFunctions.full_screen(self))
 
         ## CONNECT TOGGLE BUTTON
         self.ui.toggle.stateChanged.connect(lambda: UIFunctions.change_mode(self))

@@ -6,7 +6,8 @@
 
 ## ==> GUI FILE
 import webbrowser, os, cv2, datetime, screeninfo
-#from vidgear_noperm.gears import WriteGear, CamGear
+
+# from vidgear_noperm.gears import WriteGear, CamGear
 from PyQt6.QtWidgets import QMessageBox
 from PyQt6.QtGui import QImage, QPixmap
 from PyQt6.QtCore import QPropertyAnimation
@@ -25,6 +26,7 @@ vc = cv2.VideoCapture(0)
 frame_width = int(vc.get(3))
 frame_height = int(vc.get(4))
 size = (frame_width, frame_height)
+
 
 class UIFunctions(MainWindow):
 
@@ -50,7 +52,7 @@ class UIFunctions(MainWindow):
         )
         self.database.commit()
 
-        try:        
+        try:
             self.ui.page_home.timer.start(round(1000.0 / 24))
             self.factor = 1
         except RuntimeError:
@@ -63,7 +65,9 @@ class UIFunctions(MainWindow):
     # CAPTURE FRAMES
     def nextFrameSlot(self):
         _, frame = vc.read()
-        image = QImage(frame, frame.shape[1], frame.shape[0], QImage.Format.Format_BGR888)
+        image = QImage(
+            frame, frame.shape[1], frame.shape[0], QImage.Format.Format_BGR888
+        )
         pixmap = QPixmap.fromImage(image)
         self.ui.page_home.label.setPixmap(pixmap)
 
@@ -83,30 +87,29 @@ class UIFunctions(MainWindow):
             for i in item:
                 old_path = i
 
-        if(self.dir == ""):
+        if self.dir == "":
             self.dir = old_path
         else:
             self.cursor.execute(
-            "UPDATE settings set path=? where path = ?", (self.dir, old_path)
+                "UPDATE settings set path=? where path = ?", (self.dir, old_path)
             )
-            self.database.commit()      
+            self.database.commit()
         self.ui.lineEditSettings.setText(str(self.dir))
-        
 
     # OPEN NEW WINDOW (FULL SCREEN)
     def full_screen(self):
         try:
-        
+
             screen_id = 0
 
-        # GET THE SIZE OF THE SCREEN
+            # GET THE SIZE OF THE SCREEN
             screen = screeninfo.get_monitors()[screen_id]
 
-            #frame_width = int(video.get(3))
-            #frame_height = int(video.get(4))
+            # frame_width = int(video.get(3))
+            # frame_height = int(video.get(4))
 
             self.fullscreen_size = (cv2.CAP_PROP_FRAME_WIDTH, cv2.CAP_PROP_FRAME_HEIGHT)
-            
+
             self.factor = size / self.fullscreen_size  # inverse proportion
 
             window_name = "AntalyaISAS App - Full Screen View"
@@ -116,7 +119,6 @@ class UIFunctions(MainWindow):
                 if frame is None:
                     break
 
-                
                 cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
                 cv2.moveWindow(window_name, screen.x - 1, screen.y - 1)
                 cv2.setWindowProperty(
@@ -129,7 +131,13 @@ class UIFunctions(MainWindow):
                     break
             cv2.destroyAllWindows()
         except:
-            UIFunctions.message_box(self, "An error occured while opening full screen.", QMessageBox.StandardButton.Ok, QMessageBox.Icon.Critical, title="Error!")
+            UIFunctions.message_box(
+                self,
+                "An error occured while opening full screen.",
+                QMessageBox.StandardButton.Ok,
+                QMessageBox.Icon.Critical,
+                title="Error!",
+            )
 
     # VIDEO FUNCTION
     def record_video(self):
@@ -138,7 +146,12 @@ class UIFunctions(MainWindow):
 
                 if self.dir == "":
                     message_state = UIFunctions.message_box(
-                        self, "Please choose a directory to save the video.", QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel, title="Warning!"
+                        self,
+                        "Please choose a directory to save the video.",
+                        QMessageBox.StandardButton.Ok
+                        | QMessageBox.StandardButton.Cancel,
+                        title="Warning!",
+                        icon=QMessageBox.Icon.Critical,
                     )
                     if message_state == 1024:
                         UIFunctions.openDirWindow(self)
@@ -162,12 +175,12 @@ class UIFunctions(MainWindow):
                 today = datetime.datetime.now()
                 date_time = today.strftime("%m-%d-%Y, %H.%M.%S")
 
-                file_name = f"tcGridaVid_{date_time}.mp4"
+                file_name = "tcGridaVid.mp4"
 
                 # DEFINE WRITER WITH DEFINED PARAMETERS AND SUITABLE OUTPUT FILENAME FOR E.G. `OUTPUT.MP4`
-                self.writer = cv2.VideoWriter(f"{self.dir}/{file_name}", 
-                         cv2.VideoWriter_fourcc('m','p','4','v'),
-                         30, size)
+                self.writer = cv2.VideoWriter(
+                    file_name, cv2.VideoWriter_fourcc(*"mp4v"), 20, size
+                )
 
                 # LOOP OVER
                 while True:
@@ -177,12 +190,9 @@ class UIFunctions(MainWindow):
                     if frame is None:
                         break
 
-                    #frame = cv2.resize(frame, size)
+                    # frame = cv2.resize(frame, size)
                     self.writer.write(frame)
-
-                    key = cv2.waitKey(1) & 0xFF
-                    if key == ord("ƾ"):  # Weird Latin letter that no one will press
-                        break
+                    cv2.waitKey(1)
 
             elif self.vid_value == 1:
 
@@ -210,7 +220,13 @@ class UIFunctions(MainWindow):
 
         except cv2.error as e:
             print(e),
-            UIFunctions.message_box(self, "An error occured while recording the video.", QMessageBox.StandardButton.Ok, QMessageBox.Icon.Critical, title="Error!")
+            UIFunctions.message_box(
+                self,
+                "An error occured while recording the video.",
+                QMessageBox.StandardButton.Ok,
+                QMessageBox.Icon.Critical,
+                title="Error!",
+            )
 
     # TAKE SNAPSHOT
     def take_photo(self):
@@ -222,7 +238,11 @@ class UIFunctions(MainWindow):
             _, frame = vc.read()
             if self.dir == "":
                 message_state = UIFunctions.message_box(
-                    self, "Please choose a directory to save your snapshots.", QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel,title="Warning!")
+                    self,
+                    "Please choose a directory to save your snapshots.",
+                    QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel,
+                    title="Warning!",
+                )
                 if message_state == 1024:
                     UIFunctions.openDirWindow(self)
             else:
@@ -233,18 +253,17 @@ class UIFunctions(MainWindow):
                 print(e),
                 "Photo could not be saved because of an unknown error.",
                 QMessageBox.StandardButton.Ok,
-                icon = QMessageBox.Icon.Critical,
+                icon=QMessageBox.Icon.Critical,
                 title="Error!",
             )
 
-    def message_box(self, msg, buttons, icon, title = None):
+    def message_box(self, msg, buttons, icon, title=None):
         message = QMessageBox(self)
         message.setIcon(icon)
         message.setStandardButtons(buttons)
         message.setWindowTitle(title)
         message.setText(msg)
         return message.exec()
-        
 
     # CHANGE APPEARANCE
     def change_mode(self):
@@ -267,19 +286,21 @@ class UIFunctions(MainWindow):
             self.ui.frame_3.label.setStyleSheet("color: rgb(39, 44, 54);")
             self.ui.lineEditSettings.setStyleSheet(Style.style_line_light)
             self.ui.comboBox.setStyleSheet(Style.style_combo_light)
-            self.ui.frame.setStyleSheet(                
-                "background-color: rgb(195, 195, 195);\n"
-                "border-radius: 5px;\n"
-                "padding: 10px;")
-            self.ui.frame_2.setStyleSheet(                
-                "background-color: rgb(195, 195, 195);\n"
-                "border-radius: 5px;\n"
-                "padding: 10px;")
-            self.ui.frame_3.setStyleSheet(                
+            self.ui.frame.setStyleSheet(
                 "background-color: rgb(195, 195, 195);\n"
                 "border-radius: 5px;\n"
                 "padding: 10px;"
-                )
+            )
+            self.ui.frame_2.setStyleSheet(
+                "background-color: rgb(195, 195, 195);\n"
+                "border-radius: 5px;\n"
+                "padding: 10px;"
+            )
+            self.ui.frame_3.setStyleSheet(
+                "background-color: rgb(195, 195, 195);\n"
+                "border-radius: 5px;\n"
+                "padding: 10px;"
+            )
             self.ui.frame_4.setStyleSheet(
                 "background-color: rgb(210, 210, 210); border-radius: 5px; padding: 10px;"
             )
@@ -484,7 +505,9 @@ class UIFunctions(MainWindow):
         font.setFamily("Segoe UI")
         button = QPushButton(str(count), self)
         button.setObjectName(objName)
-        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
+        sizePolicy3 = QSizePolicy(
+            QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed
+        )
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(button.sizePolicy().hasHeightForWidth())
